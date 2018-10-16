@@ -1,7 +1,8 @@
 # atomic-karma-warthogs
 CZ2006 Group Atomic Karma Warthogs
 
-bless up mofos
+mark is extremely gay
+
 
 　　　　　*　　　　　　,
 　　　　　　　　　　 _/^\_
@@ -28,3 +29,5 @@ bless up mofos
 　　　　　　　　.--' ')
 　　　　　　　　　o(  )_-\
 　　　　　　　　　`"""` `
+
+mark is gay
