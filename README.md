@@ -1,6 +1,5 @@
 # atomic-karma-warthogs
-RE2006 Group Atomic Karma Warthogs
-i hate this mod
+CZ2006 Group Atomic Karma Warthogs
 
 Look, I was gonna go easy on you and not to hurt your feelings
 But I'm only going to get this one chance
