@@ -1,6 +1,8 @@
 # atomic-karma-warthogs
 CZ2006 Group Atomic Karma Warthogs
 
+bless up mofos
+
 　　　　　*　　　　　　,
 　　　　　　　　　　 _/^\_
 　　　　　　　　　　<　 　>　　∴° ☆
