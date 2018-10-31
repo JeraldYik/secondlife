@@ -16,8 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Favourites" />
-        <activity android:name=".History" />
+        <activity android:name=".FavouritesManager" />
+        <activity android:name=".HistoryManager" />
         <activity android:name=".PendingRecyclables" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
