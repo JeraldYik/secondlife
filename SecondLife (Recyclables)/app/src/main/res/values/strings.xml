@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">SecondLifeFinal</string>
+    <string name="app_name">Recycle</string>
+    <string name="recyclables">Recyclables</string>
+    <string name="metal_tins">Metal Tins</string>
+    <string name="plastics">Plastics</string>
 </resources>
