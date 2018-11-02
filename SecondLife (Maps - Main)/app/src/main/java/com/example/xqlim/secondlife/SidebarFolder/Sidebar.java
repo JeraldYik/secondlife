@@ -1,5 +1,6 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.SidebarFolder;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,7 +9,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toolbar;
+
+import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
+import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
+import com.example.xqlim.secondlife.MapsFolder.MapView;
+import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
@@ -39,6 +45,9 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         switch (item.getItemId()){
+            case R.id.nav_mapview:
+                Intent i = new Intent(Sidebar.this,MapView.class);
+                startActivity(i);
             case R.id.nav_recycle:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RecycleFragment()).commit();

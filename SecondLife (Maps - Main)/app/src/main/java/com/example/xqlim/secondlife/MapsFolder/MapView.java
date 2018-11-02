@@ -1,13 +1,16 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.MapsFolder;
 
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +20,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -49,6 +54,7 @@ public class MapView extends AppCompatActivity
     private static final String TAG = "MapViewLog";
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
+    private DrawerLayout drawer;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -86,6 +92,8 @@ public class MapView extends AppCompatActivity
         super.onCreate(savedInstanceState);
         Log.d(TAG, "oncreate");
 
+//        initSidebar();
+
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
@@ -109,6 +117,23 @@ public class MapView extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+    }
+
+    //initialise nav_header & sidebar
+    private void initSidebar() {
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
+                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     /**
@@ -200,7 +225,7 @@ public class MapView extends AppCompatActivity
                 new MarkerOptions().position(new LatLng(1.353655, 103.688101)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
-        mMap.setMyLocationEnabled(true); //not working
+//        mMap.setMyLocationEnabled(true); //NOT WORKING
         marker.remove();
 //
 //        /*
@@ -424,5 +449,14 @@ public class MapView extends AppCompatActivity
             Log.e("Exception: %s", e.getMessage());
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

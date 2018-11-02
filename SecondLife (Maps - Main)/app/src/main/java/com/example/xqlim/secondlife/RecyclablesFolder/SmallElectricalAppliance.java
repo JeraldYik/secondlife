@@ -1,6 +1,6 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class AluminiumDrinkCan implements Recyclables{
+public abstract class SmallElectricalAppliance implements Recyclables {
 
     public abstract double weight();
     public abstract int quantity();

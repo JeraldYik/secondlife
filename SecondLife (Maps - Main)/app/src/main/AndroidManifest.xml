@@ -32,7 +32,7 @@
 
         <!-- map stuff -->
         <activity
-            android:name=".MapView"
+            android:name=".MapsFolder.MapView"
             android:label="@string/title_activity_map_view">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,22 +41,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FavouritesManager">
+        <activity android:name=".FavouritesFolder.FavouritesManager">
         </activity>
-        <activity android:name=".HistoryManager" />
-        <activity android:name=".PendingRecyclables" />
+        <activity android:name=".HistoryFolder.HistoryManager" />
+        <activity android:name=".RecyclablesFolder.PendingRecyclables" />
 
         <!-- sidebar -->
         <activity
-            android:name=".Sidebar"
+            android:name=".SidebarFolder.Sidebar"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
         <!-- recyclables -->
-        <activity android:name=".RecyclableUI"/>
-        <activity android:name=".MetalUI" />
-        <activity android:name=".PlasticsUI"/>
+        <activity android:name=".RecyclablesFolder.RecyclableUI"/>
+        <activity android:name=".RecyclablesFolder.MetalUI" />
+        <activity android:name=".RecyclablesFolder.PlasticsUI"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

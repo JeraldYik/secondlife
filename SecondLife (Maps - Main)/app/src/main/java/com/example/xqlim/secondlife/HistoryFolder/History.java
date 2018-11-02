@@ -1,4 +1,6 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.HistoryFolder;
+
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclables;
 
 import java.util.ArrayList;
 

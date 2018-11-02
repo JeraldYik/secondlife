@@ -1,4 +1,4 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.RecyclablesFolder;
 
 public interface Recyclables {
 

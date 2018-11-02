@@ -1,7 +1,10 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.HistoryFolder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclables;
 
 public class HistoryManager extends AppCompatActivity {
 
