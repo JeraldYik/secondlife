@@ -1,5 +1,6 @@
 package com.example.xqlim.secondlife;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.Feature;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -34,11 +36,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.android.kml.KmlContainer;
 import com.google.maps.android.kml.KmlLayer;
+import com.google.maps.android.kml.KmlPlacemark;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * An activity that displays a map showing the place at the device's current location.
@@ -78,7 +84,6 @@ public class MapView extends AppCompatActivity
     private String[] mLikelyPlaceAddresses;
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
-
 
 
     @Override
@@ -199,7 +204,17 @@ public class MapView extends AppCompatActivity
         Marker marker = mMap.addMarker(
                 new MarkerOptions().position(new LatLng(1.353655, 103.688101)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
+                new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true); //not working
         marker.remove();
 //
@@ -418,11 +433,64 @@ public class MapView extends AppCompatActivity
         Log.d(TAG, "add layers running");
         try {
             Log.d(TAG, "try run layers");
-            KmlLayer layer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getApplicationContext());
-            layer.addLayerToMap();
+            KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getApplicationContext());
+            c4tLayer.addLayerToMap();
+            KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getApplicationContext());
+            eWasteLayer.addLayerToMap();
+
+            for (KmlPlacemark placemark : c4tLayer.getPlacemarks()) {
+                Log.d(TAG, "placemark exist");
+                if (placemark.hasProperty("name")) {
+                    System.out.println(placemark.getProperty("name"));
+                }
+            }
+
+            KmlContainer container = c4tLayer.getContainers().iterator().next();
+            container = container.getContainers().iterator().next();
+            /*
+            KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+            Iterable<Object> properties = placemark.getProperties();
+
+            for (Object property : properties){
+                Log.d(TAG, property + "\n");
+            }
+
+            */
+            Iterable<KmlPlacemark> iter = container.getPlacemarks();
+            for (KmlPlacemark placemark : iter) {
+
+                //Log.d(TAG, placemark.getProperty("description"));
+            }
+
+            /*
+            for (int i = 1; i < 10; i++){
+                KmlContainer container = layer.getContainers().iterator().next();
+                //Retrieve a nested container within the first container
+                container = container.getContainers().iterator().next();
+                //Retrieve the first placemark in the nested container
+                KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+                //Retrieve a polygon object in a placemark
+                Log.d(TAG, placemark.getProperty("name"));
+                Log.d(TAG, Integer.toString(i));
+            }
+            */
+
+
         } catch (XmlPullParserException | IOException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
+
+
+        /*
+
+        KmlContainer container = kmlLayer.getContainers().iterator().next();
+        //Retrieve a nested container within the first container
+        container = container.getContainers().iterator().next();
+        //Retrieve the first placemark in the nested container
+        KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+        //Retrieve a polygon object in a placemark
+        KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
+         */
 
     }
 }
