@@ -1,7 +1,9 @@
-package com.example.xqlim.secondlife;
+package com.example.xqlim.secondlife.RecyclablesFolder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.xqlim.secondlife.R;
 
 public class PendingRecyclables extends AppCompatActivity {
 
