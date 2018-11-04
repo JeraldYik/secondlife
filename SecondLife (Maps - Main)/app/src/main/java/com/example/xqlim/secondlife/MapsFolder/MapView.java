@@ -239,9 +239,10 @@ public class MapView extends AppCompatActivity
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            mMap.setMyLocationEnabled(true); //not working
             return;
         }
-        mMap.setMyLocationEnabled(true); //not working
+
 
 //                                    new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
 //        mMap.setMyLocationEnabled(true); //NOT WORKING
