@@ -3,6 +3,11 @@
 <kml xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns="http://www.opengis.net/kml/2.2">
 <Document>
 <name>CashForTrash</name>
+<Style id="TIcon">
+  <IconStyle>
+  	<color>7fffaaff</color>
+  </IconStyle>
+</Style>
 <visibility>1</visibility>
 <Schema name="CASHFORTRASH" id="kml_schema_ft_CASHFORTRASH">
 <SimpleField type="xsd:string" name="LANDYADDRESSPOINT">
@@ -51,7 +56,7 @@
 <Folder id="kml_ft_CASHFORTRASH">
 <name>CASHFORTRASH</name>
 <Placemark id="kml_1">
-<name>kml_1</name>
+<name>kml_1</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -115,7 +120,7 @@ Every Friday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_2">
-<name>kml_2</name>
+<name>kml_2</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -179,7 +184,7 @@ Every Friday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_3">
-<name>kml_3</name>
+<name>kml_3</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -244,7 +249,7 @@ Every Friday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_4">
-<name>kml_4</name>
+<name>kml_4</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -307,7 +312,7 @@ Every Monday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_5">
-<name>kml_5</name>
+<name>kml_5</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -370,7 +375,7 @@ Every Monday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_6">
-<name>kml_6</name>
+<name>kml_6</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -433,7 +438,7 @@ Every Monday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_7">
-<name>kml_7</name>
+<name>kml_7</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -497,7 +502,7 @@ Every Monday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_8">
-<name>kml_8</name>
+<name>kml_8</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -561,7 +566,7 @@ Last Sunday of odd months from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_9">
-<name>kml_9</name>
+<name>kml_9</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -624,7 +629,7 @@ Every Thursday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_10">
-<name>kml_10</name>
+<name>kml_10</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -687,7 +692,7 @@ Every Thursday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_11">
-<name>kml_11</name>
+<name>kml_11</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -751,7 +756,7 @@ Last Saturday of odd months from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_12">
-<name>kml_12</name>
+<name>kml_12</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -815,7 +820,7 @@ Every Friday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_13">
-<name>kml_13</name>
+<name>kml_13</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -879,7 +884,7 @@ Every Saturday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_14">
-<name>kml_14</name>
+<name>kml_14</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -943,7 +948,7 @@ Every Saturday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_15">
-<name>kml_15</name>
+<name>kml_15</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1006,7 +1011,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_16">
-<name>kml_16</name>
+<name>kml_16</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1069,7 +1074,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_17">
-<name>kml_17</name>
+<name>kml_17</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1132,7 +1137,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_18">
-<name>kml_18</name>
+<name>kml_18</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1196,7 +1201,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_19">
-<name>kml_19</name>
+<name>kml_19</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1260,7 +1265,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_20">
-<name>kml_20</name>
+<name>kml_20</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1324,7 +1329,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_21">
-<name>kml_21</name>
+<name>kml_21</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1389,7 +1394,7 @@ Last Saturday of the month from 1.30pm to 4.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_22">
-<name>kml_22</name>
+<name>kml_22</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1453,7 +1458,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_23">
-<name>kml_23</name>
+<name>kml_23</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1517,7 +1522,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_24">
-<name>kml_24</name>
+<name>kml_24</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1580,7 +1585,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_25">
-<name>kml_25</name>
+<name>kml_25</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1644,7 +1649,7 @@ Every Wednesday from 5.30pm to 9.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_26">
-<name>kml_26</name>
+<name>kml_26</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1708,7 +1713,7 @@ Every Wednesday from 5.30pm to 9.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_27">
-<name>kml_27</name>
+<name>kml_27</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1772,7 +1777,7 @@ Every Wednesday from 5.30pm to 9.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_28">
-<name>kml_28</name>
+<name>kml_28</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1837,7 +1842,7 @@ Every Wednesday from 5.30pm to 9.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_29">
-<name>kml_29</name>
+<name>kml_29</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1901,7 +1906,7 @@ Last Saturday of odd months from 2pm to 4pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_30">
-<name>kml_30</name>
+<name>kml_30</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -1965,7 +1970,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_31">
-<name>kml_31</name>
+<name>kml_31</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2028,7 +2033,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_32">
-<name>kml_32</name>
+<name>kml_32</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2091,7 +2096,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_33">
-<name>kml_33</name>
+<name>kml_33</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2154,7 +2159,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_34">
-<name>kml_34</name>
+<name>kml_34</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2217,7 +2222,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_35">
-<name>kml_35</name>
+<name>kml_35</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2281,7 +2286,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_36">
-<name>kml_36</name>
+<name>kml_36</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2344,7 +2349,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_37">
-<name>kml_37</name>
+<name>kml_37</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2407,7 +2412,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_38">
-<name>kml_38</name>
+<name>kml_38</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2470,7 +2475,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_39">
-<name>kml_39</name>
+<name>kml_39</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2534,7 +2539,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_40">
-<name>kml_40</name>
+<name>kml_40</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2597,7 +2602,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_41">
-<name>kml_41</name>
+<name>kml_41</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2660,7 +2665,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_42">
-<name>kml_42</name>
+<name>kml_42</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2724,7 +2729,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_43">
-<name>kml_43</name>
+<name>kml_43</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2788,7 +2793,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_44">
-<name>kml_44</name>
+<name>kml_44</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2852,7 +2857,7 @@ Last Sunday of every month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_45">
-<name>kml_45</name>
+<name>kml_45</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2916,7 +2921,7 @@ Last Sunday of every month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_46">
-<name>kml_46</name>
+<name>kml_46</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -2979,7 +2984,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_47">
-<name>kml_47</name>
+<name>kml_47</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3042,7 +3047,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_48">
-<name>kml_48</name>
+<name>kml_48</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3105,7 +3110,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_49">
-<name>kml_49</name>
+<name>kml_49</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3168,7 +3173,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_50">
-<name>kml_50</name>
+<name>kml_50</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3231,7 +3236,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_51">
-<name>kml_51</name>
+<name>kml_51</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3294,7 +3299,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_52">
-<name>kml_52</name>
+<name>kml_52</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3357,7 +3362,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_53">
-<name>kml_53</name>
+<name>kml_53</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3420,7 +3425,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_54">
-<name>kml_54</name>
+<name>kml_54</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3483,7 +3488,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_55">
-<name>kml_55</name>
+<name>kml_55</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3546,7 +3551,7 @@ Last Saturday of every month from 9am to 11am.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_56">
-<name>kml_56</name>
+<name>kml_56</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3609,7 +3614,7 @@ Last Sunday of every month from 9am to 11am.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_57">
-<name>kml_57</name>
+<name>kml_57</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3672,7 +3677,7 @@ Last Sunday of every month from 9.30am to 11.30am.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_58">
-<name>kml_58</name>
+<name>kml_58</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3735,7 +3740,7 @@ Last Sunday of every month from 10am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_59">
-<name>kml_59</name>
+<name>kml_59</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3798,7 +3803,7 @@ Last Sunday of every month from 1pm to 3pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_60">
-<name>kml_60</name>
+<name>kml_60</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3861,7 +3866,7 @@ Last Sunday of every month from 1pm to 3pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_61">
-<name>kml_61</name>
+<name>kml_61</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3924,7 +3929,7 @@ Every Tuesday 7pm to 9pm</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_62">
-<name>kml_62</name>
+<name>kml_62</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -3987,7 +3992,7 @@ Last Sunday of every month from 8.30am to 10am.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_63">
-<name>kml_63</name>
+<name>kml_63</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4050,7 +4055,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_64">
-<name>kml_64</name>
+<name>kml_64</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4113,7 +4118,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_65">
-<name>kml_65</name>
+<name>kml_65</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4176,7 +4181,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_66">
-<name>kml_66</name>
+<name>kml_66</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4240,7 +4245,7 @@ Last Sunday of the month from 9.30am to 12.30pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_67">
-<name>kml_67</name>
+<name>kml_67</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4304,7 +4309,7 @@ Last Sunday of every alternate month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_68">
-<name>kml_68</name>
+<name>kml_68</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4369,7 +4374,7 @@ Last Sunday of every alternate month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_69">
-<name>kml_69</name>
+<name>kml_69</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4433,7 +4438,7 @@ Last Sunday of every alternate month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_70">
-<name>kml_70</name>
+<name>kml_70</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4497,7 +4502,7 @@ Last Sunday of every alternate month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_71">
-<name>kml_71</name>
+<name>kml_71</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4560,7 +4565,7 @@ Every Tuesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_72">
-<name>kml_72</name>
+<name>kml_72</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4623,7 +4628,7 @@ Every Tuesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_73">
-<name>kml_73</name>
+<name>kml_73</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4686,7 +4691,7 @@ Every Tuesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_74">
-<name>kml_74</name>
+<name>kml_74</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4749,7 +4754,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_75">
-<name>kml_75</name>
+<name>kml_75</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4812,7 +4817,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_76">
-<name>kml_76</name>
+<name>kml_76</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4875,7 +4880,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_77">
-<name>kml_77</name>
+<name>kml_77</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -4938,7 +4943,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_78">
-<name>kml_78</name>
+<name>kml_78</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5001,7 +5006,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_79">
-<name>kml_79</name>
+<name>kml_79</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5064,7 +5069,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_80">
-<name>kml_80</name>
+<name>kml_80</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5128,7 +5133,7 @@ Every Wednesday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_81">
-<name>kml_81</name>
+<name>kml_81</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5191,7 +5196,7 @@ Every Saturday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_82">
-<name>kml_82</name>
+<name>kml_82</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5254,7 +5259,7 @@ Every Sunday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_83">
-<name>kml_83</name>
+<name>kml_83</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5317,7 +5322,7 @@ Every Sunday from 9am to 3pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_84">
-<name>kml_84</name>
+<name>kml_84</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5380,7 +5385,7 @@ Every Friday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_85">
-<name>kml_85</name>
+<name>kml_85</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5443,7 +5448,7 @@ Every Thursday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_86">
-<name>kml_86</name>
+<name>kml_86</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5506,7 +5511,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_87">
-<name>kml_87</name>
+<name>kml_87</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5570,7 +5575,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_88">
-<name>kml_88</name>
+<name>kml_88</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5634,7 +5639,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_89">
-<name>kml_89</name>
+<name>kml_89</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5698,7 +5703,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_90">
-<name>kml_90</name>
+<name>kml_90</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5762,7 +5767,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_91">
-<name>kml_91</name>
+<name>kml_91</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5826,7 +5831,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_92">
-<name>kml_92</name>
+<name>kml_92</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -5889,52 +5894,11 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_93">
-<name>kml_93</name>
+<name>kml_93</name><styleUrl>#TIcon</styleUrl>
+<styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>HYPERLINK</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>DESCRIPTION</th>
-<td>Exchange your recyclables for cash.
-Every Sunday from 7.30am to 1pm.</td>
-</tr><tr bgcolor="">
-<th>ADDRESSUNITNUMBER</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSSTREETNAME</th>
-<td>Jurong West Street 91</td>
-</tr><tr bgcolor="">
-<th>ADDRESSPOSTALCODE</th>
-<td>640953</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSFLOORNUMBER</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSBUILDINGNAME</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBLOCKNUMBER</th>
-<td>953</td>
-</tr><tr bgcolor="">
-<th>INC_CRC</th>
-<td>C41EBBC41466F672</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>FMEL_UPD_D</th>
-<td>20170920121213</td>
-</tr><tr bgcolor="">
-<th>NAME</th>
-<td>Cash for Trash Station</td>
-</tr></table></center>]]></description>
+<description>Name: Cash for Trash Station 																			Opening Hours: Every Sunday: 730am to 1pm
+</description>
 <ExtendedData>
 <SchemaData schemaUrl="#kml_schema_ft_CASHFORTRASH">
 <SimpleData name="DESCRIPTION">Exchange your recyclables for cash.
@@ -5952,7 +5916,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_94">
-<name>kml_94</name>
+<name>kml_94</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6016,7 +5980,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_95">
-<name>kml_95</name>
+<name>kml_95</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6080,7 +6044,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_96">
-<name>kml_96</name>
+<name>kml_96</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6145,7 +6109,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_97">
-<name>kml_97</name>
+<name>kml_97</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6209,7 +6173,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_98">
-<name>kml_98</name>
+<name>kml_98</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6273,7 +6237,7 @@ Every Sunday from 7.30am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_99">
-<name>kml_99</name>
+<name>kml_99</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6337,7 +6301,7 @@ Last Saturday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_100">
-<name>kml_100</name>
+<name>kml_100</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6401,7 +6365,7 @@ Every first Sunday of the month from 12pm to 3pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_101">
-<name>kml_101</name>
+<name>kml_101</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6465,7 +6429,7 @@ Every first Sunday of the month from 12pm to 3pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_102">
-<name>kml_102</name>
+<name>kml_102</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6529,7 +6493,7 @@ Every Saturday from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_103">
-<name>kml_103</name>
+<name>kml_103</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6593,7 +6557,7 @@ Last Sunday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_104">
-<name>kml_104</name>
+<name>kml_104</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6657,7 +6621,7 @@ Last Sunday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_105">
-<name>kml_105</name>
+<name>kml_105</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6721,7 +6685,7 @@ Last Sunday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_106">
-<name>kml_106</name>
+<name>kml_106</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6785,7 +6749,7 @@ Last Sunday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_107">
-<name>kml_107</name>
+<name>kml_107</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6849,7 +6813,7 @@ Last Sunday of the month from 9am to 12pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_108">
-<name>kml_108</name>
+<name>kml_108</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>
@@ -6913,7 +6877,7 @@ Every Saturday on alternate months from 9am to 1pm.</SimpleData>
 </Point>
 </Placemark>
 <Placemark id="kml_109">
-<name>kml_109</name>
+<name>kml_109</name><styleUrl>#TIcon</styleUrl>
 <snippet> </snippet>
 <description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
 <th>LANDYADDRESSPOINT</th>

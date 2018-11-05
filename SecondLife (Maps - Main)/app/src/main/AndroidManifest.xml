@@ -30,16 +30,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAZXDgEbUKBBzEf5diHNuIs8780IVL88D0" />
 
-        <!-- map stuff -->
-        <activity
-            android:name=".MapsFolder.MapView"
-            android:label="@string/title_activity_map_view">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!--&lt;!&ndash; map stuff &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name=".MapsFolder.MapViewFragment"-->
+            <!--android:label="@string/title_activity_map_view">-->
+           <!---->
+        <!--</activity>-->
 
         <activity android:name=".FavouritesFolder.FavouritesManager">
         </activity>
@@ -50,7 +46,11 @@
         <activity
             android:name=".SidebarFolder.Sidebar"
             android:theme="@style/AppTheme.NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- recyclables -->

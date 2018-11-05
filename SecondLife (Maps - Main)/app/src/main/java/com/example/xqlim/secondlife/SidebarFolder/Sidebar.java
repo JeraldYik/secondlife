@@ -1,6 +1,5 @@
 package com.example.xqlim.secondlife.SidebarFolder;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +11,7 @@ import android.view.MenuItem;
 
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
 import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
-import com.example.xqlim.secondlife.MapsFolder.MapView;
+import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
 
@@ -38,16 +37,17 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         toggle.syncState();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new RecycleFragment()).commit();
-        navigationView.setCheckedItem(R.id.nav_recycle);
+                new MapViewFragment()).commit();
+        navigationView.setCheckedItem(R.id.nav_mapview);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         switch (item.getItemId()){
             case R.id.nav_mapview:
-                Intent i = new Intent(Sidebar.this,MapView.class);
-                startActivity(i);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MapViewFragment()).commit();
+                break;
             case R.id.nav_recycle:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RecycleFragment()).commit();

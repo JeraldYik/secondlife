@@ -1,13 +1,18 @@
 package com.example.xqlim.secondlife.MapsFolder;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,15 +20,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
+import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -33,6 +40,7 @@ import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -41,23 +49,21 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.maps.android.kml.KmlContainer;
 import com.google.maps.android.kml.KmlLayer;
 import com.google.maps.android.kml.KmlPlacemark;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * An activity that displays a map showing the place at the device's current location.
  */
-public class MapView extends AppCompatActivity
+public class MapViewFragment extends Fragment
         implements OnMapReadyCallback {
 
     private static final String TAG = "MapViewLog";
+    private MapView mapView;
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DrawerLayout drawer;
@@ -91,61 +97,42 @@ public class MapView extends AppCompatActivity
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
 
+    //initialise fragment
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "initialising mapviewfrag");
+        return inflater.inflate(R.layout.fragment_map_view, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "oncreate");
-
-//        initSidebar();
-
-        // Retrieve location and camera position from saved instance state.
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//          Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
-        // Retrieve the content view that renders the map.
-        setContentView(R.layout.activity_map_view);
-
         // Construct a GeoDataClient.
-        mGeoDataClient = Places.getGeoDataClient(this, null);
+        mGeoDataClient = Places.getGeoDataClient(getContext(), null);
 
         // Construct a PlaceDetectionClient.
-        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
+        mPlaceDetectionClient = Places.getPlaceDetectionClient(getContext(), null);
 
         // Construct a FusedLocationProviderClient.
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         // Build the map.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-    }
-
-    //initialise nav_header & sidebar
-    private void initSidebar() {
-
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
     }
 
     /**
      * Saves the state of the map when the activity is paused.
      */
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
             outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
@@ -158,11 +145,13 @@ public class MapView extends AppCompatActivity
      * @param menu The options menu.
      * @return Boolean.
      */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.current_place_menu, menu);
-        return true;
-    }
+
+    //menu for getting suggested nearby locations
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.current_place_menu, menu);
+//        return true;
+//    }
 
     /**
      * Handles a click on the menu option to get a place.
@@ -187,29 +176,35 @@ public class MapView extends AppCompatActivity
 
         // Use a custom info window adapter to handle multiple lines of text in the
         // info window contents.
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+//        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
-            @Override
-            // Return null here, so that getInfoContents() is called next.
-            public View getInfoWindow(Marker arg0) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                // Inflate the layouts for the info window, title and snippet.
-                View infoWindow = getLayoutInflater().inflate(R.layout.custom_info_contents,
-                        (FrameLayout) findViewById(R.id.map), false);
-
-                TextView title = ((TextView) infoWindow.findViewById(R.id.title));
-                title.setText(marker.getTitle());
-
-                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
-                snippet.setText(marker.getSnippet());
-
-                return infoWindow;
-            }
-        });
+//            @Override
+//            // Return null here, so that getInfoContents() is called next.
+//            public View getInfoWindow(Marker arg0) {
+//                return null;
+//            }
+//
+//            @SuppressLint("ResourceType")
+//            @Override
+//            public View getInfoContents(Marker marker) {
+//
+//                Fragment mapFragment = getTargetFragment();
+//                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+//                transaction.add(R.layout.custom_info_contents, mapFragment).commit();
+////                // Inflate the layouts for the info window, title and snippet.
+////                View infoWindow = getLayoutInflater().inflate(R.layout.custom_info_contents,
+////                        (FrameLayout) getChildFragmentManager(R.id.map), false);
+//                View infoWindow = getC
+//
+//                TextView title = ((TextView) infoWindow.findViewById(R.id.title));
+//                title.setText(marker.getTitle());
+//
+//                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
+//                snippet.setText(marker.getSnippet());
+//
+//                return infoWindow;
+//            }
+//        });
 
         // Prompt the user for permission.
         getLocationPermission();
@@ -231,7 +226,7 @@ public class MapView extends AppCompatActivity
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
 
                 new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -242,10 +237,6 @@ public class MapView extends AppCompatActivity
             mMap.setMyLocationEnabled(true); //not working
             return;
         }
-
-
-//                                    new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
-//        mMap.setMyLocationEnabled(true); //NOT WORKING
 
         marker.remove();
 //
@@ -293,12 +284,12 @@ public class MapView extends AppCompatActivity
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+        if (ContextCompat.checkSelfPermission(getContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;
         } else {
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(getActivity(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
@@ -431,7 +422,7 @@ public class MapView extends AppCompatActivity
         };
 
         // Display the dialog.
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.pick_place)
                 .setItems(mLikelyPlaceNames, listener)
                 .show();
@@ -464,9 +455,9 @@ public class MapView extends AppCompatActivity
         Log.d(TAG, "add layers running");
         try {
             Log.d(TAG, "try run layers");
-            KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getApplicationContext());
+            KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
             c4tLayer.addLayerToMap();
-            KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getApplicationContext());
+            KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
             eWasteLayer.addLayerToMap();
 
             for (KmlPlacemark placemark : c4tLayer.getPlacemarks()) {
@@ -476,9 +467,10 @@ public class MapView extends AppCompatActivity
                 }
             }
 
+            /*
             KmlContainer container = c4tLayer.getContainers().iterator().next();
             container = container.getContainers().iterator().next();
-            /*
+
             KmlPlacemark placemark = container.getPlacemarks().iterator().next();
             Iterable<Object> properties = placemark.getProperties();
 
@@ -486,14 +478,13 @@ public class MapView extends AppCompatActivity
                 Log.d(TAG, property + "\n");
             }
 
-            */
+
             Iterable<KmlPlacemark> iter = container.getPlacemarks();
             for (KmlPlacemark placemark : iter) {
 
                 //Log.d(TAG, placemark.getProperty("description"));
             }
 
-            /*
             for (int i = 1; i < 10; i++){
                 KmlContainer container = layer.getContainers().iterator().next();
                 //Retrieve a nested container within the first container
@@ -523,14 +514,5 @@ public class MapView extends AppCompatActivity
         KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
          */
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 }
