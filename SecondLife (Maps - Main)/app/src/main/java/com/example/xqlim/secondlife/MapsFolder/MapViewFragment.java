@@ -32,14 +32,17 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.android.kml.KmlContainer;
 import com.google.maps.android.kml.KmlLayer;
 import com.google.maps.android.kml.KmlPlacemark;
+import com.google.maps.android.kml.KmlPoint;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -451,12 +454,18 @@ public class MapViewFragment extends Fragment
 
     private void addLayers() {
         Log.d(TAG, "add layers running");
+        int counter = 0;
         try {
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
-            c4tLayer.addLayerToMap();
+            //c4tLayer.addLayerToMap();
             KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
-            eWasteLayer.addLayerToMap();
+            //eWasteLayer.addLayerToMap();
+
+            //create locations
+            LocationManager locationManager = new LocationManager(getContext());
+            locationManager.readFile(R.raw.cashfortrash_kml);
+
 
             for (KmlPlacemark placemark : c4tLayer.getPlacemarks()) {
                 Log.d(TAG, "placemark exist");
@@ -465,10 +474,12 @@ public class MapViewFragment extends Fragment
                 }
             }
 
-            /*
+
             KmlContainer container = c4tLayer.getContainers().iterator().next();
             container = container.getContainers().iterator().next();
 
+            //to get all property frm 1 placemark
+            /*
             KmlPlacemark placemark = container.getPlacemarks().iterator().next();
             Iterable<Object> properties = placemark.getProperties();
 
@@ -476,13 +487,30 @@ public class MapViewFragment extends Fragment
                 Log.d(TAG, property + "\n");
             }
 
+            */
 
+            //to get 1 property frm all placemarks
             Iterable<KmlPlacemark> iter = container.getPlacemarks();
             for (KmlPlacemark placemark : iter) {
 
-                //Log.d(TAG, placemark.getProperty("description"));
-            }
+                if(placemark.getGeometry().getGeometryType().equals("Point")) {
+                    KmlPoint point = (KmlPoint) placemark.getGeometry();
+                    LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                    locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
 
+                    addMarkers(locationManager, locationManager.getLocationlist().get(placemark.getProperty("name")));
+                    //Log.d(TAG, placemark.getProperty("name"));
+                    //Log.d(TAG, latLng.toString());
+                }
+                String name = placemark.getProperty("description");
+            }
+            locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
+
+
+
+
+            //android util code
+            /*
             for (int i = 1; i < 10; i++){
                 KmlContainer container = layer.getContainers().iterator().next();
                 //Retrieve a nested container within the first container
@@ -512,5 +540,14 @@ public class MapViewFragment extends Fragment
         KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
          */
 
+    }
+
+    private void addMarkers(LocationManager locationManager, com.example.xqlim.secondlife.MapsFolder.Location location){
+
+        mMap.addMarker(new MarkerOptions()
+                .position(location.getLatLng())
+                .title(location.getName())
+                .snippet(location.getDescription())
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     }
 }
