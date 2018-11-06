@@ -1,10 +1,77 @@
 package com.example.xqlim.secondlife.MapsFolder;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class Location {
     private String Name;
-    private float Lat;
-    private float Long;
+    private LatLng latLng;
+
+
     private int openingTime;
     private int closingTime;
     private boolean isFavourite;
+
+
+    private String Description;
+    private String AddressUnitNumber;
+    private String AddressStreetName;
+    private String AddressPostalCode;
+    private String AddressBuildingName;
+    private String AddressBlockNumber;
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public String getAddressUnitNumber() {
+        return AddressUnitNumber;
+    }
+
+    public String getAddressStreetName() {
+        return AddressStreetName;
+    }
+
+    public String getAddressPostalCode() {
+        return AddressPostalCode;
+    }
+
+    public String getAddressBuildingName() {
+        return AddressBuildingName;
+    }
+
+    public String getAddressBlockNumber() {
+        return AddressBlockNumber;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public void setAddressUnitNumber(String addressUnitNumber) {
+        AddressUnitNumber = addressUnitNumber;
+    }
+
+    public void setAddressStreetName(String addressStreetName) {
+        AddressStreetName = addressStreetName;
+    }
+
+    public void setAddressPostalCode(String addressPostalCode) {
+        AddressPostalCode = addressPostalCode;
+    }
+
+    public void setAddressBuildingName(String addressBuildingName) {
+        AddressBuildingName = addressBuildingName;
+    }
+
+    public void setAddressBlockNumber(String addressBlockNumber) {
+        AddressBlockNumber = addressBlockNumber;
+    }
 }

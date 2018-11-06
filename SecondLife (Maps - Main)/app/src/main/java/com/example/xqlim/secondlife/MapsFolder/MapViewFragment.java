@@ -49,8 +49,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.android.kml.KmlContainer;
 import com.google.maps.android.kml.KmlLayer;
 import com.google.maps.android.kml.KmlPlacemark;
+import com.google.maps.android.kml.KmlPoint;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -467,10 +469,12 @@ public class MapViewFragment extends Fragment
                 }
             }
 
-            /*
+
             KmlContainer container = c4tLayer.getContainers().iterator().next();
             container = container.getContainers().iterator().next();
 
+            //to get all property frm 1 placemark
+            /*
             KmlPlacemark placemark = container.getPlacemarks().iterator().next();
             Iterable<Object> properties = placemark.getProperties();
 
@@ -478,13 +482,29 @@ public class MapViewFragment extends Fragment
                 Log.d(TAG, property + "\n");
             }
 
+            */
 
+            //to get 1 property frm all placemarks
             Iterable<KmlPlacemark> iter = container.getPlacemarks();
             for (KmlPlacemark placemark : iter) {
 
-                //Log.d(TAG, placemark.getProperty("description"));
+                if(placemark.getGeometry().getGeometryType().equals("Point")) {
+                    KmlPoint point = (KmlPoint) placemark.getGeometry();
+                    LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                    //Log.d(TAG, latLng.toString());
+                }
+
+                String name = placemark.getProperty("description");
+
             }
 
+            LocationManager locationManager = new LocationManager(getContext());
+            locationManager.readFile(R.raw.cashfortrash_kml);
+
+
+
+            //android util code
+            /*
             for (int i = 1; i < 10; i++){
                 KmlContainer container = layer.getContainers().iterator().next();
                 //Retrieve a nested container within the first container
