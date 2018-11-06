@@ -43,6 +43,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -455,12 +456,18 @@ public class MapViewFragment extends Fragment
 
     private void addLayers() {
         Log.d(TAG, "add layers running");
+        int counter = 0;
         try {
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
-            c4tLayer.addLayerToMap();
+            //c4tLayer.addLayerToMap();
             KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
-            eWasteLayer.addLayerToMap();
+            //eWasteLayer.addLayerToMap();
+
+            //create locations
+            LocationManager locationManager = new LocationManager(getContext());
+            locationManager.readFile(R.raw.cashfortrash_kml);
+
 
             for (KmlPlacemark placemark : c4tLayer.getPlacemarks()) {
                 Log.d(TAG, "placemark exist");
@@ -491,15 +498,16 @@ public class MapViewFragment extends Fragment
                 if(placemark.getGeometry().getGeometryType().equals("Point")) {
                     KmlPoint point = (KmlPoint) placemark.getGeometry();
                     LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                    locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
+
+                    addMarkers(locationManager, locationManager.getLocationlist().get(placemark.getProperty("name")));
+                    //Log.d(TAG, placemark.getProperty("name"));
                     //Log.d(TAG, latLng.toString());
                 }
-
                 String name = placemark.getProperty("description");
-
             }
+            locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
 
-            LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml);
 
 
 
@@ -534,5 +542,14 @@ public class MapViewFragment extends Fragment
         KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
          */
 
+    }
+
+    private void addMarkers(LocationManager locationManager, com.example.xqlim.secondlife.MapsFolder.Location location){
+
+        mMap.addMarker(new MarkerOptions()
+                .position(location.getLatLng())
+                .title(location.getName())
+                .snippet(location.getDescription())
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     }
 }

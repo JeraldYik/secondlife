@@ -1,8 +1,11 @@
 package com.example.xqlim.secondlife.MapsFolder;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 public class Location {
+    private static final String TAG = "LocationCreator";
     private String Name;
     private LatLng latLng;
 
@@ -11,6 +14,14 @@ public class Location {
     private int closingTime;
     private boolean isFavourite;
 
+
+    public LatLng getLatLng() {
+        return latLng;
+    }
+
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
+    }
 
     private String Description;
     private String AddressUnitNumber;
@@ -52,7 +63,18 @@ public class Location {
     }
 
     public void setDescription(String description) {
-        Description = description;
+
+        String[] split = description.split("\\s+");
+
+        StringBuilder builder = new StringBuilder();
+        for(int i = 5; i < split.length; i++) {
+            builder.append(split[i]).append(" ");
+        }
+        String str = builder.toString();
+        Log.d(TAG, str);
+
+
+        Description = str;
     }
 
     public void setAddressUnitNumber(String addressUnitNumber) {

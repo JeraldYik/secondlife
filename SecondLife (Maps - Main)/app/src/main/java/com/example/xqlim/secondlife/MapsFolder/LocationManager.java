@@ -23,7 +23,7 @@ public class LocationManager
 {
     private Context mContext;
     private static final String TAG = "LocationCreator";
-    private ArrayList<Location> locationlist = new ArrayList<>();
+    private HashMap <String, Location> locationlist = new HashMap<>();
 
     public LocationManager(Context context) {
         this.mContext = context;
@@ -90,33 +90,46 @@ public class LocationManager
         //Log.d(TAG,"End document");
     }
 
+
     private void createLocation(String name, ArrayList<String> info){
         //Log.d(TAG, "location creating");
 
         Location location = new Location();
-        location.setName(name);
+        location.setName("Cash For Trash");
+        //Log.d(TAG, location.getName());
         location.setAddressBlockNumber(info.get(info.size()-4));
 
         location.setAddressPostalCode(info.get(info.size()-6));
         location.setAddressStreetName(info.get(info.size()-7));
+        //Log.d(TAG, location.getAddressStreetName());
         if (info.size() == 9){
+            location.setAddressBlockNumber(info.get(info.size()-4));
             location.setAddressBuildingName(info.get(info.size()-5));
+            location.setAddressPostalCode(info.get(info.size()-6));
+            location.setAddressStreetName(info.get(info.size()-7));
             location.setAddressUnitNumber(info.get(1));
         }
         else if (info.size() == 8){
+            location.setAddressBlockNumber(info.get(info.size()-4));
             location.setAddressBuildingName(info.get(info.size()-5));
+            location.setAddressPostalCode(info.get(info.size()-6));
+            location.setAddressStreetName(info.get(info.size()-7));
             location.setAddressUnitNumber("No unit number");
         }
+
         else if (info.size() == 7){
+            location.setAddressBlockNumber(info.get(info.size()-4));
+            location.setAddressPostalCode(info.get(info.size()-5));
+            location.setAddressStreetName(info.get(info.size()-6));
             location.setAddressBuildingName("No Building Name");
             location.setAddressUnitNumber("No unit number");
         }
         location.setDescription(info.get(0));
-        locationlist.add(location);
-        printLoc(location);
+        locationlist.put(name, location);
+        //printLoc(location);
     }
 
-    private void printLoc(Location location){
+    public void printLoc(Location location){
         Log.d(TAG, location.getName());
         Log.d(TAG, location.getDescription());
         Log.d(TAG, location.getAddressUnitNumber());
@@ -124,6 +137,14 @@ public class LocationManager
         Log.d(TAG, location.getAddressPostalCode());
         Log.d(TAG, location.getAddressBuildingName());
         Log.d(TAG, location.getAddressBlockNumber());
+        Log.d(TAG, location.getLatLng().toString());
     }
 
+    public HashMap<String, Location> getLocationlist() {
+        return locationlist;
+    }
+
+    public void setLocationlist(HashMap<String, Location> locationlist) {
+        this.locationlist = locationlist;
+    }
 }
