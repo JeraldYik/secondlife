@@ -1,16 +1,16 @@
 package com.example.xqlim.secondlife.SidebarFolder;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
-import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
+import com.example.xqlim.secondlife.HistoryFolder.Hist;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
@@ -62,7 +62,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HistoryFragment()).commit();
+                        new Hist()).commit();
                 break;
         }
 
