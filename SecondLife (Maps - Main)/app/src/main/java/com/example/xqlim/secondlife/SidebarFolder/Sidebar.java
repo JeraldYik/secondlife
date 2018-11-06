@@ -41,6 +41,10 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         navigationView.setCheckedItem(R.id.nav_mapview);
     }
 
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         switch (item.getItemId()){
