@@ -466,15 +466,6 @@ public class MapViewFragment extends Fragment
             LocationManager locationManager = new LocationManager(getContext());
             locationManager.readFile(R.raw.cashfortrash_kml);
 
-
-            for (KmlPlacemark placemark : c4tLayer.getPlacemarks()) {
-                Log.d(TAG, "placemark exist");
-                if (placemark.hasProperty("name")) {
-                    System.out.println(placemark.getProperty("name"));
-                }
-            }
-
-
             KmlContainer container = c4tLayer.getContainers().iterator().next();
             container = container.getContainers().iterator().next();
 
@@ -498,13 +489,16 @@ public class MapViewFragment extends Fragment
                     LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
                     locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
 
-                    addMarkers(locationManager, locationManager.getLocationlist().get(placemark.getProperty("name")));
+                    Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
+                    addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
+
                     //Log.d(TAG, placemark.getProperty("name"));
                     //Log.d(TAG, latLng.toString());
                 }
                 String name = placemark.getProperty("description");
             }
-            locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
+
+            //locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
 
 
 
@@ -542,12 +536,15 @@ public class MapViewFragment extends Fragment
 
     }
 
-    private void addMarkers(LocationManager locationManager, com.example.xqlim.secondlife.MapsFolder.Location location){
+    private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
+        Log.d(TAG, location.getDescription());
 
         mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
                 .title(location.getName())
                 .snippet(location.getDescription())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+
     }
 }

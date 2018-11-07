@@ -3,9 +3,12 @@ package com.example.xqlim.secondlife.HistoryFolder;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,8 @@ public class Hist extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private static final String TAG = "History";
+
     public Hist() {
         // Required empty public constructor
     }
@@ -60,13 +65,33 @@ public class Hist extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
 
+    }
+    /*
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.history_recycler);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new HistAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
+    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_hist, container, false);
 
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.history_recycler);
+        //mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.history_recycler);
+
+        mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -76,7 +101,11 @@ public class Hist extends Fragment {
         mAdapter = new HistAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
 
-        return inflater.inflate(R.layout.fragment_hist, container, false);
+        return layout;
+
+        //return inflater.inflate(R.layout.fragment_hist, container, false);
+
+
     }
 
     @Override

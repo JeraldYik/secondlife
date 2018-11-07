@@ -2,6 +2,7 @@ package com.example.xqlim.secondlife.HistoryFolder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -15,10 +16,13 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mTextView;
-        public MyViewHolder(TextView v) {
+        public View mView;
+        TextView text;
+
+        public MyViewHolder(View v) {
             super(v);
-            mTextView = v;
+            mView = v;
+            text = (TextView)v.findViewById(R.id.textView);
         }
     }
 
@@ -32,8 +36,19 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     public HistAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                        int viewType) {
         // create a new view
+        /*
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_history, parent, false);
+
+
+        TextView v = LayoutInflater
+
+        MyViewHolder vh = new MyViewHolder(v);
+        return vh;
+           */
+        // create a new view
+        View v = (View) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.test, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -44,7 +59,12 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+
+        holder.text.setText(mDataset[position]);
+
+        /*
+        holder.mView.setText(mDataset[position]);
+        */
 
     }
 
