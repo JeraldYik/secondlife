@@ -3,18 +3,18 @@ package com.example.xqlim.secondlife.HistoryFolder;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +34,7 @@ public class Hist extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private String[] myDataset = {"hi", "lel", "bob"};
+    private List<Person> persons;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,28 +62,22 @@ public class Hist extends Fragment {
         return fragment;
     }
 
+    // This method creates an ArrayList that has three Person objects
+// Checkout the project associated with this tutorial on Github if
+// you want to use the same images.
+    private void initializeData(){
+        persons = new ArrayList<>();
+        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.emma));
+        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.emma));
+        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.emma));
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-    /*
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.history_recycler);
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new HistAdapter(myDataset);
-        mRecyclerView.setAdapter(mAdapter);
-        super.onViewCreated(view, savedInstanceState);
-    }
-    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,12 +87,14 @@ public class Hist extends Fragment {
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
+        initializeData();
+
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(myDataset);
+        mAdapter = new HistAdapter(persons);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
