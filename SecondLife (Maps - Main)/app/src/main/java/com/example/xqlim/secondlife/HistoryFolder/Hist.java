@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
-import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.*;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
@@ -72,12 +71,13 @@ public class Hist extends Fragment {
         persons.add(new Person("Lillie Watts", "35 years old", R.drawable.emma));
 
         recycledItems = new ArrayList<>();
+        recycledItems.add(new Paper(5,"kg"));
+        recycledItems.add(new MetalTin(5, "cans"));
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Hist extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(persons);
+        mAdapter = new HistAdapter(recycledItems);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;

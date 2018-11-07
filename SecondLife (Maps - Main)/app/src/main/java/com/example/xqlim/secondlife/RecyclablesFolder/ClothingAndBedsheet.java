@@ -1,7 +1,11 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class ClothingAndBedsheet extends Recyclable {
+import com.example.xqlim.secondlife.R;
+
+public class ClothingAndBedsheet extends Recyclable {
     public ClothingAndBedsheet(double quantity, String unit) {
         super(quantity, unit);
+        name = "Clothing and Bedsheet";
+        imageAssetSmall = R.drawable.small_clothing;
     }
 }
