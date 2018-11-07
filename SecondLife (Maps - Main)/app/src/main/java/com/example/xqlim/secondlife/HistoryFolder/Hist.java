@@ -11,11 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.*;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +40,6 @@ public class Hist extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<Person> persons;
     private ArrayList<Recyclable> recycledItems;
 
     private OnFragmentInteractionListener mListener;
@@ -61,18 +68,15 @@ public class Hist extends Fragment {
 //        return fragment;
 //    }
 
-    // This method creates an ArrayList that has three Person objects
 // Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
-    private void initializeData(){
-        persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.emma));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.emma));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.emma));
-
-        recycledItems = new ArrayList<>();
-        recycledItems.add(new Paper(5,"kg"));
+    private void initializeData() {
+        recycledItems.add(new Paper(5, "kg"));
         recycledItems.add(new MetalTin(5, "cans"));
+    }
+
+    public void addHist(Recyclable recyclable) {
+        recycledItems.add(recyclable);
     }
 
     @Override
@@ -85,29 +89,63 @@ public class Hist extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
 
-        //mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.history_recycler);
+        //init recycled list
+        recycledItems = new ArrayList<>();
+        initializeData();
+
+        writeToMem(recycledItems);
+        ArrayList<Recyclable> bob = readFromMem(recycledItems);
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
-
-        initializeData();
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(recycledItems);
+        mAdapter = new HistAdapter(bob);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
 
-        //return inflater.inflate(R.layout.fragment_hist, container, false);
+    }
 
+    public void writeToMem(ArrayList arraylist) {
+        //open datafile
+        try {
+            FileOutputStream fos = getContext().openFileOutput("histList", Context.MODE_PRIVATE);
+            ObjectOutputStream oos= new ObjectOutputStream(fos);
+            oos.writeObject(arraylist);
+            oos.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public ArrayList readFromMem(ArrayList arraylist) {
+        try
+        {
+            FileInputStream fis = getContext().openFileInput("hist_list");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            arraylist = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+            return null;
+        }catch(ClassNotFoundException c){
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return null;
+        }
+        return arraylist;
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
         // Set title bar

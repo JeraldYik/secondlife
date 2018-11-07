@@ -12,6 +12,9 @@ public class HistoryManager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        // DELETE THIS CLASS WHEN NOT NEEDED
+
     }
 
     public void viewHistory(){

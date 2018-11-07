@@ -1,6 +1,6 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class Recyclable {
+public class Recyclable {
 
     protected String name;
     protected double quantity;
@@ -10,7 +10,7 @@ public abstract class Recyclable {
     protected int imageAssetLarge;
     protected String recyclableRequirements;
 
-    Recyclable (double quantity, String unit) {
+    public Recyclable (double quantity, String unit) {
         this.quantity = quantity;
         this.unit = unit;
     }
@@ -48,8 +48,13 @@ public abstract class Recyclable {
     }
 
     public String getQtyDisplay() {
-
-        String qtyDisp = (Double.toString(quantity) + " " + unit);
+        String qtyDisp;
+        if (unit != "kg") {
+            qtyDisp = (Integer.toString((int) quantity) + " " + unit);
+        }
+        else {
+            qtyDisp = (Double.toString(quantity) + " " + unit);
+        }
         return qtyDisp;
     }
 
