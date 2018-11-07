@@ -22,16 +22,16 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView cv;
-        TextView personName;
-        TextView personAge;
-        ImageView personPhoto;
+        TextView recyclableName;
+        TextView recyclableQty;
+        ImageView recyclablePhoto;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.person_name);
-            personAge = (TextView)itemView.findViewById(R.id.person_age);
-            personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            recyclableName = (TextView)itemView.findViewById(R.id.recyclable_name);
+            recyclableQty = (TextView)itemView.findViewById(R.id.person_age);
+            recyclablePhoto = (ImageView)itemView.findViewById(R.id.recyclable_photo);
         }
     }
 
@@ -58,9 +58,9 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.personName.setText(persons.get(i).name);
-        holder.personAge.setText(persons.get(i).age);
-        holder.personPhoto.setImageResource(persons.get(i).photoId);
+        holder.recyclableName.setText(persons.get(i).name);
+        holder.recyclableQty.setText(persons.get(i).age);
+        holder.recyclablePhoto.setImageResource(persons.get(i).photoId);
 
         /*
         holder.mView.setText(mDataset[position]);

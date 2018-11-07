@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
@@ -26,15 +28,13 @@ import java.util.List;
  */
 public class Hist extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<Person> persons;
+    private ArrayList<Recyclable> recycledItems;
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,14 +53,14 @@ public class Hist extends Fragment {
      * @return A new instance of fragment Hist.
      */
     // TODO: Rename and change types and number of parameters
-    public static Hist newInstance(String param1, String param2) {
-        Hist fragment = new Hist();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static Hist newInstance(String param1, String param2) {
+//        Hist fragment = new Hist();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     // This method creates an ArrayList that has three Person objects
 // Checkout the project associated with this tutorial on Github if
@@ -70,6 +70,8 @@ public class Hist extends Fragment {
         persons.add(new Person("Emma Wilson", "23 years old", R.drawable.emma));
         persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.emma));
         persons.add(new Person("Lillie Watts", "35 years old", R.drawable.emma));
+
+        recycledItems = new ArrayList<>();
     }
 
     @Override

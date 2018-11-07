@@ -1,9 +1,7 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class MetalTin implements Recyclables{
-
-    public abstract double weight();
-    public abstract int quantity();
-    public abstract String recyclablerequirements();
-
+public class MetalTin extends Recyclable {
+    public MetalTin(double quantity, String unit) {
+        super(quantity, unit);
+    }
 }

@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.Recyclables;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 public class HistoryManager extends AppCompatActivity {
 
@@ -18,11 +18,11 @@ public class HistoryManager extends AppCompatActivity {
 
     }
 
-    public void addHistory(Recyclables recycledItem){
+    public void addHistory(Recyclable recycledItem){
 
     }
 
-    public void delHistory(Recyclables recycledItem){
+    public void delHistory(Recyclable recycledItem){
 
     }
 }

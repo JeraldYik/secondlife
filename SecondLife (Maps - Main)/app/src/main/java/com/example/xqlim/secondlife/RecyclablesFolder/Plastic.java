@@ -1,9 +1,7 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class Plastic implements Recyclables {
-
-    public abstract double weight();
-    public abstract int quantity();
-    public abstract String recyclablerequirements();
-
+public abstract class Plastic extends Recyclable {
+    public Plastic(double quantity, String unit) {
+        super(quantity, unit);
+    }
 }
