@@ -14,6 +14,13 @@ public class Location {
     private int closingTime;
     private boolean isFavourite;
 
+    private String Description;
+    private String AddressUnitNumber;
+    private String AddressStreetName;
+    private String AddressPostalCode;
+    private String AddressBuildingName;
+    private String AddressBlockNumber;
+
 
     public LatLng getLatLng() {
         return latLng;
@@ -22,13 +29,6 @@ public class Location {
     public void setLatLng(LatLng latLng) {
         this.latLng = latLng;
     }
-
-    private String Description;
-    private String AddressUnitNumber;
-    private String AddressStreetName;
-    private String AddressPostalCode;
-    private String AddressBuildingName;
-    private String AddressBlockNumber;
 
     public String getName() {
         return Name;

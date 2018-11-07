@@ -3,6 +3,7 @@ package com.example.xqlim.secondlife.MapsFolder;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,11 +13,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
@@ -206,6 +211,8 @@ public class MapViewFragment extends Fragment
 //                return infoWindow;
 //            }
 //        });
+
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
         // Prompt the user for permission.
         getLocationPermission();
@@ -489,19 +496,15 @@ public class MapViewFragment extends Fragment
                     LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
                     locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
 
-                    Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
+                    //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
                     addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
 
                     //Log.d(TAG, placemark.getProperty("name"));
                     //Log.d(TAG, latLng.toString());
                 }
-                String name = placemark.getProperty("description");
             }
 
             //locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
-
-
-
 
             //android util code
             /*
@@ -537,7 +540,6 @@ public class MapViewFragment extends Fragment
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
-        Log.d(TAG, location.getDescription());
 
         mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
@@ -547,4 +549,72 @@ public class MapViewFragment extends Fragment
 
 
     }
+
+    /** Demonstrates customizing the info window and/or its contents. */
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
+        // "title" and "snippet".
+        private final View mWindow;
+
+        private final View mContents;
+
+        CustomInfoWindowAdapter() {
+            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            mContents = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            /*
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_window) {
+                // This means that getInfoContents will be called.
+                return null;
+            }
+            */
+            render(marker, mWindow);
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            /*
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_contents) {
+                // This means that the default info contents will be used.
+                return null;
+            }*/
+            render(marker, mContents);
+            return mContents;
+        }
+
+        private void render(Marker marker, View view) {
+            int badge;
+            // Use the equals() method on a Marker to check for equals.  Do not use ==.
+            badge = R.drawable.sammyyeh;
+            ((ImageView) view.findViewById(R.id.badge)).setImageResource(badge);
+
+            String title = marker.getTitle();
+            TextView titleUi = ((TextView) view.findViewById(R.id.title));
+            if (title != null) {
+                // Spannable string allows us to edit the formatting of the text.
+                SpannableString titleText = new SpannableString(title);
+                titleText.setSpan(new ForegroundColorSpan(Color.RED), 0, titleText.length(), 0);
+                titleUi.setText(titleText);
+            } else {
+                titleUi.setText("");
+            }
+
+            String snippet = marker.getSnippet();
+            TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
+            if (snippet != null && snippet.length() > 12) {
+                SpannableString snippetText = new SpannableString(snippet);
+                snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, 10, 0);
+                snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 12, snippet.length(), 0);
+                snippetUi.setText(snippetText);
+            } else {
+                snippetUi.setText("");
+            }
+        }
+    }
+
 }

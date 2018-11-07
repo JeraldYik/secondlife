@@ -3,6 +3,7 @@ package com.example.xqlim.secondlife.SidebarFolder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,9 +18,16 @@ import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
+    Fragment mContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            mContent = getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sidebar);
 
@@ -78,5 +86,13 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Save the fragment's instance
+        getSupportFragmentManager().putFragment(outState, "myFragmentName", mContent);
     }
 }
