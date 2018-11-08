@@ -208,7 +208,6 @@ public class MapViewFragment extends Fragment
     @Override
     public void onInfoWindowClick(Marker marker) {
         com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
-        Log.i(TAG, retrieved_location.getDescription());
         if(retrieved_location.favourited()) {
             marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
             favouritesManager.addFavourite(retrieved_location);
@@ -541,18 +540,18 @@ public class MapViewFragment extends Fragment
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
-        String snippetText = location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
+        String snippetText = location.getDescription() + "\n" +
+                location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
         if(location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
             snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
         } else if(location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
             snippetText += (location.getAddressBuildingName() + "\n");
         }
         snippetText += "Singapore " + location.getAddressPostalCode();
-
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
                 .title(location.getName())
-                .snippet(location.getDescription())
+                .snippet(snippetText)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         marker.setTag(location);
     }
