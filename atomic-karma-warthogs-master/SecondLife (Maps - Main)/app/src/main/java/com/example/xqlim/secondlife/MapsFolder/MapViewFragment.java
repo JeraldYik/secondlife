@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -22,6 +23,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -203,9 +205,14 @@ public class MapViewFragment extends Fragment
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-//        Location retrieved_location = (Location) marker.getTag(); unable to typecast
-//        Log.i(TAG, String.valueOf(retrieved_location==null));
-        marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+        com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
+        if(retrieved_location.favourited()) marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+        else {
+            switch(retrieved_location.getName().toLowerCase()){
+                case "cash for trash":
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            }
+        }
     }
 
     private BitmapDescriptor BitmapDescriptorFromVector(Context context, int vectorResId) {
@@ -542,7 +549,6 @@ public class MapViewFragment extends Fragment
         // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
         // "title" and "snippet".
         private final View mWindow;
-
         private final View mContents;
 
         CustomInfoWindowAdapter() {
@@ -573,7 +579,7 @@ public class MapViewFragment extends Fragment
             return mContents;
         }
 
-        private void render(Marker marker, View view) {
+        private void render(final Marker marker, View view) {
 
             String title = marker.getTitle();
             TextView titleUi = ((TextView) view.findViewById(R.id.title));
@@ -596,6 +602,7 @@ public class MapViewFragment extends Fragment
             } else {
                 snippetUi.setText("");
             }
+
         }
 
 
