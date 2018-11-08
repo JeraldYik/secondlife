@@ -21,7 +21,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
     private final View mContents;
 
     public CustomInfoWindowAdapter(Context context) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         mWindow = inflater.inflate(R.layout.custom_info_window, null);
         mContents = inflater.inflate(R.layout.custom_info_contents, null);
     }

@@ -17,9 +17,6 @@ import com.example.xqlim.secondlife.HistoryFolder.Hist;
 import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.MapsFolder.Location;
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
-import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
-import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
