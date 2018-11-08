@@ -60,8 +60,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.favouriteName.setText("test");
-        holder.favouriteQty.setText("test");
+        holder.favouriteName.setText(Favourites.get(i).getName());
+        holder.favouriteQty.setText(Favourites.get(i).getSnippetText());
         holder.favouritePhoto.setImageResource(R.drawable.sammyyeh);
 
         /*

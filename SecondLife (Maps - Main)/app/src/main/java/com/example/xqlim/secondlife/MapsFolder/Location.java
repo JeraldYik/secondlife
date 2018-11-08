@@ -20,7 +20,7 @@ public class Location {
     private String AddressPostalCode;
     private String AddressBuildingName;
     private String AddressBlockNumber;
-
+    private String SnippetText;
 
     public LatLng getLatLng() {
         return latLng;
@@ -99,5 +99,13 @@ public class Location {
 
     public boolean favourited() {
         return isFavourite = !isFavourite;
+    }
+
+    public String getSnippetText() {
+        return SnippetText;
+    }
+
+    public void setSnippetText(String snippetText) {
+        SnippetText = snippetText;
     }
 }

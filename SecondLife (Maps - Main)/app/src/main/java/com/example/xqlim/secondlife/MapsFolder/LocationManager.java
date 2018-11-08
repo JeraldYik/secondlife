@@ -24,12 +24,13 @@ public class LocationManager
     private Context mContext;
     private static final String TAG = "LocationCreator";
     private HashMap <String, Location> locationlist = new HashMap<>();
+    private HashMap <String, HashMap<String, Location>> categoryList = new HashMap<>();
 
     public LocationManager(Context context) {
         this.mContext = context;
     }
 
-    public void readFile(int resource) throws XmlPullParserException, IOException{
+    public void readFile(int resource, String category) throws XmlPullParserException, IOException{
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -80,22 +81,24 @@ public class LocationManager
                         Log.d(TAG, "info: " + info.get(i));
                     }
                     */
-                    createLocation(name, info);
+                    createLocation(name, info, category);
                     counter = 0;
                     info.clear();
                 }
             }
             eventType = xpp.next();
         }
+
+        categoryList.put(category, locationlist);
         //Log.d(TAG,"End document");
     }
 
 
-    private void createLocation(String name, ArrayList<String> info){
+    private void createLocation(String name, ArrayList<String> info, String category){
         //Log.d(TAG, "location creating");
 
         Location location = new Location();
-        location.setName("Cash For Trash");
+        location.setName(category);
         //Log.d(TAG, location.getName());
         location.setAddressBlockNumber(info.get(info.size()-4));
 
@@ -141,11 +144,15 @@ public class LocationManager
         Log.d(TAG, location.getLatLng().toString());
     }
 
-    public HashMap<String, Location> getLocationlist() {
+    private HashMap<String, Location> getLocationlist() {
         return locationlist;
     }
 
     public void setLocationlist(HashMap<String, Location> locationlist) {
         this.locationlist = locationlist;
+    }
+
+    public HashMap<String, HashMap<String, Location>> getCategoryList() {
+        return categoryList;
     }
 }

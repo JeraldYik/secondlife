@@ -44,4 +44,8 @@ public class FavouritesManager {
         }
         return str;
     }
+
+    public ArrayList<Location> getFavouriteList() {
+        return favouriteList;
+    }
 }
