@@ -12,7 +12,7 @@ public class Location {
 
     private int openingTime;
     private int closingTime;
-    private boolean isFavourite;
+    private boolean isFavourite = false;
 
     private String Description;
     private String AddressUnitNumber;
@@ -95,5 +95,9 @@ public class Location {
 
     public void setAddressBlockNumber(String addressBlockNumber) {
         AddressBlockNumber = addressBlockNumber;
+    }
+
+    public boolean favourited() {
+        return isFavourite = !isFavourite;
     }
 }
