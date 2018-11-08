@@ -37,8 +37,6 @@
            <!---->
         <!--</activity>-->
 
-        <activity android:name=".FavouritesFolder.FavouritesManager">
-        </activity>
         <activity android:name=".HistoryFolder.HistoryManager" />
         <activity android:name=".RecyclablesFolder.PendingRecyclables" />
 
