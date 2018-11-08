@@ -30,7 +30,7 @@ public class LocationManager
         this.mContext = context;
     }
 
-    public void readFile(int resource, String category) throws XmlPullParserException, IOException{
+    public void readFile(int resource) throws XmlPullParserException, IOException{
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -81,24 +81,22 @@ public class LocationManager
                         Log.d(TAG, "info: " + info.get(i));
                     }
                     */
-                    createLocation(name, info, category);
+                    createLocation(name, info);
                     counter = 0;
                     info.clear();
                 }
             }
             eventType = xpp.next();
         }
-
-        categoryList.put(category, locationlist);
         //Log.d(TAG,"End document");
     }
 
 
-    private void createLocation(String name, ArrayList<String> info, String category){
+    private void createLocation(String name, ArrayList<String> info){
         //Log.d(TAG, "location creating");
 
         Location location = new Location();
-        location.setName(category);
+        location.setName("Cash For Trash");
         //Log.d(TAG, location.getName());
         location.setAddressBlockNumber(info.get(info.size()-4));
 
@@ -144,15 +142,11 @@ public class LocationManager
         Log.d(TAG, location.getLatLng().toString());
     }
 
-    private HashMap<String, Location> getLocationlist() {
+    public HashMap<String, Location> getLocationlist() {
         return locationlist;
     }
 
     public void setLocationlist(HashMap<String, Location> locationlist) {
         this.locationlist = locationlist;
-    }
-
-    public HashMap<String, HashMap<String, Location>> getCategoryList() {
-        return categoryList;
     }
 }

@@ -465,16 +465,44 @@ public class MapViewFragment extends Fragment
         try {
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
-            //KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
+            KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
 
             //create locations & initialise favourite manager
             favouritesManager = new FavouritesManager();
             LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml, "Cash for Trash");
-            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-waste");
+            locationManager.readFile(R.raw.cashfortrash_kml);
 
-            setupMarker(c4tLayer, locationManager, "Cash for Trash");
-            //setupMarker(eWasteLayer, locationManager);
+            KmlContainer container = c4tLayer.getContainers().iterator().next();
+            container = container.getContainers().iterator().next();
+
+            //to get all property frm 1 placemark
+            /*
+            KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+            Iterable<Object> properties = placemark.getProperties();
+
+            for (Object property : properties){
+                Log.d(TAG, property + "\n");
+            }
+
+            */
+
+            //to get 1 property frm all placemarks
+            Iterable<KmlPlacemark> iter = container.getPlacemarks();
+            for (KmlPlacemark placemark : iter) {
+
+                if(placemark.getGeometry().getGeometryType().equals("Point")) {
+                    KmlPoint point = (KmlPoint) placemark.getGeometry();
+                    LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                    locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
+
+                    //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
+                    addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
+
+
+                    //Log.d(TAG, placemark.getProperty("name"));
+                    //Log.d(TAG, latLng.toString());
+                }
+            }
 
             //locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
 
@@ -495,8 +523,8 @@ public class MapViewFragment extends Fragment
 
         } catch (XmlPullParserException | IOException e)  {
             Log.e("Exception: %s", e.getMessage());
-
         }
+
 
         /*
 
@@ -508,28 +536,6 @@ public class MapViewFragment extends Fragment
         //Retrieve a polygon object in a placemark
         KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
          */
-
-    }
-
-    private void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category){
-        KmlContainer container = kmlLayer.getContainers().iterator().next();
-        container = container.getContainers().iterator().next();
-
-        Iterable<KmlPlacemark> iter = container.getPlacemarks();
-        for (KmlPlacemark placemark : iter) {
-
-            if(placemark.getGeometry().getGeometryType().equals("Point")) {
-                KmlPoint point = (KmlPoint) placemark.getGeometry();
-                LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
-                locationManager.getCategoryList().get(category).get(placemark.getProperty("name")).setLatLng(latLng);
-
-                //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
-                //addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
-                addMarkers(locationManager.getCategoryList().get(category).get(placemark.getProperty("name")));
-                //Log.d(TAG, placemark.getProperty("name"));
-                //Log.d(TAG, latLng.toString());
-            }
-        }
 
     }
 
@@ -545,26 +551,13 @@ public class MapViewFragment extends Fragment
 
         location.setSnippetText(snippetText);
 
-        switch(location.getName()){
-            case "Cash for Trash":{
-                Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(location.getLatLng())
-                        .title(location.getName())
-                        .snippet(snippetText)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                marker.setTag(location);
-                break;
-            }
-            case "E-waste":
-                Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(location.getLatLng())
-                        .title(location.getName())
-                        .snippet(snippetText)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-                marker.setTag(location);
-                break;
-            }
-        }
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(location.getLatLng())
+                .title(location.getName())
+                .snippet(snippetText)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        marker.setTag(location);
+    }
 
     public static FavouritesManager getFavouritesManager() {
         return favouritesManager;
