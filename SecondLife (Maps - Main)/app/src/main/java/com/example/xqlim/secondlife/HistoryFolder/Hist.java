@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class Hist extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayList<Recyclable> recycledItems;
+
+    private String filename = "hist_list.ser";
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,13 +91,10 @@ public class Hist extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
-
+        Log.d(TAG,"test");
         //init recycled list
         recycledItems = new ArrayList<>();
         initializeData();
-
-        writeToMem(recycledItems);
-        ArrayList<Recyclable> bob = readFromMem(recycledItems);
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
@@ -103,46 +103,13 @@ public class Hist extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(bob);
+        mAdapter = new HistAdapter(recycledItems);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
 
     }
 
-    public void writeToMem(ArrayList arraylist) {
-        //open datafile
-        try {
-            FileOutputStream fos = getContext().openFileOutput("histList", Context.MODE_PRIVATE);
-            ObjectOutputStream oos= new ObjectOutputStream(fos);
-            oos.writeObject(arraylist);
-            oos.close();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ArrayList readFromMem(ArrayList arraylist) {
-        try
-        {
-            FileInputStream fis = getContext().openFileInput("hist_list");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            arraylist = (ArrayList) ois.readObject();
-            ois.close();
-            fis.close();
-        }catch(IOException ioe){
-            ioe.printStackTrace();
-            return null;
-        }catch(ClassNotFoundException c){
-            System.out.println("Class not found");
-            c.printStackTrace();
-            return null;
-        }
-        return arraylist;
-    }
 
     @Override
     public void onResume() {
