@@ -1,9 +1,12 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class EWaste implements Recyclables{
+import com.example.xqlim.secondlife.R;
 
-    public abstract double weight();
-    public abstract int quantity();
-    public abstract String recyclablerequirements();
+public class EWaste extends Recyclable {
+    public EWaste(double quantity, String unit) {
+        super(quantity, unit);
+        name = "Electronic Waste";
+        imageAssetSmall = R.drawable.small_ewaste;
 
+    }
 }

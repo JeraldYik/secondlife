@@ -6,15 +6,28 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +39,14 @@ import java.util.List;
  */
 public class Hist extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<Person> persons;
+    private ArrayList<Recyclable> recycledItems;
+
+    private String filename = "hist_list.ser";
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,59 +65,61 @@ public class Hist extends Fragment {
      * @return A new instance of fragment Hist.
      */
     // TODO: Rename and change types and number of parameters
-    public static Hist newInstance(String param1, String param2) {
-        Hist fragment = new Hist();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static Hist newInstance(String param1, String param2) {
+//        Hist fragment = new Hist();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
-    // This method creates an ArrayList that has three Person objects
 // Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
-    private void initializeData(){
-        persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.emma));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.emma));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.emma));
+    private void initializeData() {
+        recycledItems.add(new Paper(3.7, "kg"));
+        recycledItems.add(new Glass(2.4, "kg"));
+        recycledItems.add(new MetalTin(5, "tins"));
+        recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
+        recycledItems.add(new AluminiumDrinkCan(12, "cans"));
+
+    }
+
+    public void addHist(Recyclable recyclable) {
+        recycledItems.add(recyclable);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
-
-        //mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.history_recycler);
+        Log.d(TAG,"test");
+        //init recycled list
+        recycledItems = new ArrayList<>();
+        initializeData();
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
-
-        initializeData();
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(persons);
+        mAdapter = new HistAdapter(recycledItems);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
 
-        //return inflater.inflate(R.layout.fragment_hist, container, false);
-
-
     }
 
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
         // Set title bar

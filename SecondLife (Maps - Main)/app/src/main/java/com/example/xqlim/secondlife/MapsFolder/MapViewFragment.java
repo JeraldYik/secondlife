@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.xqlim.secondlife.FavouritesFolder.FavouritesManager;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -74,7 +73,6 @@ public class MapViewFragment extends Fragment
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DrawerLayout drawer;
-    private FavouritesManager favouritesManager;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -191,7 +189,7 @@ public class MapViewFragment extends Fragment
     public void onMapReady(GoogleMap map) {
         mMap = map;
 
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.setOnInfoWindowClickListener(this);
 
         // Prompt the user for permission.
@@ -208,19 +206,13 @@ public class MapViewFragment extends Fragment
     @Override
     public void onInfoWindowClick(Marker marker) {
         com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
-        Log.i(TAG, retrieved_location.getDescription());
-        if(retrieved_location.favourited()) {
-            marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
-            favouritesManager.addFavourite(retrieved_location);
-        }
+        if(retrieved_location.favourited()) marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
         else {
             switch(retrieved_location.getName().toLowerCase()){
                 case "cash for trash":
                     marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             }
-            favouritesManager.deleteFavourite(retrieved_location);
         }
-        Log.i(TAG, favouritesManager.toString());
     }
 
     private BitmapDescriptor BitmapDescriptorFromVector(Context context, int vectorResId) {
@@ -380,7 +372,7 @@ public class MapViewFragment extends Fragment
 
                                 // Show a dialog offering the user the list of likely places, and add a
                                 // marker at the selected place.
-//                                openPlacesDialog();
+                                openPlacesDialog();
 
                             } else {
                                 Log.e(TAG, "Exception: %s", task.getException());
@@ -404,7 +396,7 @@ public class MapViewFragment extends Fragment
 
     /**
      * Displays a form allowing the user to select a place from a list of likely places.
-
+     */
     private void openPlacesDialog() {
         // Ask the user to choose the place where they are now.
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
@@ -436,7 +428,7 @@ public class MapViewFragment extends Fragment
                 .setItems(mLikelyPlaceNames, listener)
                 .show();
     }
-     */
+
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
      */
@@ -466,10 +458,11 @@ public class MapViewFragment extends Fragment
         try {
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
+            //c4tLayer.addLayerToMap();
             KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
+            //eWasteLayer.addLayerToMap();
 
-            //create locations & initialise favourite manager
-            favouritesManager = new FavouritesManager();
+            //create locations
             LocationManager locationManager = new LocationManager(getContext());
             locationManager.readFile(R.raw.cashfortrash_kml);
 
@@ -541,13 +534,6 @@ public class MapViewFragment extends Fragment
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
-        String snippetText = location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
-        if(location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
-            snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
-        } else if(location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
-            snippetText += (location.getAddressBuildingName() + "\n");
-        }
-        snippetText += "Singapore " + location.getAddressPostalCode();
 
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
@@ -556,4 +542,70 @@ public class MapViewFragment extends Fragment
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         marker.setTag(location);
     }
+
+    /** Demonstrates customizing the info window and/or its contents. */
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
+        // "title" and "snippet".
+        private final View mWindow;
+        private final View mContents;
+
+        CustomInfoWindowAdapter() {
+            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            mContents = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            /*
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_window) {
+                // This means that getInfoContents will be called.
+                return null;
+            }
+            */
+            render(marker, mWindow);
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            /*
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_contents) {
+                // This means that the default info contents will be used.
+                return null;
+            }*/
+            render(marker, mContents);
+            return mContents;
+        }
+
+        private void render(final Marker marker, View view) {
+
+            String title = marker.getTitle();
+            TextView titleUi = ((TextView) view.findViewById(R.id.title));
+            if (title != null) {
+                // Spannable string allows us to edit the formatting of the text.
+                SpannableString titleText = new SpannableString(title);
+                titleText.setSpan(new ForegroundColorSpan(Color.RED), 0, titleText.length(), 0);
+                titleUi.setText(titleText);
+            } else {
+                titleUi.setText("");
+            }
+
+            String snippet = marker.getSnippet();
+            TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
+            if (snippet != null && snippet.length() > 12) {
+                SpannableString snippetText = new SpannableString(snippet);
+                snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, 10, 0);
+                snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 12, snippet.length(), 0);
+                snippetUi.setText(snippetText);
+            } else {
+                snippetUi.setText("");
+            }
+
+        }
+
+
+    }
+
 }
