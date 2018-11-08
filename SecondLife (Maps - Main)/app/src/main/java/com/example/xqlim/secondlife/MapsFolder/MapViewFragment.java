@@ -1,9 +1,14 @@
 package com.example.xqlim.secondlife.MapsFolder;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,10 +23,13 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
@@ -37,6 +45,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -57,7 +66,7 @@ import java.io.IOException;
  * An activity that displays a map showing the place at the device's current location.
  */
 public class MapViewFragment extends Fragment
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private static final String TAG = "MapViewLog";
     private MapView mapView;
@@ -180,39 +189,8 @@ public class MapViewFragment extends Fragment
     public void onMapReady(GoogleMap map) {
         mMap = map;
 
-        // Use a custom info window adapter to handle multiple lines of text in the
-        // info window contents.
-//        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-//            @Override
-//            // Return null here, so that getInfoContents() is called next.
-//            public View getInfoWindow(Marker arg0) {
-//                return null;
-//            }
-//
-//            @SuppressLint("ResourceType")
-//            @Override
-//            public View getInfoContents(Marker marker) {
-//
-//                Fragment mapFragment = getTargetFragment();
-//                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-//                transaction.add(R.layout.custom_info_contents, mapFragment).commit();
-////                // Inflate the layouts for the info window, title and snippet.
-////                View infoWindow = getLayoutInflater().inflate(R.layout.custom_info_contents,
-////                        (FrameLayout) getChildFragmentManager(R.id.map), false);
-//                View infoWindow = getC
-//
-//                TextView title = ((TextView) infoWindow.findViewById(R.id.title));
-//                title.setText(marker.getTitle());
-//
-//                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
-//                snippet.setText(marker.getSnippet());
-//
-//                return infoWindow;
-//            }
-//        });
-
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        mMap.setOnInfoWindowClickListener(this);
 
         // Prompt the user for permission.
         getLocationPermission();
@@ -220,8 +198,30 @@ public class MapViewFragment extends Fragment
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
         addLayers();
+
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
+        if(retrieved_location.favourited()) marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+        else {
+            switch(retrieved_location.getName().toLowerCase()){
+                case "cash for trash":
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+            }
+        }
+    }
+
+    private BitmapDescriptor BitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     /**
@@ -235,14 +235,7 @@ public class MapViewFragment extends Fragment
 
                 new LatLng(1.353655, 103.688101), DEFAULT_ZOOM));
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            mMap.setMyLocationEnabled(true); //not working
+            mMap.setMyLocationEnabled(true); //not working on emulator
             return;
         }
 
@@ -499,6 +492,7 @@ public class MapViewFragment extends Fragment
                     //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
                     addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
 
+
                     //Log.d(TAG, placemark.getProperty("name"));
                     //Log.d(TAG, latLng.toString());
                 }
@@ -541,13 +535,12 @@ public class MapViewFragment extends Fragment
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
 
-        mMap.addMarker(new MarkerOptions()
+        Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
                 .title(location.getName())
                 .snippet(location.getDescription())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-
-
+        marker.setTag(location);
     }
 
     /** Demonstrates customizing the info window and/or its contents. */
@@ -556,7 +549,6 @@ public class MapViewFragment extends Fragment
         // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
         // "title" and "snippet".
         private final View mWindow;
-
         private final View mContents;
 
         CustomInfoWindowAdapter() {
@@ -587,11 +579,7 @@ public class MapViewFragment extends Fragment
             return mContents;
         }
 
-        private void render(Marker marker, View view) {
-            int badge;
-            // Use the equals() method on a Marker to check for equals.  Do not use ==.
-            badge = R.drawable.sammyyeh;
-            ((ImageView) view.findViewById(R.id.badge)).setImageResource(badge);
+        private void render(final Marker marker, View view) {
 
             String title = marker.getTitle();
             TextView titleUi = ((TextView) view.findViewById(R.id.title));
@@ -614,7 +602,10 @@ public class MapViewFragment extends Fragment
             } else {
                 snippetUi.setText("");
             }
+
         }
+
+
     }
 
 }
