@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
 import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
 import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.io.File;
@@ -74,8 +77,12 @@ public class Hist extends Fragment {
 // Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
     private void initializeData() {
-        recycledItems.add(new Paper(5, "kg"));
-        recycledItems.add(new MetalTin(5, "cans"));
+        recycledItems.add(new Paper(3.7, "kg"));
+        recycledItems.add(new Glass(2.4, "kg"));
+        recycledItems.add(new MetalTin(5, "tins"));
+        recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
+        recycledItems.add(new AluminiumDrinkCan(12, "cans"));
+
     }
 
     public void addHist(Recyclable recyclable) {
