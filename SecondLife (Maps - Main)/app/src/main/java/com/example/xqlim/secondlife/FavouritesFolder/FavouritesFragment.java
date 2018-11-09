@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.example.xqlim.secondlife.HistoryFolder.Hist;
 import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.MapsFolder.Location;
+import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
@@ -39,7 +40,7 @@ public class FavouritesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
+    /*
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
@@ -61,7 +62,7 @@ public class FavouritesFragment extends Fragment {
 // you want to use the same images.
 
     private void initializeData() {
-        Favourites.add(new Location());
+        Favourites = MapViewFragment.getFavouritesManager().getFavouriteList();
     }
 
 
@@ -76,7 +77,6 @@ public class FavouritesFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_favourites, container, false);
         Log.d(TAG,"test");
         //init favourite list
-        Favourites = new ArrayList<>();
 
         initializeData();
 

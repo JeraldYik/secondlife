@@ -24,6 +24,7 @@ public class LocationManager
     private Context mContext;
     private static final String TAG = "LocationCreator";
     private HashMap <String, Location> locationlist = new HashMap<>();
+    private HashMap <String, HashMap<String, Location>> categoryList = new HashMap<>();
 
     public LocationManager(Context context) {
         this.mContext = context;

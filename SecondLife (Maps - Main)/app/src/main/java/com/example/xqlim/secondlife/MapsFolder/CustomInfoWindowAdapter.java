@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -19,9 +20,10 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
     // "title" and "snippet".
     private final View mWindow;
     private final View mContents;
+    private static final String TAG = "InfoWindowAdapterLog";
 
     public CustomInfoWindowAdapter(Context context) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         mWindow = inflater.inflate(R.layout.custom_info_window, null);
         mContents = inflater.inflate(R.layout.custom_info_contents, null);
     }
@@ -63,6 +65,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
         }
 
         String snippet = marker.getSnippet();
+
         TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
         if (snippet != null && snippet.length() > 12) {
             SpannableString snippetText = new SpannableString(snippet);
