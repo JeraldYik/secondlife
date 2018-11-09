@@ -1,11 +1,9 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-import com.example.xqlim.secondlife.R;
+public abstract class SmallElectricalAppliance implements Recyclables {
 
-public class SmallElectricalAppliance extends Recyclable {
-    public SmallElectricalAppliance(double quantity, String unit) {
-        super(quantity, unit);
-        name = "Electronics and Appliances";
-        imageAssetSmall = R.drawable.small_appliance;
-    }
+    public abstract double weight();
+    public abstract int quantity();
+    public abstract String recyclablerequirements();
+
 }

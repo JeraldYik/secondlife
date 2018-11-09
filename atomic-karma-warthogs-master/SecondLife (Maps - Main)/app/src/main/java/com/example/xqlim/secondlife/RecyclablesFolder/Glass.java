@@ -1,9 +1,11 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class Glass implements Recyclables{
+import com.example.xqlim.secondlife.R;
 
-    public abstract double weight();
-    public abstract int quantity();
-    public abstract String recyclablerequirements();
-
+public class Glass extends Recyclable {
+    public Glass(double quantity, String unit) {
+        super(quantity, unit);
+        name = "Glass";
+        imageAssetSmall = R.drawable.small_glass;
+    }
 }

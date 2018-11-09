@@ -74,7 +74,7 @@ public class MapViewFragment extends Fragment
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DrawerLayout drawer;
-    private FavouritesManager favouritesManager;
+    private static FavouritesManager favouritesManager;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -404,37 +404,37 @@ public class MapViewFragment extends Fragment
     /**
      * Displays a form allowing the user to select a place from a list of likely places.
 
-    private void openPlacesDialog() {
-        // Ask the user to choose the place where they are now.
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // The "which" argument contains the position of the selected item.
-                LatLng markerLatLng = mLikelyPlaceLatLngs[which];
-                String markerSnippet = mLikelyPlaceAddresses[which];
-                if (mLikelyPlaceAttributions[which] != null) {
-                    markerSnippet = markerSnippet + "\n" + mLikelyPlaceAttributions[which];
-                }
-
-                // Add a marker for the selected place, with an info window
-                // showing information about that place.
-                mMap.addMarker(new MarkerOptions()
-                        .title(mLikelyPlaceNames[which])
-                        .position(markerLatLng)
-                        .snippet(markerSnippet));
-
-                // Position the map's camera at the location of the marker.
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
-                        DEFAULT_ZOOM));
-            }
-        };
-
-        // Display the dialog.
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
-                .setTitle(R.string.pick_place)
-                .setItems(mLikelyPlaceNames, listener)
-                .show();
+     private void openPlacesDialog() {
+     // Ask the user to choose the place where they are now.
+     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+    // The "which" argument contains the position of the selected item.
+    LatLng markerLatLng = mLikelyPlaceLatLngs[which];
+    String markerSnippet = mLikelyPlaceAddresses[which];
+    if (mLikelyPlaceAttributions[which] != null) {
+    markerSnippet = markerSnippet + "\n" + mLikelyPlaceAttributions[which];
     }
+
+    // Add a marker for the selected place, with an info window
+    // showing information about that place.
+    mMap.addMarker(new MarkerOptions()
+    .title(mLikelyPlaceNames[which])
+    .position(markerLatLng)
+    .snippet(markerSnippet));
+
+    // Position the map's camera at the location of the marker.
+    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
+    DEFAULT_ZOOM));
+    }
+    };
+
+     // Display the dialog.
+     AlertDialog dialog = new AlertDialog.Builder(getContext())
+     .setTitle(R.string.pick_place)
+     .setItems(mLikelyPlaceNames, listener)
+     .show();
+     }
      */
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
@@ -465,44 +465,16 @@ public class MapViewFragment extends Fragment
         try {
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
-            KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
+            //KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
 
             //create locations & initialise favourite manager
             favouritesManager = new FavouritesManager();
             LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml);
+            locationManager.readFile(R.raw.cashfortrash_kml, "Cash for Trash");
+            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
 
-            KmlContainer container = c4tLayer.getContainers().iterator().next();
-            container = container.getContainers().iterator().next();
-
-            //to get all property frm 1 placemark
-            /*
-            KmlPlacemark placemark = container.getPlacemarks().iterator().next();
-            Iterable<Object> properties = placemark.getProperties();
-
-            for (Object property : properties){
-                Log.d(TAG, property + "\n");
-            }
-
-            */
-
-            //to get 1 property frm all placemarks
-            Iterable<KmlPlacemark> iter = container.getPlacemarks();
-            for (KmlPlacemark placemark : iter) {
-
-                if(placemark.getGeometry().getGeometryType().equals("Point")) {
-                    KmlPoint point = (KmlPoint) placemark.getGeometry();
-                    LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
-                    locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
-
-                    //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
-                    addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
-
-
-                    //Log.d(TAG, placemark.getProperty("name"));
-                    //Log.d(TAG, latLng.toString());
-                }
-            }
+            setupMarker(c4tLayer, locationManager, "Cash for Trash");
+            //setupMarker(eWasteLayer, locationManager);
 
             //locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
 
@@ -523,8 +495,8 @@ public class MapViewFragment extends Fragment
 
         } catch (XmlPullParserException | IOException e)  {
             Log.e("Exception: %s", e.getMessage());
-        }
 
+        }
 
         /*
 
@@ -539,6 +511,28 @@ public class MapViewFragment extends Fragment
 
     }
 
+    private void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category){
+        KmlContainer container = kmlLayer.getContainers().iterator().next();
+        container = container.getContainers().iterator().next();
+
+        Iterable<KmlPlacemark> iter = container.getPlacemarks();
+        for (KmlPlacemark placemark : iter) {
+
+            if(placemark.getGeometry().getGeometryType().equals("Point")) {
+                KmlPoint point = (KmlPoint) placemark.getGeometry();
+                LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                locationManager.getCategoryList().get(category).get(placemark.getProperty("name")).setLatLng(latLng);
+
+                //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
+                //addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
+                addMarkers(locationManager.getCategoryList().get(category).get(placemark.getProperty("name")));
+                //Log.d(TAG, placemark.getProperty("name"));
+                //Log.d(TAG, latLng.toString());
+            }
+        }
+
+    }
+
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
         String snippetText = location.getDescription() + "\n" +
                 location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
@@ -548,11 +542,31 @@ public class MapViewFragment extends Fragment
             snippetText += (location.getAddressBuildingName() + "\n");
         }
         snippetText += "Singapore " + location.getAddressPostalCode();
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(location.getLatLng())
-                .title(location.getName())
-                .snippet(snippetText)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        marker.setTag(location);
+
+        location.setSnippetText(snippetText);
+
+        switch(location.getName()){
+            case "Cash for Trash":{
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(location.getLatLng())
+                        .title(location.getName())
+                        .snippet(snippetText)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                marker.setTag(location);
+                break;
+            }
+            case "E-Waste":
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(location.getLatLng())
+                        .title(location.getName())
+                        .snippet(snippetText)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                marker.setTag(location);
+                break;
+            }
+        }
+
+    public static FavouritesManager getFavouritesManager() {
+        return favouritesManager;
     }
 }

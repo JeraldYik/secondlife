@@ -1,9 +1,11 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-public abstract class AluminiumDrinkCan implements Recyclables {
+import com.example.xqlim.secondlife.R;
 
-    public abstract double weight();
-    public abstract int quantity();
-    public abstract String recyclablerequirements();
-
+public class AluminiumDrinkCan extends Recyclable {
+    public AluminiumDrinkCan(double quantity, String unit) {
+        super(quantity, unit);
+        name = "Aluminum Cans";
+        imageAssetSmall = R.drawable.small_cans;
+    }
 }

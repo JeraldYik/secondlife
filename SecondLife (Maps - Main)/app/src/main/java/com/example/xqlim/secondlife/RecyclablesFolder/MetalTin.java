@@ -1,11 +1,9 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-import com.example.xqlim.secondlife.R;
+public abstract class MetalTin implements Recyclables{
 
-public class MetalTin extends Recyclable {
-    public MetalTin(double quantity, String unit) {
-        super(quantity, unit);
-        name = "Metal Tins";
-        imageAssetSmall = R.drawable.small_metal_tin;
-    }
+    public abstract double weight();
+    public abstract int quantity();
+    public abstract String recyclablerequirements();
+
 }

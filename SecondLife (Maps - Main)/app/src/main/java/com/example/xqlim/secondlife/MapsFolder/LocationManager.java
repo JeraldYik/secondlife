@@ -114,21 +114,22 @@ public class LocationManager
             location.setAddressBuildingName(info.get(info.size()-5));
             location.setAddressPostalCode(info.get(info.size()-6));
             location.setAddressStreetName(info.get(info.size()-7));
-            location.setAddressUnitNumber("No unit number");
+//            location.setAddressUnitNumber("No unit number");
         }
 
         else if (info.size() == 7){
             location.setAddressBlockNumber(info.get(info.size()-4));
             location.setAddressPostalCode(info.get(info.size()-5));
             location.setAddressStreetName(info.get(info.size()-6));
-            location.setAddressBuildingName("No Building Name");
-            location.setAddressUnitNumber("No unit number");
+//            location.setAddressBuildingName("No Building Name");
+//            location.setAddressUnitNumber("No unit number");
         }
         location.setDescription(info.get(0));
         locationlist.put(name, location);
         //printLoc(location);
     }
 
+    //dont use unless NULL is addressed
     public void printLoc(Location location){
         Log.d(TAG, location.getName());
         Log.d(TAG, location.getDescription());

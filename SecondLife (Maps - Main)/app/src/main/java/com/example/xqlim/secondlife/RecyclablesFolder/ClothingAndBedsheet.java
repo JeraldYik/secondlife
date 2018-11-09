@@ -1,11 +1,9 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-import com.example.xqlim.secondlife.R;
+public abstract class ClothingAndBedsheet implements Recyclables {
 
-public class ClothingAndBedsheet extends Recyclable {
-    public ClothingAndBedsheet(double quantity, String unit) {
-        super(quantity, unit);
-        name = "Clothing and Bedsheet";
-        imageAssetSmall = R.drawable.small_clothing;
-    }
+    public abstract double weight();
+    public abstract int quantity();
+    public abstract String recyclablerequirements();
+
 }
