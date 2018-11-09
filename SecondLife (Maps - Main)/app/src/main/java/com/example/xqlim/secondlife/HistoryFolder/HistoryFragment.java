@@ -73,6 +73,8 @@ public class HistoryFragment extends Fragment {
         recycledItems.add(new MetalTin(5, "tins"));
         recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
         recycledItems.add(new AluminiumDrinkCan(12, "cans"));
+        recycledItems.add(new MetalTin(2, "tins"));
+        recycledItems.add(new SmallElectricalAppliance(3.1, "kg"));
 
     }
 

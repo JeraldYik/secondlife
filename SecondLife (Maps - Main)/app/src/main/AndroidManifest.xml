@@ -37,8 +37,6 @@
            <!---->
         <!--</activity>-->
 
-        <activity android:name=".RecyclablesFolder.PendingRecyclables" />
-
         <!-- sidebar -->
         <activity
             android:name=".SidebarFolder.Sidebar"
