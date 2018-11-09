@@ -46,8 +46,6 @@ public class Hist extends Fragment {
 
     private ArrayList<Recyclable> recycledItems;
 
-    private String filename = "hist_list.ser";
-
     private OnFragmentInteractionListener mListener;
 
     private static final String TAG = "History";
