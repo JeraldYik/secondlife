@@ -51,9 +51,6 @@
         </activity>
 
         <!-- recyclables -->
-        <activity android:name=".RecyclablesFolder.RecyclableUI"/>
-        <activity android:name=".RecyclablesFolder.MetalUI" />
-        <activity android:name=".RecyclablesFolder.PlasticsUI"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
-import com.example.xqlim.secondlife.HistoryFolder.Hist;
+import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
@@ -70,7 +70,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Hist()).commit();
+                        new HistoryFragment()).commit();
                 break;
         }
 
