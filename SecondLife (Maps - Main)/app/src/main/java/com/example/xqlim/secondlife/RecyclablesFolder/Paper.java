@@ -7,6 +7,7 @@ public class Paper extends Recyclable {
         super(quantity, unit);
         name = "Paper";
         imageAssetSmall = R.drawable.small_paper;
-        //imageAssetLarge = R.drawable.large_paper;
+/*        imageAssetLarge = R.drawable.large_paper;
+        recyclableRequirements = R.string.paper_requirements;*/
     }
 }

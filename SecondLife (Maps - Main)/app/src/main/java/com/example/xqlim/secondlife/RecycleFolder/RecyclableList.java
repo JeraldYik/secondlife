@@ -33,7 +33,7 @@ public class RecyclableList extends AppCompatActivity{
         List<Recyclable> rowListItem = getAllItemList();
         lLayout = new GridLayoutManager(RecyclableList.this, 2);
 
-        RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
+        RecyclerView rView = findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
 

@@ -30,10 +30,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            recyclableName = (TextView)itemView.findViewById(R.id.recyclable_name);
-            recyclableQty = (TextView)itemView.findViewById(R.id.recyclable_details);
-            recyclablePhoto = (ImageView)itemView.findViewById(R.id.recyclable_photo);
+            cv = itemView.findViewById(R.id.cv);
+            recyclableName = itemView.findViewById(R.id.recyclable_name);
+            recyclableQty = itemView.findViewById(R.id.recyclable_details);
+            recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
         }
     }
 
@@ -47,7 +47,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     public RecycleAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                           int viewType) {
         // create a new view
-        View v = (View) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycle_card, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);

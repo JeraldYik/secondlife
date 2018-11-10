@@ -93,7 +93,7 @@ public class RecycleFragment extends Fragment {
         recycledItems = new ArrayList<>();
         initializeData();
 
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.recyclable_recycler);
+        mRecyclerView = layout.findViewById(R.id.recyclable_recycler);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());

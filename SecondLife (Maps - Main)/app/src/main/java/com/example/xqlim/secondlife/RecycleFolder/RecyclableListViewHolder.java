@@ -1,13 +1,17 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
-public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView categoryName;
     public ImageView categoryPhoto;
@@ -15,14 +19,18 @@ public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements
     public RecyclableListViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
-        categoryName = (TextView)itemView.findViewById(R.id.recyclable_name);
-        categoryPhoto = (ImageView)itemView.findViewById(R.id.recyclable_photo);
+        categoryName = itemView.findViewById(R.id.recyclable_name);
+        categoryPhoto = itemView.findViewById(R.id.recyclable_photo);
     }
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "Clicked Country Position = " + getPosition(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), "You chose to add: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+        Context context = view.getContext();
+        int position = getAdapterPosition();
+        Intent intent = new Intent(context, DisplayRequirements.class);
+        intent.putExtra("position clicked", position);
+        context.startActivity(intent);
     }
-
 }
 

@@ -8,11 +8,14 @@ public class Recyclable {
     protected String name;
     protected double quantity;
     protected String unit;
+    protected int price;
     private int photo;
 
     protected int imageAssetSmall;
     protected int imageAssetLarge;
-    protected String recyclableRequirements;
+    protected int recyclableRequirements;
+
+    public Recyclable(){};
 
     public Recyclable (double quantity, String unit) {
         this.quantity = quantity;
@@ -44,6 +47,8 @@ public class Recyclable {
         this.unit = unit;
     }
 
+    public void setPrice(int price) {this.price = price; };
+
     public int getImageAssetSmall() {
         return imageAssetSmall;
     }
@@ -52,7 +57,9 @@ public class Recyclable {
         return imageAssetLarge;
     }
 
-    public String getRecyclableRequirements() {
+    public int getPrice(){ return price; }
+
+    public int getRecyclableRequirements() {
         return recyclableRequirements;
     }
 
