@@ -14,7 +14,7 @@ import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
 import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
+import com.example.xqlim.secondlife.RecycleFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;

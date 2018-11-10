@@ -1,4 +1,4 @@
-package com.example.xqlim.secondlife.RecyclablesFolder;
+package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 
 import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
