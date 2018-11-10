@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.xqlim.secondlife.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,14 +24,13 @@ public class LocationManager
 {
     private Context mContext;
     private static final String TAG = "LocationCreator";
-    private HashMap <String, Location> locationlist = new HashMap<>();
-    private HashMap <String, HashMap<String, Location>> categoryList = new HashMap<>();
+    private HashMap <LatLng, Location> locationlist = new HashMap<>();
 
     public LocationManager(Context context) {
         this.mContext = context;
     }
 
-    public void readFile(int resource, String category) throws XmlPullParserException, IOException{
+    public void readFile(int resource, String category) throws XmlPullParserException, IOException {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -50,51 +50,45 @@ public class LocationManager
             tagName = xpp.getName();
 
 
-            if(eventType == XmlPullParser.START_DOCUMENT) {
+            if (eventType == XmlPullParser.START_DOCUMENT) {
                 //Log.d(TAG, "Start document");
-            } else if(eventType == XmlPullParser.START_TAG) {
-                if (tagName.equalsIgnoreCase("schemadata")){
+            } else if (eventType == XmlPullParser.START_TAG) {
+                if (tagName.equalsIgnoreCase("schemadata")) {
                 }
                 //Log.d(TAG, "Start tag "+xpp.getName());
 
-            }
-            else if(eventType == XmlPullParser.TEXT) {
+            } else if (eventType == XmlPullParser.TEXT) {
                 text = xpp.getText();
+                Log.i(TAG, text);
                 //Log.d(TAG,"Text "+xpp.getText());
-            }
-            else if(eventType == XmlPullParser.END_TAG) {
+            } else if (eventType == XmlPullParser.END_TAG) {
                 //Log.d(TAG,"End tag "+xpp.getName());
-                if (tagName.equalsIgnoreCase("name")){
-
-                    name = text;
+//                if (tagName.equalsIgnoreCase("name")) {
+//
+//                    name = text;
                     //Log.d(TAG, "name: " + name);
-                }
-                else if (tagName.equalsIgnoreCase("simpledata")){
+                if (tagName.equalsIgnoreCase("simpledata")) {
                     info.add(counter, text);
                     //Log.d(TAG, "Simpledata: " + counter + ". " + text);
                     counter++;
-                }
-                else if (tagName.equalsIgnoreCase("SchemaData")){
+                } else if (tagName.equalsIgnoreCase("SchemaData")) {
                     /*
                     Log.d(TAG, "Schema Data");
                     for (int i = 0; i < info.size(); i++){
                         Log.d(TAG, "info: " + info.get(i));
                     }
                     */
-                    createLocation(name, info, category);
+                    createLocation(info, category);
                     counter = 0;
                     info.clear();
                 }
             }
             eventType = xpp.next();
         }
-
-        categoryList.put(category, locationlist);
-        //Log.d(TAG,"End document");
     }
 
 
-    private void createLocation(String name, ArrayList<String> info, String category){
+    private void createLocation(ArrayList<String> info, String category){
         //Log.d(TAG, "location creating");
 
         Location location = new Location();
@@ -128,31 +122,27 @@ public class LocationManager
 //            location.setAddressUnitNumber("No unit number");
         }
         location.setDescription(info.get(0));
-        locationlist.put(name, location);
+        locationlist.put(location.getLatLng(), location);
         //printLoc(location);
     }
 
     //dont use unless NULL is addressed
-    public void printLoc(Location location){
-        Log.d(TAG, location.getName());
-        Log.d(TAG, location.getDescription());
-        Log.d(TAG, location.getAddressUnitNumber());
-        Log.d(TAG, location.getAddressStreetName());
-        Log.d(TAG, location.getAddressPostalCode());
-        Log.d(TAG, location.getAddressBuildingName());
-        Log.d(TAG, location.getAddressBlockNumber());
-        Log.d(TAG, location.getLatLng().toString());
-    }
+//    public void printLoc(Location location){
+//        Log.d(TAG, location.getName());
+//        Log.d(TAG, location.getDescription());
+//        Log.d(TAG, location.getAddressUnitNumber());
+//        Log.d(TAG, location.getAddressStreetName());
+//        Log.d(TAG, location.getAddressPostalCode());
+//        Log.d(TAG, location.getAddressBuildingName());
+//        Log.d(TAG, location.getAddressBlockNumber());
+//        Log.d(TAG, location.getLatLng().toString());
+//    }
 
-    private HashMap<String, Location> getLocationlist() {
+    public HashMap<LatLng, Location> getLocationlist() {
         return locationlist;
     }
 
-    public void setLocationlist(HashMap<String, Location> locationlist) {
+    public void setLocationlist(HashMap<LatLng, Location> locationlist) {
         this.locationlist = locationlist;
-    }
-
-    public HashMap<String, HashMap<String, Location>> getCategoryList() {
-        return categoryList;
     }
 }

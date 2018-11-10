@@ -71,7 +71,7 @@ public class Location {
             builder.append(split[i]).append(" ");
         }
         String str = builder.toString();
-        Log.d(TAG, str);
+//        Log.d(TAG, str);
 
 
         Description = str;
