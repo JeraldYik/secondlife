@@ -1,8 +1,5 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Recyclable {
 
     protected String name;
@@ -17,14 +14,11 @@ public class Recyclable {
 
     public Recyclable(){};
 
+    public Recyclable(String name, int image){};
+
     public Recyclable (double quantity, String unit) {
         this.quantity = quantity;
         this.unit = unit;
-    }
-
-    public Recyclable(String name, int photo){
-        this.name = name;
-        this.photo = photo;
     }
 
     public String getName() {
@@ -73,12 +67,5 @@ public class Recyclable {
         }
         return qtyDisp;
     }
-
-/*    public List<Recyclable> getListofRecyclables(){
-
-        List<Recyclable> categories = new ArrayList<>();
-        categories.add()
-
-    }*/
 
 }

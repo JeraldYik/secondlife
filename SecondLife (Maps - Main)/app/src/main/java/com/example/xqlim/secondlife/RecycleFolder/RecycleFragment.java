@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.R;
@@ -124,16 +122,6 @@ public class RecycleFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
-/*    Button one = (Button) findViewById(R.id.button);
-    one.setOnClickListener(new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            TextView output = (TextView) findViewById(R.id.output);
-            output.append("1");
-        }
-    });*/
 
     @Override
     public void onAttach(Context context) {
