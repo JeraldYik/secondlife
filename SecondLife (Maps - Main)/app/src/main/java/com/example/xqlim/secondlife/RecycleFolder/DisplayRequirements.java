@@ -1,4 +1,4 @@
-package com.example.xqlim.secondlife.RecyclablesFolder;
+package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

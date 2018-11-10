@@ -56,8 +56,8 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".RecyclablesFolder.RecyclableList" />
-        <activity android:name=".RecyclablesFolder.DisplayRequirements"></activity>
+        <activity android:name=".RecycleFolder.RecyclableList" />
+        <activity android:name=".RecycleFolder.DisplayRequirements"></activity>
     </application>
 
 </manifest>
