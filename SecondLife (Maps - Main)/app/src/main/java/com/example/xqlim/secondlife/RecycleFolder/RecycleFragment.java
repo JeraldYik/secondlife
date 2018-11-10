@@ -1,4 +1,4 @@
-package com.example.xqlim.secondlife.FavouritesFolder;
+package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,33 +11,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
-import com.example.xqlim.secondlife.MapsFolder.Location;
-import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
+import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
 
-public class FavouritesFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link RecycleFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link RecycleFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class RecycleFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private ArrayList<Location> Favourites;
+    private ArrayList<Recyclable> recycledItems;
 
-    private String filename = "hist_list.ser";
+    private OnFragmentInteractionListener mListener;
 
-    private HistoryFragment.OnFragmentInteractionListener mListener;
+    private static final String TAG = "Recycle";
 
-    private static final String TAG = "Favourite";
-
-    public FavouritesFragment() {
+    public RecycleFragment() {
         // Required empty public constructor
     }
 
-    /*
+    /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
@@ -57,11 +68,14 @@ public class FavouritesFragment extends Fragment {
 
 // Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
-
     private void initializeData() {
-        Favourites = MapViewFragment.getFavouritesManager().getFavouriteList();
+        recycledItems.add(new Paper(3.7, "kg"));
+        recycledItems.add(new Glass(2.4, "kg"));
     }
 
+    public void addHist(Recyclable recyclable) {
+        recycledItems.add(recyclable);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,20 +85,20 @@ public class FavouritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_favourites, container, false);
+        View layout = inflater.inflate(R.layout.fragment_recycle, container, false);
         Log.d(TAG,"test");
-        //init favourite list
-
+        //init recycled list
+        recycledItems = new ArrayList<>();
         initializeData();
 
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.favourites_recycler);
+        mRecyclerView = (RecyclerView) layout.findViewById(R.id.recyclable_recycler);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new FavouriteAdapter(Favourites);
+        mAdapter = new RecycleAdapter(recycledItems);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
@@ -98,7 +112,7 @@ public class FavouritesFragment extends Fragment {
 
         // Set title bar
         ((Sidebar) getActivity())
-                .setActionBarTitle("Favourites");
+                .setActionBarTitle("Recycle");
 
     }
 
@@ -135,4 +149,3 @@ public class FavouritesFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
-

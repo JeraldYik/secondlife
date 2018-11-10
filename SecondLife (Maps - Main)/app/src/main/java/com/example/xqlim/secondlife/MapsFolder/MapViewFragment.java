@@ -74,7 +74,7 @@ public class MapViewFragment extends Fragment
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DrawerLayout drawer;
-    private FavouritesManager favouritesManager;
+    private static FavouritesManager favouritesManager;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -208,7 +208,6 @@ public class MapViewFragment extends Fragment
     @Override
     public void onInfoWindowClick(Marker marker) {
         com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
-        Log.i(TAG, retrieved_location.getDescription());
         if(retrieved_location.favourited()) {
             marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
             favouritesManager.addFavourite(retrieved_location);
@@ -405,37 +404,37 @@ public class MapViewFragment extends Fragment
     /**
      * Displays a form allowing the user to select a place from a list of likely places.
 
-    private void openPlacesDialog() {
-        // Ask the user to choose the place where they are now.
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // The "which" argument contains the position of the selected item.
-                LatLng markerLatLng = mLikelyPlaceLatLngs[which];
-                String markerSnippet = mLikelyPlaceAddresses[which];
-                if (mLikelyPlaceAttributions[which] != null) {
-                    markerSnippet = markerSnippet + "\n" + mLikelyPlaceAttributions[which];
-                }
-
-                // Add a marker for the selected place, with an info window
-                // showing information about that place.
-                mMap.addMarker(new MarkerOptions()
-                        .title(mLikelyPlaceNames[which])
-                        .position(markerLatLng)
-                        .snippet(markerSnippet));
-
-                // Position the map's camera at the location of the marker.
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
-                        DEFAULT_ZOOM));
-            }
-        };
-
-        // Display the dialog.
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
-                .setTitle(R.string.pick_place)
-                .setItems(mLikelyPlaceNames, listener)
-                .show();
+     private void openPlacesDialog() {
+     // Ask the user to choose the place where they are now.
+     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+    // The "which" argument contains the position of the selected item.
+    LatLng markerLatLng = mLikelyPlaceLatLngs[which];
+    String markerSnippet = mLikelyPlaceAddresses[which];
+    if (mLikelyPlaceAttributions[which] != null) {
+    markerSnippet = markerSnippet + "\n" + mLikelyPlaceAttributions[which];
     }
+
+    // Add a marker for the selected place, with an info window
+    // showing information about that place.
+    mMap.addMarker(new MarkerOptions()
+    .title(mLikelyPlaceNames[which])
+    .position(markerLatLng)
+    .snippet(markerSnippet));
+
+    // Position the map's camera at the location of the marker.
+    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
+    DEFAULT_ZOOM));
+    }
+    };
+
+     // Display the dialog.
+     AlertDialog dialog = new AlertDialog.Builder(getContext())
+     .setTitle(R.string.pick_place)
+     .setItems(mLikelyPlaceNames, listener)
+     .show();
+     }
      */
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
@@ -541,7 +540,8 @@ public class MapViewFragment extends Fragment
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
-        String snippetText = location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
+        String snippetText = location.getDescription() + "\n" +
+                location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
         if(location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
             snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
         } else if(location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
@@ -549,11 +549,17 @@ public class MapViewFragment extends Fragment
         }
         snippetText += "Singapore " + location.getAddressPostalCode();
 
+        location.setSnippetText(snippetText);
+
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(location.getLatLng())
                 .title(location.getName())
-                .snippet(location.getDescription())
+                .snippet(snippetText)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         marker.setTag(location);
+    }
+
+    public static FavouritesManager getFavouritesManager() {
+        return favouritesManager;
     }
 }

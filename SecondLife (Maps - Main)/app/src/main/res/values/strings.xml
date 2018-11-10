@@ -9,5 +9,6 @@
     <string name="pick_place">Choose a place</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="recycle_button">RECYCLE</string>
 
 </resources>

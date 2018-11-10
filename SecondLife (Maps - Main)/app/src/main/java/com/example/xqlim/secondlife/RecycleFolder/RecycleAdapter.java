@@ -1,4 +1,4 @@
-package com.example.xqlim.secondlife.HistoryFolder;
+package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +13,7 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 import java.util.List;
 
-public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> {
+public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHolder> {
     private String[] mDataset;
     private List<Recyclable> recyclables;
 
@@ -26,6 +26,7 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
         TextView recyclableName;
         TextView recyclableQty;
         ImageView recyclablePhoto;
+        TextView recyclableButton;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -37,17 +38,17 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public HistAdapter(List<Recyclable> recyclables) {
+    public RecycleAdapter(List<Recyclable> recyclables) {
         this.recyclables = recyclables;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public HistAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                       int viewType) {
+    public RecycleAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                          int viewType) {
         // create a new view
         View v = (View) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.history_card, parent, false);
+                .inflate(R.layout.recycle_card, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;

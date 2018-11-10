@@ -5,12 +5,11 @@ import android.os.Bundle;
 
 import com.example.xqlim.secondlife.R;
 
-public class PendingRecyclables extends AppCompatActivity {
+public class RecyclableList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pending_recyclables);
+        setContentView(R.layout.activity_recyclable_list);
     }
 }
-
