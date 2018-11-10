@@ -71,10 +71,6 @@ public class RecycleFragment extends Fragment {
     private void initializeData() {
         recycledItems.add(new Paper(3.7, "kg"));
         recycledItems.add(new Glass(2.4, "kg"));
-        recycledItems.add(new MetalTin(5, "tins"));
-        recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
-        recycledItems.add(new AluminiumDrinkCan(12, "cans"));
-
     }
 
     public void addHist(Recyclable recyclable) {
@@ -102,7 +98,7 @@ public class RecycleFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(recycledItems);
+        mAdapter = new RecycleAdapter(recycledItems);
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
