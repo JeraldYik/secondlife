@@ -9,11 +9,18 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclable_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Hist" >
+        android:layout_height="422dp"
+        tools:context=".Hist">
 
 
     </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_gravity="bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 
 </FrameLayout>
