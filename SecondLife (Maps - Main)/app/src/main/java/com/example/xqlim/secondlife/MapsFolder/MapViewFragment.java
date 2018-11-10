@@ -62,6 +62,7 @@ import com.google.maps.android.kml.KmlPoint;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * An activity that displays a map showing the place at the device's current location.
@@ -216,6 +217,10 @@ public class MapViewFragment extends Fragment
             switch(retrieved_location.getName().toLowerCase()){
                 case "cash for trash":
                     marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                    break;
+                case "e-waste":
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                    break;
             }
             favouritesManager.deleteFavourite(retrieved_location);
         }
@@ -467,97 +472,85 @@ public class MapViewFragment extends Fragment
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
             KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
 
-            //create locations & initialise favourite manager
+//            create locations & initialise favourite manager
             favouritesManager = new FavouritesManager();
             LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml);
+            locationManager.readFile(R.raw.cashfortrash_kml, "Cash for Trash");
+            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
 
-            KmlContainer container = c4tLayer.getContainers().iterator().next();
-            container = container.getContainers().iterator().next();
+            setupMarker(c4tLayer, locationManager, "Cash for Trash");
+            setupMarker(eWasteLayer, locationManager, "E-Waste");
 
-            //to get all property frm 1 placemark
-            /*
-            KmlPlacemark placemark = container.getPlacemarks().iterator().next();
-            Iterable<Object> properties = placemark.getProperties();
-
-            for (Object property : properties){
-                Log.d(TAG, property + "\n");
-            }
-
-            */
-
-            //to get 1 property frm all placemarks
-            Iterable<KmlPlacemark> iter = container.getPlacemarks();
-            for (KmlPlacemark placemark : iter) {
-
-                if(placemark.getGeometry().getGeometryType().equals("Point")) {
-                    KmlPoint point = (KmlPoint) placemark.getGeometry();
-                    LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
-                    locationManager.getLocationlist().get(placemark.getProperty("name")).setLatLng(latLng);
-
-                    //Log.d(TAG, "location added: " + locationManager.getLocationlist().get(placemark.getProperty("name")).getName());
-                    addMarkers(locationManager.getLocationlist().get(placemark.getProperty("name")));
-
-
-                    //Log.d(TAG, placemark.getProperty("name"));
-                    //Log.d(TAG, latLng.toString());
-                }
-            }
-
-            //locationManager.printLoc(locationManager.getLocationlist().get("kml_1"));
-
-            //android util code
-            /*
-            for (int i = 1; i < 10; i++){
-                KmlContainer container = layer.getContainers().iterator().next();
-                //Retrieve a nested container within the first container
-                container = container.getContainers().iterator().next();
-                //Retrieve the first placemark in the nested container
-                KmlPlacemark placemark = container.getPlacemarks().iterator().next();
-                //Retrieve a polygon object in a placemark
-                Log.d(TAG, placemark.getProperty("name"));
-                Log.d(TAG, Integer.toString(i));
-            }
-            */
-
-
-        } catch (XmlPullParserException | IOException e)  {
+        } catch (XmlPullParserException | IOException e) {
             Log.e("Exception: %s", e.getMessage());
+
         }
-
-
-        /*
-
-        KmlContainer container = kmlLayer.getContainers().iterator().next();
-        //Retrieve a nested container within the first container
-        container = container.getContainers().iterator().next();
-        //Retrieve the first placemark in the nested container
-        KmlPlacemark placemark = container.getPlacemarks().iterator().next();
-        //Retrieve a polygon object in a placemark
-        KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
-         */
 
     }
 
-    private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location){
-        String snippetText = location.getDescription() + "\n" +
-                location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
-        if(location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
-            snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
-        } else if(location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
-            snippetText += (location.getAddressBuildingName() + "\n");
-        }
-        snippetText += "Singapore " + location.getAddressPostalCode();
+    public ArrayList<Marker> markers = new ArrayList<>();
 
+    private void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category){
+        KmlContainer container = kmlLayer.getContainers().iterator().next();
+        container = container.getContainers().iterator().next();
+
+        Iterable<KmlPlacemark> iter = container.getPlacemarks();
+        for (KmlPlacemark placemark : iter) {
+            if(placemark.getGeometry().getGeometryType().equals("Point")) {
+                KmlPoint point = (KmlPoint) placemark.getGeometry();
+                //retrieve latlng from location object itself, instead of setting
+                LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
+                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
+                Log.i(TAG, category + " + " + locationManager.getLocationlist().get(latLng).getName());
+                Marker marker = addMarkers(locationManager.getLocationlist().get(latLng), category);
+                markers.add(marker);
+                Log.i(TAG, "in if statement loop " + marker.getTitle());
+
+            }
+        }
+        Log.i(TAG, "DONE");
+
+    }
+
+    private Marker addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location, String category){
+        String snippetText = "";
+        switch(category) {
+            case "Cash for Trash":
+                snippetText = location.getDescription() + "\n" +
+                        location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
+                if (location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
+                    snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
+                } else if (location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
+                    snippetText += (location.getAddressBuildingName() + "\n");
+                }
+                snippetText += "Singapore " + location.getAddressPostalCode();
+                break;
+        }
         location.setSnippetText(snippetText);
 
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(location.getLatLng())
-                .title(location.getName())
-                .snippet(snippetText)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        marker.setTag(location);
-    }
+        switch(location.getName()){
+            case "Cash for Trash":{
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(location.getLatLng())
+                        .title(location.getName())
+                        .snippet(snippetText)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                marker.setTag(location);
+                return marker;
+//                break;
+            }
+            case "E-Waste":
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(location.getLatLng())
+                        .title(location.getName())
+                        .snippet(snippetText)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+                marker.setTag(location);
+                return marker;
+//                break;
+            }
+            return null;
+        }
 
     public static FavouritesManager getFavouritesManager() {
         return favouritesManager;
