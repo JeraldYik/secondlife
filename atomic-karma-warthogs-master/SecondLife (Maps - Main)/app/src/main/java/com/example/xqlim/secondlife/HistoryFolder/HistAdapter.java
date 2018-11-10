@@ -15,7 +15,7 @@ import java.util.List;
 
 public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> {
     private String[] mDataset;
-    private List<Recyclable> recyclabes;
+    private List<Recyclable> recyclables;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,8 +37,8 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public HistAdapter(List<Recyclable> recyclabes) {
-        this.recyclabes = recyclabes;
+    public HistAdapter(List<Recyclable> recyclables) {
+        this.recyclables = recyclables;
     }
 
     // Create new views (invoked by the layout manager)
@@ -47,7 +47,7 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
                                                        int viewType) {
         // create a new view
         View v = (View) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclable_card, parent, false);
+                .inflate(R.layout.history_card, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -59,9 +59,9 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.recyclableName.setText(recyclabes.get(i).getName());
-        holder.recyclableQty.setText(recyclabes.get(i).getQtyDisplay());
-        holder.recyclablePhoto.setImageResource(recyclabes.get(i).getImageAssetSmall());
+        holder.recyclableName.setText(recyclables.get(i).getName());
+        holder.recyclableQty.setText(recyclables.get(i).getQtyDisplay());
+        holder.recyclablePhoto.setImageResource(recyclables.get(i).getImageAssetSmall());
 
         /*
         holder.mView.setText(mDataset[position]);
@@ -77,6 +77,6 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return recyclabes.size();
+        return recyclables.size();
     }
 }

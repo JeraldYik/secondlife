@@ -25,6 +25,7 @@ public class LocationManager
     private Context mContext;
     private static final String TAG = "LocationCreator";
     private HashMap <LatLng, Location> locationlist = new HashMap<>();
+    private boolean skip = true;
 
     public LocationManager(Context context) {
         this.mContext = context;
@@ -51,33 +52,20 @@ public class LocationManager
 
 
             if (eventType == XmlPullParser.START_DOCUMENT) {
-                //Log.d(TAG, "Start document");
             } else if (eventType == XmlPullParser.START_TAG) {
                 if (tagName.equalsIgnoreCase("schemadata")) {
                 }
-                //Log.d(TAG, "Start tag "+xpp.getName());
 
             } else if (eventType == XmlPullParser.TEXT) {
                 text = xpp.getText();
-                Log.i(TAG, text);
-                //Log.d(TAG,"Text "+xpp.getText());
+//                Log.i(TAG, text);
+//                Log.d(TAG,"Text "+xpp.getText());
             } else if (eventType == XmlPullParser.END_TAG) {
-                //Log.d(TAG,"End tag "+xpp.getName());
-//                if (tagName.equalsIgnoreCase("name")) {
-//
-//                    name = text;
-                    //Log.d(TAG, "name: " + name);
                 if (tagName.equalsIgnoreCase("simpledata")) {
+                    info.add(counter++, text);
+                } else if (tagName.equalsIgnoreCase("coordinates")){
                     info.add(counter, text);
-                    //Log.d(TAG, "Simpledata: " + counter + ". " + text);
-                    counter++;
                 } else if (tagName.equalsIgnoreCase("SchemaData")) {
-                    /*
-                    Log.d(TAG, "Schema Data");
-                    for (int i = 0; i < info.size(); i++){
-                        Log.d(TAG, "info: " + info.get(i));
-                    }
-                    */
                     createLocation(info, category);
                     counter = 0;
                     info.clear();
@@ -89,16 +77,15 @@ public class LocationManager
 
 
     private void createLocation(ArrayList<String> info, String category){
-        //Log.d(TAG, "location creating");
 
         Location location = new Location();
         location.setName(category);
-        //Log.d(TAG, location.getName());
+        Log.i(TAG, info.get(info.size()-1) + " " + info.get(info.size()-7) + " " + info.get(info.size()-6));
+//        location.setLatLng(makeLatLng(info.get(info.size()-1)));
         location.setAddressBlockNumber(info.get(info.size()-4));
 
         location.setAddressPostalCode(info.get(info.size()-6));
         location.setAddressStreetName(info.get(info.size()-7));
-        //Log.d(TAG, location.getAddressStreetName());
         if (info.size() == 9){
             location.setAddressBlockNumber(info.get(info.size()-4));
             location.setAddressBuildingName(info.get(info.size()-5));
@@ -144,5 +131,11 @@ public class LocationManager
 
     public void setLocationlist(HashMap<LatLng, Location> locationlist) {
         this.locationlist = locationlist;
+    }
+
+    private LatLng makeLatLng(String rawLatLng) {
+        String[] strLatLngArr = rawLatLng.split(",");
+        LatLng latLng = new LatLng(Double.parseDouble(strLatLngArr[1]), Double.parseDouble(strLatLngArr[0]));
+        return latLng;
     }
 }

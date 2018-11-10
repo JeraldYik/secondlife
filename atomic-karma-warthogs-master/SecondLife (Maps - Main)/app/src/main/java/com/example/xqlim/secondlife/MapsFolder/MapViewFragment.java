@@ -500,7 +500,7 @@ public class MapViewFragment extends Fragment
                 KmlPoint point = (KmlPoint) placemark.getGeometry();
                 //retrieve latlng from location object itself, instead of setting
                 LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
-                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
+//                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
                 Log.i(TAG, category + " + " + locationManager.getLocationlist().get(latLng).getName());
                 Marker marker = addMarkers(locationManager.getLocationlist().get(latLng), category);
                 markers.add(marker);

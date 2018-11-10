@@ -11,10 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
-import com.example.xqlim.secondlife.HistoryFolder.Hist;
+import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.RecycleFragment;
+import com.example.xqlim.secondlife.RecycleFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
@@ -37,7 +37,6 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -70,7 +69,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Hist()).commit();
+                        new HistoryFragment()).commit();
                 break;
         }
 
