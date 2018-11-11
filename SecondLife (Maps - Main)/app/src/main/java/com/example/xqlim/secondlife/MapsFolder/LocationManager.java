@@ -51,7 +51,6 @@ public class LocationManager
         while (eventType != XmlPullParser.END_DOCUMENT) {
             tagName = xpp.getName();
 
-
             if (eventType == XmlPullParser.START_DOCUMENT) {
             } else if (eventType == XmlPullParser.START_TAG) {
                 if (tagName.equalsIgnoreCase("schemadata")) {
@@ -80,24 +79,32 @@ public class LocationManager
 
     private void createLocation(ArrayList<String> info, String category){
 
+        //Log.d(TAG, "LOcation creating");
         Location location = new Location();
         location.setName(category);
-        if(info.size() == 9) {
-           for(int i=0; i<info.size();i++) {
-               Log.i(TAG, String.valueOf(i) + ": " + category + ": " + info.get(i));
-           }
-            Log.i(TAG, "-------------------------------------------------------------");
-        }
+
+//        //if(info.size() == 9) {
+//           for(int i=0; i<info.size();i++) {
+//               Log.i(TAG, String.valueOf(i) + ": " + category + ": " + info.get(i));
+//           }
+//            Log.i(TAG, "-------------------------------------------------------------");
+//        //}
+
+        Log.d(TAG, "info size " + info.size());
         location.setDescription(info.get(0));
-        if(category == "Cash for Trash") {
+        if(category == "Cash For Trash") {
+            //Log.d(TAG, "Cash for trash loops wpps");
             switch(info.size()) {
                 case 8:
+                    //Log.d(TAG, "case 8 " + info.get(7));
+
                     location.setAddressStreetName(info.get(1));
                     location.setAddressPostalCode(info.get(2));
                     location.setAddressBlockNumber(info.get(3));
                     location.setLatLng(makeLatLng(info.get(7)));
                     break;
                 case 9:
+                    //Log.d(TAG, "case 9" + info.get(8));
                     location.setAddressStreetName(info.get(1));
                     location.setAddressPostalCode(info.get(2));
                     location.setAddressBuildingName(info.get(3));
@@ -105,6 +112,7 @@ public class LocationManager
                     location.setLatLng(makeLatLng(info.get(8)));
                     break;
                 case 10:
+                    //Log.d(TAG, "case 10" + info.get(9));
                     location.setAddressUnitNumber(info.get(1));
                     location.setAddressStreetName(info.get(2));
                     location.setAddressPostalCode(info.get(3));
@@ -113,7 +121,8 @@ public class LocationManager
                     location.setLatLng(makeLatLng(info.get(9)));
                     break;
             }
-        } else if(category == "E-Waste") {
+        }
+        else if(category == "E-Waste") {
             switch(info.size()) {
                 case 8:
                     location.setAddressPostalCode(info.get(1));
@@ -140,11 +149,14 @@ public class LocationManager
                     location.setAddressBlockNumber(info.get(5));
                     location.setAddressBuildingName(info.get(6));
                     location.setLatLng(makeLatLng(info.get(10)));
+                    break;
             }
         }
 
 
         locationlist.put(location.getLatLng(), location);
+        //Log.d(TAG, "location created! " + location.getLatLng());
+
     }
 
     //dont use unless NULL is addressed

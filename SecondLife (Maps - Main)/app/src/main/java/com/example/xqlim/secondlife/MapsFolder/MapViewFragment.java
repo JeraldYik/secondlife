@@ -379,7 +379,7 @@ public class MapViewFragment extends Fragment
         }
 
         if (mLocationPermissionGranted) {
-            // Get the likely places - that is, the businesses and other points of interest that
+            // Get the likely places - that is, the businesses fand other points of interest that
             // are the best match for the device's current location.
             @SuppressWarnings("MissingPermission") final
             Task<PlaceLikelihoodBufferResponse> placeResult =
