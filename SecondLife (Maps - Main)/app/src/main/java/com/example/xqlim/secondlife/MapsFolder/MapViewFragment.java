@@ -241,8 +241,8 @@ public class MapViewFragment extends Fragment
         updateLocationUI();
         addLayers();
 
-        // Get the current location of the device and set the position of the map.
-        getDeviceLocation();
+//        // Get the current location of the device and set the position of the map.
+//        getDeviceLocation();
     }
 
     @Override
@@ -277,7 +277,7 @@ public class MapViewFragment extends Fragment
 
     /**
      * Gets the current location of the device, and positions the map's camera.
-     */
+
     private void getDeviceLocation() {
         Log.d(TAG, "get device loc");
         Marker marker = mMap.addMarker(
@@ -291,7 +291,9 @@ public class MapViewFragment extends Fragment
         }
 
         marker.remove();
-//
+
+
+
 //        /*
 //         * Get the best and most recent location of the device, which may be null in rare
 //         * cases when a location is not available.
@@ -324,7 +326,7 @@ public class MapViewFragment extends Fragment
 //        } catch (SecurityException e)  {
 //            Log.e("Exception: %s", e.getMessage());
 //        }
-    }
+//    }
 
 
     /**

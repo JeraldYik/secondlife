@@ -59,8 +59,6 @@ public class LocationManager
 
             } else if (eventType == XmlPullParser.TEXT) {
                 text = xpp.getText();
-//                Log.i(TAG, text);
-//                Log.d(TAG,"Text "+xpp.getText());
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (tagName.equalsIgnoreCase("simpledata")) {
                     info.add(counter, text);
@@ -84,37 +82,69 @@ public class LocationManager
 
         Location location = new Location();
         location.setName(category);
-        Log.i(TAG, info.get(info.size()-1) + "," + info.get(info.size()-7) + "," + info.get(info.size()-6));
-        location.setLatLng(makeLatLng(info.get(info.size()-1)));
-        location.setAddressBlockNumber(info.get(info.size()-4));
-
-        location.setAddressPostalCode(info.get(info.size()-6));
-        location.setAddressStreetName(info.get(info.size()-7));
-        if (info.size() == 9){
-            location.setAddressBlockNumber(info.get(info.size()-4));
-            location.setAddressBuildingName(info.get(info.size()-5));
-            location.setAddressPostalCode(info.get(info.size()-6));
-            location.setAddressStreetName(info.get(info.size()-7));
-            location.setAddressUnitNumber(info.get(1));
-        }
-        else if (info.size() == 8){
-            location.setAddressBlockNumber(info.get(info.size()-4));
-            location.setAddressBuildingName(info.get(info.size()-5));
-            location.setAddressPostalCode(info.get(info.size()-6));
-            location.setAddressStreetName(info.get(info.size()-7));
-//            location.setAddressUnitNumber("No unit number");
-        }
-
-        else if (info.size() == 7){
-            location.setAddressBlockNumber(info.get(info.size()-4));
-            location.setAddressPostalCode(info.get(info.size()-5));
-            location.setAddressStreetName(info.get(info.size()-6));
-//            location.setAddressBuildingName("No Building Name");
-//            location.setAddressUnitNumber("No unit number");
+        if(info.size() == 9) {
+           for(int i=0; i<info.size();i++) {
+               Log.i(TAG, String.valueOf(i) + ": " + category + ": " + info.get(i));
+           }
+            Log.i(TAG, "-------------------------------------------------------------");
         }
         location.setDescription(info.get(0));
+        if(category == "Cash for Trash") {
+            switch(info.size()) {
+                case 8:
+                    location.setAddressStreetName(info.get(1));
+                    location.setAddressPostalCode(info.get(2));
+                    location.setAddressBlockNumber(info.get(3));
+                    location.setLatLng(makeLatLng(info.get(7)));
+                    break;
+                case 9:
+                    location.setAddressStreetName(info.get(1));
+                    location.setAddressPostalCode(info.get(2));
+                    location.setAddressBuildingName(info.get(3));
+                    location.setAddressBlockNumber(info.get(4));
+                    location.setLatLng(makeLatLng(info.get(8)));
+                    break;
+                case 10:
+                    location.setAddressUnitNumber(info.get(1));
+                    location.setAddressStreetName(info.get(2));
+                    location.setAddressPostalCode(info.get(3));
+                    location.setAddressBuildingName(info.get(4));
+                    location.setAddressBlockNumber(info.get(5));
+                    location.setLatLng(makeLatLng(info.get(9)));
+                    break;
+            }
+        } else if(category == "E-Waste") {
+            switch(info.size()) {
+                case 8:
+                    location.setAddressPostalCode(info.get(1));
+                    location.setAddressBlockNumber(info.get(2));
+                    location.setAddressBuildingName(info.get(3));
+                    location.setLatLng(makeLatLng(info.get(7)));
+                    break;
+                case 9:
+                    location.setAddressPostalCode(info.get(1));
+                    location.setAddressBlockNumber(info.get(3));
+                    location.setAddressBuildingName(info.get(4));
+                    location.setLatLng(makeLatLng(info.get(8)));
+                    break;
+                case 10:
+                    location.setAddressPostalCode(info.get(1));
+                    location.setAddressUnitNumber(info.get(3));
+                    location.setAddressBlockNumber(info.get(4));
+                    location.setAddressBuildingName(info.get(5));
+                    location.setLatLng(makeLatLng(info.get(9)));
+                    break;
+                case 11:
+                    location.setAddressPostalCode(info.get(1));
+                    location.setAddressUnitNumber(info.get(3));
+                    location.setAddressBlockNumber(info.get(5));
+                    location.setAddressBuildingName(info.get(6));
+                    location.setLatLng(makeLatLng(info.get(10)));
+            }
+        }
+
+
         locationlist.put(location.getLatLng(), location);
-        //printLoc(location);
     }
 
     //dont use unless NULL is addressed

@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class MarkerManager {
 
-    private static final String TAG = "MarkerManager";
+    private static final String TAG = "MarkerManagerTAG";
     //key is latlng, value is marker
     private HashMap<LatLng, Marker> markerList;
 
@@ -43,26 +43,19 @@ public class MarkerManager {
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location, String category, GoogleMap mMap){
-        String snippetText = "";
+        Marker marker;
+        String snippetText = location.getDescription() + "\n";
         switch(category) {
             case "Cash for Trash":
-                snippetText = location.getDescription() + "\n" +
-                        location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
+                snippetText += location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
                 if (location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
                     snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
                 } else if (location.getAddressUnitNumber() == null && location.getAddressBuildingName() != null) {
                     snippetText += (location.getAddressBuildingName() + "\n");
                 }
                 snippetText += "Singapore " + location.getAddressPostalCode();
-                break;
-        }
-        location.setSnippetText(snippetText);
 
-
-
-        switch(location.getName()){
-            case "Cash For Trash":{
-                Marker marker = mMap.addMarker(new MarkerOptions()
+                marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
@@ -70,9 +63,12 @@ public class MarkerManager {
                 marker.setTag(location);
                 markerList.put(location.getLatLng(), marker);
                 break;
-            }
+        }
+        location.setSnippetText(snippetText);
+
+        switch(location.getName()){
             case "E-Waste":
-                Marker marker = mMap.addMarker(new MarkerOptions()
+                marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
@@ -80,8 +76,6 @@ public class MarkerManager {
                 marker.setTag(location);
                 markerList.put(location.getLatLng(), marker);
                 break;
-            default:
-                Log.d(TAG, "Category not found");
         }
 
     }
