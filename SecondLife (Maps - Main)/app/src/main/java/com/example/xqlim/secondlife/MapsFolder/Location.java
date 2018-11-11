@@ -12,7 +12,7 @@ public class Location {
 
     private int openingTime;
     private int closingTime;
-    private boolean isFavourite = false;
+    private boolean isFavourite;
 
     private String Description;
     private String AddressUnitNumber;
@@ -21,6 +21,10 @@ public class Location {
     private String AddressBuildingName;
     private String AddressBlockNumber;
     private String SnippetText;
+
+    public Location() {
+        this.isFavourite = false;
+    }
 
     public LatLng getLatLng() {
         return latLng;
@@ -107,5 +111,13 @@ public class Location {
 
     public void setSnippetText(String snippetText) {
         SnippetText = snippetText;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
     }
 }

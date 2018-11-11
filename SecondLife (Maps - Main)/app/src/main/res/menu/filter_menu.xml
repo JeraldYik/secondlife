@@ -10,10 +10,28 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+
+
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/option_get_place"
         android:title="@string/option_get_place"
-        app:showAsAction="always"/>
+        app:showAsAction="always">
+
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/showAll"
+                android:title="Show All" />
+            <item android:id="@+id/cashForTrash"
+                android:title="Cash for Trash" />
+            <item android:id="@+id/eWaste"
+                android:title="E-Waste" />
+            <item android:id="@+id/Favourites"
+                android:title="Favourites" />
+        </menu>
+    </item>
+
 </menu>

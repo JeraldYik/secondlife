@@ -12,7 +12,16 @@ import com.google.maps.android.kml.KmlLayer;
 import com.google.maps.android.kml.KmlPlacemark;
 import com.google.maps.android.kml.KmlPoint;
 
+import java.util.HashMap;
+
 public class MarkerManager {
+
+    private static final String TAG = "MarkerManager";
+    private HashMap<String, Marker> markerList;
+
+    public MarkerManager() {
+        this.markerList = new HashMap<>();
+    }
 
     public void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category, GoogleMap mMap){
         KmlContainer container = kmlLayer.getContainers().iterator().next();
@@ -27,7 +36,6 @@ public class MarkerManager {
 //                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
 //                Log.i(TAG, category + " + " + locationManager.getLocationlist().get(latLng).getName());
                 addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
-
             }
         }
 
@@ -49,24 +57,64 @@ public class MarkerManager {
         }
         location.setSnippetText(snippetText);
 
+        Marker marker = null;
+
         switch(location.getName()){
-            case "Cash for Trash":{
-                Marker marker = mMap.addMarker(new MarkerOptions()
+            case "cashForTrash":{
+                marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 marker.setTag(location);
+
                 break;
             }
-            case "E-Waste":
-                Marker marker = mMap.addMarker(new MarkerOptions()
+            case "eWaste":
+                marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
                 marker.setTag(location);
                 break;
+            default:
+                Log.d(TAG, "Category not found");
+        }
+        markerList.put(location.getName(), marker);
+    }
+
+    public void toggleMarkers(String filter){
+        switch(filter){
+            case "showAll":
+                for (String key : markerList.keySet()){
+                    markerList.get(key).setVisible(true);
+                }
+                break;
+            case "cashForTrash":
+            case "eWaste":
+                for (String key: markerList.keySet()){
+                    if (key == filter){
+                        markerList.get(key).setVisible(true);
+                    }
+                    else{
+                        markerList.get(key).setVisible(false);
+                    }
+                }
+                break;
+            case "Favourites":
+                for (String key : markerList.keySet()){
+                    Marker marker = markerList.get(key);
+                    Location location = (Location) marker.getTag();
+                    if (location.isFavourite()){
+                        markerList.get(key).setVisible(true);
+                    }
+                    else{
+                        markerList.get(key).setVisible(false);
+                    }
+                }
+                break;
+
         }
     }
 }

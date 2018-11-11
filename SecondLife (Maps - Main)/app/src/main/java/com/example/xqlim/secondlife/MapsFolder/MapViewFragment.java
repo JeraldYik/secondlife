@@ -22,8 +22,11 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -111,8 +114,69 @@ public class MapViewFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "initialising mapviewfrag");
+
+
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_map_view, container, false);
     }
+
+
+    /**
+     * Sets up the options menu.
+     * @param menu The options menu.
+     * @return Boolean.
+     */
+
+    //menu for getting suggested nearby locations
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.filter_menu, menu);
+//        return true;
+//    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.filter_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+        /*
+        SubMenu submenu = menu.addSubMenu("Filter");
+        submenu.add(Menu.NONE, R.id.showAll)
+        submenu.add(0, 10, Menu.NONE, "Get Last 5 Packets");
+        submenu.add(0, 15, Menu.NONE, "Get Last 10 Packets");
+        submenu.add(0, 20, Menu.NONE, "Get Last 20 Packets");
+        inflater.inflate(R.menu.filter_menu, submenu);
+        */
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+
+        Log.d(TAG, Integer.toString(item.getItemId()));
+
+        Log.d(TAG, Integer.toString(item.getItemId()));
+
+        switch (item.getItemId()) {
+            case R.id.showAll:
+                markerManager.toggleMarkers("showAll");
+                return true;
+            case R.id.cashForTrash:
+                markerManager.toggleMarkers("cashForTrash");
+                return true;
+            case R.id.eWaste:
+                markerManager.toggleMarkers("eWaste");
+                return true;
+            case R.id.Favourites:
+                markerManager.toggleMarkers("Favourites");
+                return true;
+            default:
+                Log.d(TAG, "menu item not found");
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     public void onResume(){
         super.onResume();
@@ -159,18 +223,8 @@ public class MapViewFragment extends Fragment
         }
     }
 
-    /**
-     * Sets up the options menu.
-     * @param menu The options menu.
-     * @return Boolean.
-     */
 
-    //menu for getting suggested nearby locations
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.current_place_menu, menu);
-//        return true;
-//    }
+
 
     /**
      * Handles a click on the menu option to get a place.
@@ -184,6 +238,7 @@ public class MapViewFragment extends Fragment
         }
         return true;
     }
+    */
 
     /**
      * Manipulates the map when it's available.
@@ -473,8 +528,8 @@ public class MapViewFragment extends Fragment
             favouritesManager = new FavouritesManager();
             markerManager = new MarkerManager();
             LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml, "Cash for Trash");
-            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
+            locationManager.readFile(R.raw.cashfortrash_kml, "cashForTrash");
+            locationManager.readFile(R.raw.ewaste_recycling_kml, "eWaste");
 
             markerManager.setupMarker(c4tLayer, locationManager, "Cash for Trash", mMap);
             markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap);
