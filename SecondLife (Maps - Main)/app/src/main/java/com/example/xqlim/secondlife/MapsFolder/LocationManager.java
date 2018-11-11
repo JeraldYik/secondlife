@@ -155,7 +155,7 @@ public class LocationManager
 
 
         locationlist.put(location.getLatLng(), location);
-        //Log.d(TAG, "location created! " + location.getLatLng());
+        Log.d(TAG, "location created! " + location.getLatLng());
 
     }
 

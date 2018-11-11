@@ -516,7 +516,7 @@ public class MapViewFragment extends Fragment
             locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
             locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
 
-            markerManager.setupMarker(c4tLayer, locationManager, "Cash for Trash", mMap);
+            markerManager.setupMarker(c4tLayer, locationManager, "Cash For Trash", mMap);
             markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap);
 
         } catch (XmlPullParserException | IOException e) {
