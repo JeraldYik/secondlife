@@ -17,7 +17,8 @@ import java.util.HashMap;
 public class MarkerManager {
 
     private static final String TAG = "MarkerManager";
-    private HashMap<String, Marker> markerList;
+    //key is latlng, value is marker
+    private HashMap<LatLng, Marker> markerList;
 
     public MarkerManager() {
         this.markerList = new HashMap<>();
@@ -57,44 +58,52 @@ public class MarkerManager {
         }
         location.setSnippetText(snippetText);
 
-        Marker marker = null;
+
 
         switch(location.getName()){
-            case "cashForTrash":{
-                marker = mMap.addMarker(new MarkerOptions()
+            case "Cash For Trash":{
+                Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 marker.setTag(location);
-
+                markerList.put(location.getLatLng(), marker);
                 break;
             }
-            case "eWaste":
-                marker = mMap.addMarker(new MarkerOptions()
+            case "E-Waste":
+                Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
                 marker.setTag(location);
+                markerList.put(location.getLatLng(), marker);
                 break;
             default:
                 Log.d(TAG, "Category not found");
         }
-        markerList.put(location.getName(), marker);
+
     }
 
+    //Filter which markers to show
     public void toggleMarkers(String filter){
+
         switch(filter){
             case "showAll":
-                for (String key : markerList.keySet()){
+                Log.d(TAG, "Showall filter");
+                for (LatLng key : markerList.keySet()){
                     markerList.get(key).setVisible(true);
                 }
                 break;
-            case "cashForTrash":
-            case "eWaste":
-                for (String key: markerList.keySet()){
-                    if (key == filter){
+            case "Cash For Trash":
+            case "E-Waste":
+                Log.d(TAG, "Category filter: " + filter);
+
+                for (LatLng key: markerList.keySet()){
+                    Location location = (Location) markerList.get(key).getTag();
+
+                    if (location.getName() == filter){
                         markerList.get(key).setVisible(true);
                     }
                     else{
@@ -103,7 +112,8 @@ public class MarkerManager {
                 }
                 break;
             case "Favourites":
-                for (String key : markerList.keySet()){
+                Log.d(TAG, "favourite filter");
+                for (LatLng key : markerList.keySet()){
                     Marker marker = markerList.get(key);
                     Location location = (Location) marker.getTag();
                     if (location.isFavourite()){

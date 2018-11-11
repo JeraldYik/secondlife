@@ -14,6 +14,7 @@ public class Location {
     private int closingTime;
     private boolean isFavourite;
 
+
     private String Description;
     private String AddressUnitNumber;
     private String AddressStreetName;
@@ -21,6 +22,7 @@ public class Location {
     private String AddressBuildingName;
     private String AddressBlockNumber;
     private String SnippetText;
+
 
     public Location() {
         this.isFavourite = false;
@@ -120,4 +122,5 @@ public class Location {
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
     }
+
 }

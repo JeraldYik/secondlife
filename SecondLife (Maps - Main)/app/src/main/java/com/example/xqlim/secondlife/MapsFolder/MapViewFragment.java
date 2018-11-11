@@ -122,17 +122,8 @@ public class MapViewFragment extends Fragment
 
 
     /**
-     * Sets up the options menu.
-     * @param menu The options menu.
-     * @return Boolean.
+    Filter Menu
      */
-
-    //menu for getting suggested nearby locations
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.filter_menu, menu);
-//        return true;
-//    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -140,36 +131,28 @@ public class MapViewFragment extends Fragment
         inflater.inflate(R.menu.filter_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
 
-        /*
-        SubMenu submenu = menu.addSubMenu("Filter");
-        submenu.add(Menu.NONE, R.id.showAll)
-        submenu.add(0, 10, Menu.NONE, "Get Last 5 Packets");
-        submenu.add(0, 15, Menu.NONE, "Get Last 10 Packets");
-        submenu.add(0, 20, Menu.NONE, "Get Last 20 Packets");
-        inflater.inflate(R.menu.filter_menu, submenu);
-        */
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
 
-        Log.d(TAG, Integer.toString(item.getItemId()));
-
-        Log.d(TAG, Integer.toString(item.getItemId()));
-
         switch (item.getItemId()) {
             case R.id.showAll:
                 markerManager.toggleMarkers("showAll");
+                Log.d(TAG, "Show all selected");
                 return true;
             case R.id.cashForTrash:
-                markerManager.toggleMarkers("cashForTrash");
+                markerManager.toggleMarkers("Cash For Trash");
+                Log.d(TAG, "c4t selected");
                 return true;
             case R.id.eWaste:
-                markerManager.toggleMarkers("eWaste");
+                markerManager.toggleMarkers("E-Waste");
+                Log.d(TAG, "ewaste selected");
                 return true;
             case R.id.Favourites:
                 markerManager.toggleMarkers("Favourites");
+                Log.d(TAG, "favourites selected");
                 return true;
             default:
                 Log.d(TAG, "menu item not found");
@@ -528,8 +511,8 @@ public class MapViewFragment extends Fragment
             favouritesManager = new FavouritesManager();
             markerManager = new MarkerManager();
             LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml, "cashForTrash");
-            locationManager.readFile(R.raw.ewaste_recycling_kml, "eWaste");
+            locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
+            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
 
             markerManager.setupMarker(c4tLayer, locationManager, "Cash for Trash", mMap);
             markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap);
