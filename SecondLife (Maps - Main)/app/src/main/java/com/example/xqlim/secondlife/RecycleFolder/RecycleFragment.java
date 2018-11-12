@@ -72,7 +72,7 @@ public class RecycleFragment extends Fragment {
         recycledItems.add(new Glass(2.4, "kg"));
     }
 
-    public void addHist(Recyclable recyclable) {
+    public void addToList(Recyclable recyclable) {
         recycledItems.add(recyclable);
     }
 
