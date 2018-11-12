@@ -25,7 +25,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
 
         if (savedInstanceState != null) {
             //Restore the fragment's instance
-            mContent = getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
+            mContent = getSupportFragmentManager().getFragment(savedInstanceState, "MapViewFragment");
 
         }
         super.onCreate(savedInstanceState);
@@ -92,6 +92,6 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         super.onSaveInstanceState(outState);
 
         //Save the fragment's instance
-        getSupportFragmentManager().putFragment(outState, "myFragmentName", mContent);
+        getSupportFragmentManager().putFragment(outState, "MapViewFragment", mContent);
     }
 }

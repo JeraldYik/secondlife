@@ -80,6 +80,7 @@ public class MapViewFragment extends Fragment
     private DrawerLayout drawer;
     private static FavouritesManager favouritesManager;
     private static MarkerManager markerManager;
+    private static LocationManager locationManager;
 
     // The entry points to the Places API.
     private GeoDataClient mGeoDataClient;
@@ -110,11 +111,13 @@ public class MapViewFragment extends Fragment
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
 
+    private boolean isResume;
+
     //initialise fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "initialising mapviewfrag");
-
+        isResume = false;
 
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_map_view, container, false);
@@ -162,7 +165,16 @@ public class MapViewFragment extends Fragment
 
     public void onResume(){
         super.onResume();
+        Log.d(TAG, "resuming");
 
+        if (markerManager == null){
+            Log.d(TAG, "null marker mgr");
+        }
+        else{
+            isResume = true;
+            Log.d(TAG, "size: " + Integer.toString(markerManager.getMarkerList().size()));
+
+        }
         // Set title bar
         ((Sidebar) getActivity())
                 .setActionBarTitle("Map");
@@ -171,6 +183,7 @@ public class MapViewFragment extends Fragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onviewcreated");
         super.onViewCreated(view, savedInstanceState);
 //          Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
@@ -198,15 +211,23 @@ public class MapViewFragment extends Fragment
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "Saving instance state");
         if (mMap != null) {
+
             outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
             super.onSaveInstanceState(outState);
         }
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-
+        if (savedInstanceState != null){
+            Log.d(TAG, "on activity created");
+        }
+    }
 
     /**
      * Handles a click on the menu option to get a place.
@@ -228,6 +249,7 @@ public class MapViewFragment extends Fragment
      */
     @Override
     public void onMapReady(GoogleMap map) {
+        Log.d(TAG, "on map ready");
         mMap = map;
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
@@ -239,6 +261,7 @@ public class MapViewFragment extends Fragment
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
         addLayers();
+
 
 //        // Get the current location of the device and set the position of the map.
         getDeviceLocation();
@@ -512,13 +535,21 @@ public class MapViewFragment extends Fragment
             Log.d(TAG, "try run layers");
             KmlLayer c4tLayer = new KmlLayer(mMap, R.raw.cashfortrash_kml, getContext());
             KmlLayer eWasteLayer = new KmlLayer(mMap, R.raw.ewaste_recycling_kml, getContext());
-
+            if (!isResume){
+                Log.d(TAG, "first time");
 //            create locations & initialise favourite manager & marker manager
-            favouritesManager = new FavouritesManager();
-            markerManager = new MarkerManager();
-            LocationManager locationManager = new LocationManager(getContext());
-            locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
-            locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
+                favouritesManager = new FavouritesManager();
+                markerManager = new MarkerManager();
+//                LocationManager locationManager = new LocationManager(getContext());
+                locationManager = new LocationManager((getContext()));
+                locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
+                locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
+            }
+            else {
+
+                Log.d(TAG, "resume!!");
+            }
+
             Log.d(TAG, Integer.toString(locationManager.getLocationlist().size()));
 
             markerManager.setupMarker(c4tLayer, locationManager, "Cash For Trash", mMap);
@@ -530,10 +561,8 @@ public class MapViewFragment extends Fragment
                     markerManager.getMarkerList().get(key).setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
                 }
             }
-
         } catch (XmlPullParserException | IOException e) {
             Log.e("Exception: %s", e.getMessage());
-
         }
 
     }
