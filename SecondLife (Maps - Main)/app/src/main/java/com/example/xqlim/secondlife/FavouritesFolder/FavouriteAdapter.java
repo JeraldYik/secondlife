@@ -2,6 +2,7 @@ package com.example.xqlim.secondlife.FavouritesFolder;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,10 @@ import com.example.xqlim.secondlife.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyViewHolder> {
+    private static final String TAG = "FavouriteAdapterTAG";
     private String[] mDataset;
     private List<Location> Favourites;
 
@@ -60,9 +64,17 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.favouriteName.setText(Favourites.get(i).getName());
-        holder.favouriteQty.setText(Favourites.get(i).getSnippetText());
-        holder.favouritePhoto.setImageResource(R.drawable.sammyyeh);
+        Location favouritedLocation = Favourites.get(i);
+        holder.favouriteName.setText(favouritedLocation.getName());
+        holder.favouriteQty.setText(favouritedLocation.getSnippetText());
+        switch(favouritedLocation.getName()){
+            case "Cash For Trash":
+                holder.favouritePhoto.setImageResource(R.drawable.cash_for_trash);
+                break;
+            case "E-Waste":
+                holder.favouritePhoto.setImageResource(R.drawable.small_appliance);
+                break;
+        }
 
         /*
         holder.mView.setText(mDataset[position]);

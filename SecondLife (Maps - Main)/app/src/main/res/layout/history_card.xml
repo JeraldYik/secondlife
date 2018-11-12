@@ -32,7 +32,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/recyclable_photo"
                 android:textColor="@color/colorPrimaryDark"
-                android:paddingVertical="16dp"
+
                 android:paddingHorizontal="16dp"
                 android:textSize="20sp"
                 />
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/recyclable_details"
                 android:layout_toRightOf="@+id/recyclable_photo"
-                android:paddingVertical="8dp"
+
                 android:paddingHorizontal="16dp"
                 android:layout_below="@+id/recyclable_name"
                 />
