@@ -546,6 +546,8 @@ public class MapViewFragment extends Fragment
                 locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
             }
             else {
+                //if its not the first time the fragment is created, don't initialise new managers
+                // and read the file again
 
                 Log.d(TAG, "resume!!");
             }

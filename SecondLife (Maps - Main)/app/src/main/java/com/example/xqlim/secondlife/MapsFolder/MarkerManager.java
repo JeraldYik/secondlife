@@ -19,9 +19,12 @@ public class MarkerManager {
     private static final String TAG = "MarkerManagerTAG";
     //key is latlng, value is marker
     private HashMap<LatLng, Marker> markerList;
+    private String filter;
 
     public MarkerManager() {
         this.markerList = new HashMap<>();
+        filter = "nothing";
+
     }
 
     public void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category, GoogleMap mMap){
@@ -36,11 +39,12 @@ public class MarkerManager {
                 addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
             }
         }
+        toggleMarkers(filter);
 
     }
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location, String category, GoogleMap mMap){
-        Marker marker;
+        Marker marker = null;
         String snippetText = "";
         switch(category) {
             case "Cash For Trash":
@@ -63,7 +67,7 @@ public class MarkerManager {
 
                 marker.setTag(location);
 
-                markerList.put(location.getLatLng(), marker);
+//                markerList.put(location.getLatLng(), marker);
                 break;
         //& toner a bit of issue
             case "E-Waste":
@@ -83,28 +87,30 @@ public class MarkerManager {
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
                 marker.setTag(location);
                 marker.setVisible(false);
-                markerList.put(location.getLatLng(), marker);
+
                 break;
             default:
                 Log.d(TAG, "Default case");
         }
+
+        markerList.put(location.getLatLng(), marker);
         location.setSnippetText(snippetText);
+
+
+
 
     }
 
     //Filter which markers to show
     public void toggleMarkers(String filter){
         Log.d(TAG, Integer.toString(markerList.size()));
-        int counter = 0;
 
         switch(filter){
             case "showAll":
 
                 for (LatLng key : markerList.keySet()){
                     markerList.get(key).setVisible(true);
-                    counter++;
                 }
-                Log.d(TAG, "Showall filter " + counter);
                 break;
             case "Cash For Trash":
             case "E-Waste":
@@ -136,12 +142,13 @@ public class MarkerManager {
                     }
                 }
                 break;
-
         }
+        this.filter = filter;
     }
 
     public HashMap<LatLng, Marker> getMarkerList() {
         return markerList;
     }
+
 
 }
