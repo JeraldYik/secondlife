@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * Activities that contain this fragment must implement the
  * {@link RecycleFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RecycleFragment#newInstance} factory method to
+ * Use the {@link RecycleFragment# newInstance} factory method to
  * create an instance of this fragment.
  */
 public class RecycleFragment extends Fragment {
@@ -51,8 +51,8 @@ public class RecycleFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
      * @return A new instance of fragment HistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -120,6 +120,11 @@ public class RecycleFragment extends Fragment {
 
         if (id == R.id.add_recycle_item) {
             // do something here
+
+            /** code to launch mapview
+//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                    new MapViewFragment()).commit();
+             */
         }
         return super.onOptionsItemSelected(item);
     }

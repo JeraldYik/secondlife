@@ -1,15 +1,19 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.List;
 
@@ -27,6 +31,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         TextView recyclableQty;
         ImageView recyclablePhoto;
         TextView recyclableButton;
+        private View.OnClickListener mOnClickListener;
+        private static final String TAG = "RecycleAdapter";
+
+
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -34,6 +43,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             recyclableName = itemView.findViewById(R.id.recyclable_name);
             recyclableQty = itemView.findViewById(R.id.recyclable_details);
             recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
+            recyclableButton = itemView.findViewById(R.id.recycle_button);
+
+            recyclableButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "clicked recycle button!!");
+
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MapViewFragment()).commit();
+                }
+            });
         }
     }
 
@@ -53,6 +75,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
+
+//    @Override
+//    public void onClick(final View view) {
+//
+//    }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
