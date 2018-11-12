@@ -242,7 +242,7 @@ public class MapViewFragment extends Fragment
         addLayers();
 
 //        // Get the current location of the device and set the position of the map.
-//        getDeviceLocation();
+        getDeviceLocation();
     }
 
     @Override
@@ -277,6 +277,7 @@ public class MapViewFragment extends Fragment
 
     /**
      * Gets the current location of the device, and positions the map's camera.
+     */
 
     private void getDeviceLocation() {
         Log.d(TAG, "get device loc");
@@ -326,7 +327,7 @@ public class MapViewFragment extends Fragment
 //        } catch (SecurityException e)  {
 //            Log.e("Exception: %s", e.getMessage());
 //        }
-//    }
+    }
 
 
     /**

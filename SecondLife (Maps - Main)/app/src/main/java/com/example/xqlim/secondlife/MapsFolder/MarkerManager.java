@@ -36,7 +36,7 @@ public class MarkerManager {
                 LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
 //                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
 //                Log.i(TAG, category + " + " + locationManager.getLocationlist().get(latLng).getName());
-                //addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
+                addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
             }
         }
 
@@ -46,7 +46,7 @@ public class MarkerManager {
         Marker marker;
         String snippetText = location.getDescription() + "\n";
         switch(category) {
-            case "Cash for Trash":
+            case "Cash For Trash":
                 snippetText += location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
                 if (location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
                     snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
