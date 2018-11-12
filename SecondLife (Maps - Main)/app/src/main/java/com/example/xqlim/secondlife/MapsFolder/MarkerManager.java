@@ -53,12 +53,16 @@ public class MarkerManager {
                 }
                 snippetText += "Singapore " + location.getAddressPostalCode();
 
+
                 marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+
                 marker.setTag(location);
+
                 markerList.put(location.getLatLng(), marker);
                 break;
         //& toner a bit of issue
@@ -78,8 +82,11 @@ public class MarkerManager {
                         .snippet(snippetText)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
                 marker.setTag(location);
+                marker.setVisible(false);
                 markerList.put(location.getLatLng(), marker);
                 break;
+            default:
+                Log.d(TAG, "Default case");
         }
         location.setSnippetText(snippetText);
 
@@ -87,22 +94,28 @@ public class MarkerManager {
 
     //Filter which markers to show
     public void toggleMarkers(String filter){
+        Log.d(TAG, Integer.toString(markerList.size()));
+        int counter = 0;
 
         switch(filter){
             case "showAll":
-                Log.d(TAG, "Showall filter");
+
                 for (LatLng key : markerList.keySet()){
                     markerList.get(key).setVisible(true);
+                    counter++;
                 }
+                Log.d(TAG, "Showall filter " + counter);
                 break;
             case "Cash For Trash":
             case "E-Waste":
-                Log.d(TAG, "Category filter: " + filter);
+
 
                 for (LatLng key: markerList.keySet()){
                     Location location = (Location) markerList.get(key).getTag();
 
+
                     if (location.getName() == filter){
+                        Log.d(TAG, "Category filter: " + filter + ", location name: " + location.getName() + "set to true");
                         markerList.get(key).setVisible(true);
                     }
                     else{
@@ -126,4 +139,9 @@ public class MarkerManager {
 
         }
     }
+
+    public HashMap<LatLng, Marker> getMarkerList() {
+        return markerList;
+    }
+
 }
