@@ -246,8 +246,12 @@ public class MapViewFragment extends Fragment
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag(); //unable to typecast
-        if(retrieved_location.favourited()) {
+        com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag();
+        Log.d(TAG, String.valueOf(retrieved_location.isFavourite()));
+
+        retrieved_location.favourited();
+
+        if(retrieved_location.isFavourite()) {
             marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
             favouritesManager.addFavourite(retrieved_location);
         }
@@ -515,9 +519,17 @@ public class MapViewFragment extends Fragment
             LocationManager locationManager = new LocationManager(getContext());
             locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
             locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
+            Log.d(TAG, Integer.toString(locationManager.getLocationlist().size()));
 
             markerManager.setupMarker(c4tLayer, locationManager, "Cash For Trash", mMap);
             markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap);
+
+            for (LatLng key : markerManager.getMarkerList().keySet()){
+                com.example.xqlim.secondlife.MapsFolder.Location location =  (com.example.xqlim.secondlife.MapsFolder.Location) markerManager.getMarkerList().get(key).getTag();
+                if (location.isFavourite()){
+                    markerManager.getMarkerList().get(key).setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+                }
+            }
 
         } catch (XmlPullParserException | IOException e) {
             Log.e("Exception: %s", e.getMessage());

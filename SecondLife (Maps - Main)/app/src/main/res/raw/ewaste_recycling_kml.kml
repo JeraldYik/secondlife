@@ -13495,69 +13495,6 @@ The Signature</SimpleData>
 <coordinates>103.752112706111,1.37502492762955,0.0</coordinates>
 </Point>
 </Placemark>
-<Placemark id="kml_215">
-<name>kml_215</name>
-<snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>NAME</th>
-<td>RENEW (Recycling Nation's Electronic Waste)</td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSPOSTALCODE</th>
-<td>688892</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>HYPERLINK</th>
-<td>http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBUILDINGNAME</th>
-<td>Choa Chu Kang CC</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td>35</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSSTREETNAME</th>
-<td>Teck Whye Avenue</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Public</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>D84864C89BD1C770</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20180831163325</td>
-</tr></table></center>]]></description>
-<ExtendedData>
-<SchemaData schemaUrl="#kml_schema_ft_EWASTE">
-<SimpleData name="NAME">RENEW (Recycling Nation's Electronic Waste)</SimpleData>
-<SimpleData name="ADDRESSPOSTALCODE">688892</SimpleData>
-<SimpleData name="HYPERLINK">http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</SimpleData>
-<SimpleData name="ADDRESSBUILDINGNAME">Choa Chu Kang CC</SimpleData>
-<SimpleData name="ADDRESSBLOCKHOUSENUMBER">35</SimpleData>
-<SimpleData name="ADDRESSSTREETNAME">Teck Whye Avenue</SimpleData>
-<SimpleData name="DESCRIPTION">Public</SimpleData>
-<SimpleData name="INC_CRC">D84864C89BD1C770</SimpleData>
-<SimpleData name="FMEL_UPD_D">20180831163325</SimpleData>
-</SchemaData>
-</ExtendedData>
-<Point>
-<coordinates>103.751903885583,1.38115528550878,0.0</coordinates>
-</Point>
-</Placemark>
 <Placemark id="kml_216">
 <name>kml_216</name>
 <snippet> </snippet>
@@ -19067,69 +19004,6 @@ The Concourse</SimpleData>
 </ExtendedData>
 <Point>
 <coordinates>103.944387982831,1.35267232042901,0.0</coordinates>
-</Point>
-</Placemark>
-<Placemark id="kml_303">
-<name>kml_303</name>
-<snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>NAME</th>
-<td>RENEW (Recycling Nation's Electronic Waste)</td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSPOSTALCODE</th>
-<td>529204</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>HYPERLINK</th>
-<td>http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBUILDINGNAME</th>
-<td>Tampines North CC</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td>2</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSSTREETNAME</th>
-<td>Tampines Street 41</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Public</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>D347DD7C6430DDE1</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20180831163325</td>
-</tr></table></center>]]></description>
-<ExtendedData>
-<SchemaData schemaUrl="#kml_schema_ft_EWASTE">
-<SimpleData name="NAME">RENEW (Recycling Nation's Electronic Waste)</SimpleData>
-<SimpleData name="ADDRESSPOSTALCODE">529204</SimpleData>
-<SimpleData name="HYPERLINK">http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</SimpleData>
-<SimpleData name="ADDRESSBUILDINGNAME">Tampines North CC</SimpleData>
-<SimpleData name="ADDRESSBLOCKHOUSENUMBER">2</SimpleData>
-<SimpleData name="ADDRESSSTREETNAME">Tampines Street 41</SimpleData>
-<SimpleData name="DESCRIPTION">Public</SimpleData>
-<SimpleData name="INC_CRC">D347DD7C6430DDE1</SimpleData>
-<SimpleData name="FMEL_UPD_D">20180831163325</SimpleData>
-</SchemaData>
-</ExtendedData>
-<Point>
-<coordinates>103.946651484544,1.35727397298409,0.0</coordinates>
 </Point>
 </Placemark>
 <Placemark id="kml_304">
