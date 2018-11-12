@@ -85,6 +85,10 @@ public class LocationManager
         if(category == "Cash For Trash") {
             switch(info.size()) {
                 case 8:
+                    for(String s : info) {
+                        Log.i(TAG, s);
+                    }
+                    Log.i(TAG, "----------");
                     location.setAddressStreetName(info.get(1));
                     location.setAddressPostalCode(info.get(2));
                     location.setAddressBlockNumber(info.get(3));

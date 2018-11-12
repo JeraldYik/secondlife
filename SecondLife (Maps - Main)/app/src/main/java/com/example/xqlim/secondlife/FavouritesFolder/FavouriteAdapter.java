@@ -66,7 +66,10 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
 
         Location favouritedLocation = Favourites.get(i);
         holder.favouriteName.setText(favouritedLocation.getName());
-        holder.favouriteQty.setText(favouritedLocation.getSnippetText());
+        String favouriteText = (favouritedLocation.getAddressBuildingName()==null) ?
+                (favouritedLocation.getAddressBlockNumber() + " " + favouritedLocation.getAddressStreetName()) :
+                favouritedLocation.getAddressBuildingName();
+        holder.favouriteQty.setText(favouriteText);
         switch(favouritedLocation.getName()){
             case "Cash For Trash":
                 holder.favouritePhoto.setImageResource(R.drawable.cash_for_trash);
