@@ -136,7 +136,6 @@ public class MapViewFragment extends Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-
         switch (item.getItemId()) {
             case R.id.showAll:
                 markerManager.toggleMarkers("showAll");
@@ -263,7 +262,7 @@ public class MapViewFragment extends Fragment
             }
             favouritesManager.deleteFavourite(retrieved_location);
         }
-        Log.i(TAG, favouritesManager.toString());
+//        Log.i(TAG, favouritesManager.toString());
     }
 
     private BitmapDescriptor BitmapDescriptorFromVector(Context context, int vectorResId) {

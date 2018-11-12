@@ -1883,72 +1883,7 @@ Acer Building Tower A</SimpleData>
 <coordinates>103.848052603497,1.3325717511626,0.0</coordinates>
 </Point>
 </Placemark>
-<Placemark id="kml_30">
-<name>kml_30</name>
-<snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>NAME</th>
-<td>RENEW (Recycling Nation's Electronic Waste)</td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSPOSTALCODE</th>
-<td>819643</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>HYPERLINK</th>
-<td>http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBUILDINGNAME</th>
-<td>Changi Airport Terminal 2 
-(Civil Aviation Authority of Singapore)</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td></td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSSTREETNAME</th>
-<td>Singapore Changi Airport, 
-Terminal 2. Level 4.</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Restricted</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>C0ECA33E22610879</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20180831163325</td>
-</tr></table></center>]]></description>
-<ExtendedData>
-<SchemaData schemaUrl="#kml_schema_ft_EWASTE">
-<SimpleData name="NAME">RENEW (Recycling Nation's Electronic Waste)</SimpleData>
-<SimpleData name="ADDRESSPOSTALCODE">819643</SimpleData>
-<SimpleData name="HYPERLINK">http://www.starhub.com/about-us/corporate-sustainability/recycling-nations-electronic-waste.html</SimpleData>
-<SimpleData name="ADDRESSBUILDINGNAME">Changi Airport Terminal 2 
-(Civil Aviation Authority of Singapore)</SimpleData>
-<SimpleData name="ADDRESSSTREETNAME">Singapore Changi Airport, 
-Terminal 2. Level 4.</SimpleData>
-<SimpleData name="DESCRIPTION">Restricted</SimpleData>
-<SimpleData name="INC_CRC">C0ECA33E22610879</SimpleData>
-<SimpleData name="FMEL_UPD_D">20180831163325</SimpleData>
-</SchemaData>
-</ExtendedData>
-<Point>
-<coordinates>103.988750977656,1.35519094408989,0.0</coordinates>
-</Point>
-</Placemark>
+
 <Placemark id="kml_31">
 <name>kml_31</name>
 <snippet> </snippet>

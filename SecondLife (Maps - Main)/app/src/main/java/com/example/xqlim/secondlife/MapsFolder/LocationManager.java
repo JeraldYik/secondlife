@@ -79,32 +79,18 @@ public class LocationManager
 
     private void createLocation(ArrayList<String> info, String category){
 
-        //Log.d(TAG, "LOcation creating");
         Location location = new Location();
         location.setName(category);
-
-//        //if(info.size() == 9) {
-//           for(int i=0; i<info.size();i++) {
-//               Log.i(TAG, String.valueOf(i) + ": " + category + ": " + info.get(i));
-//           }
-//            Log.i(TAG, "-------------------------------------------------------------");
-//        //}
-
-        Log.d(TAG, "info size " + info.size());
         location.setDescription(info.get(0));
         if(category == "Cash For Trash") {
-            //Log.d(TAG, "Cash for trash loops wpps");
             switch(info.size()) {
                 case 8:
-                    //Log.d(TAG, "case 8 " + info.get(7));
-
                     location.setAddressStreetName(info.get(1));
                     location.setAddressPostalCode(info.get(2));
                     location.setAddressBlockNumber(info.get(3));
                     location.setLatLng(makeLatLng(info.get(7)));
                     break;
                 case 9:
-                    //Log.d(TAG, "case 9" + info.get(8));
                     location.setAddressStreetName(info.get(1));
                     location.setAddressPostalCode(info.get(2));
                     location.setAddressBuildingName(info.get(3));
@@ -112,7 +98,6 @@ public class LocationManager
                     location.setLatLng(makeLatLng(info.get(8)));
                     break;
                 case 10:
-                    //Log.d(TAG, "case 10" + info.get(9));
                     location.setAddressUnitNumber(info.get(1));
                     location.setAddressStreetName(info.get(2));
                     location.setAddressPostalCode(info.get(3));
@@ -132,22 +117,31 @@ public class LocationManager
                     break;
                 case 9:
                     location.setAddressPostalCode(info.get(1));
+                    if(info.get(2).charAt(0)=='#') {
+                        location.setAddressUnitNumber(info.get(2));
+                    }
                     location.setAddressBlockNumber(info.get(3));
                     location.setAddressBuildingName(info.get(4));
                     location.setLatLng(makeLatLng(info.get(8)));
                     break;
                 case 10:
                     location.setAddressPostalCode(info.get(1));
-                    location.setAddressUnitNumber(info.get(3));
                     location.setAddressBlockNumber(info.get(4));
-                    location.setAddressBuildingName(info.get(5));
                     location.setLatLng(makeLatLng(info.get(9)));
+                    if(info.get(3).charAt(0)=='#') {
+                        location.setAddressUnitNumber(info.get(3));
+                        location.setAddressBuildingName(info.get(5));
+                    } else {
+                        location.setAddressBuildingName(info.get(3));
+                        location.setAddressUnitNumber(info.get(5));
+                    }
                     break;
                 case 11:
                     location.setAddressPostalCode(info.get(1));
                     location.setAddressUnitNumber(info.get(3));
+                    location.setAddressBuildingName(info.get(4));
                     location.setAddressBlockNumber(info.get(5));
-                    location.setAddressBuildingName(info.get(6));
+                    location.setAddressStreetName(info.get(6));
                     location.setLatLng(makeLatLng(info.get(10)));
                     break;
             }
@@ -155,8 +149,6 @@ public class LocationManager
 
 
         locationlist.put(location.getLatLng(), location);
-        Log.d(TAG, "location created! " + location.getLatLng());
-
     }
 
     //dont use unless NULL is addressed

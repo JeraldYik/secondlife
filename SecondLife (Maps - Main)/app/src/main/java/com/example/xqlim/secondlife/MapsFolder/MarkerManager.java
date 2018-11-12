@@ -32,10 +32,7 @@ public class MarkerManager {
         for (KmlPlacemark placemark : iter) {
             if(placemark.getGeometry().getGeometryType().equals("Point")) {
                 KmlPoint point = (KmlPoint) placemark.getGeometry();
-                //retrieve latlng from location object itself, instead of setting
                 LatLng latLng = new LatLng(point.getGeometryObject().latitude, point.getGeometryObject().longitude);
-//                locationManager.getLocationlist().get(latLng).setLatLng(latLng);
-//                Log.i(TAG, category + " + " + locationManager.getLocationlist().get(latLng).getName());
                 addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
             }
         }
@@ -44,9 +41,10 @@ public class MarkerManager {
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location, String category, GoogleMap mMap){
         Marker marker;
-        String snippetText = location.getDescription() + "\n";
+        String snippetText = "";
         switch(category) {
             case "Cash For Trash":
+                snippetText = location.getDescription() + "\n";
                 snippetText += location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
                 if (location.getAddressUnitNumber() != null && location.getAddressBuildingName() != null) {
                     snippetText += (location.getAddressUnitNumber() + ", " + location.getAddressBuildingName() + "\n");
@@ -63,11 +61,17 @@ public class MarkerManager {
                 marker.setTag(location);
                 markerList.put(location.getLatLng(), marker);
                 break;
-        }
-        location.setSnippetText(snippetText);
-
-        switch(location.getName()){
+        //& toner a bit of issue
             case "E-Waste":
+                snippetText = location.getDescription();
+                if(location.getAddressBlockNumber()!=null && location.getAddressStreetName()!=null) {
+                    snippetText += location.getAddressBlockNumber() + " " + location.getAddressStreetName() + "\n";
+                } else if(location.getAddressUnitNumber() != null) {
+                    snippetText += location.getAddressUnitNumber() + ", ";
+                }
+                snippetText += location.getAddressBuildingName() + "\n";
+                snippetText += "Singapore " + location.getAddressPostalCode();
+
                 marker = mMap.addMarker(new MarkerOptions()
                         .position(location.getLatLng())
                         .title(location.getName())
@@ -77,6 +81,7 @@ public class MarkerManager {
                 markerList.put(location.getLatLng(), marker);
                 break;
         }
+        location.setSnippetText(snippetText);
 
     }
 
