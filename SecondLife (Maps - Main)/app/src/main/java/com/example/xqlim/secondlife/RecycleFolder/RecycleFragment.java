@@ -8,17 +8,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.xqlim.secondlife.HistoryFolder.HistAdapter;
 import com.example.xqlim.secondlife.R;
-import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
 import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
-import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
 import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
-import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
@@ -85,8 +84,10 @@ public class RecycleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View layout = inflater.inflate(R.layout.fragment_recycle, container, false);
         Log.d(TAG,"test");
+
         //init recycled list
         recycledItems = new ArrayList<>();
         initializeData();
@@ -105,6 +106,23 @@ public class RecycleFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.recycle_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.add_recycle_item) {
+            // do something here
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onResume() {
