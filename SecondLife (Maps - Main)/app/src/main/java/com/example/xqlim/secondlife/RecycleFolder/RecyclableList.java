@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.GridView;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
@@ -23,11 +24,14 @@ import java.util.List;
 
 public class RecyclableList extends AppCompatActivity{
 
+    private static final String TAG = "RecyclableList";
     private GridLayoutManager lLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "On create");
         setContentView(R.layout.activity_recyclable_list);
 
         List<Recyclable> rowListItem = getAllItemList();
