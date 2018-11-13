@@ -13,8 +13,8 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView categoryName;
-    public ImageView categoryPhoto;
+    private TextView categoryName;
+    private ImageView categoryPhoto;
 
     public RecyclableListViewHolder(View itemView) {
         super(itemView);
@@ -31,6 +31,22 @@ public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements
         Intent intent = new Intent(context, DisplayRequirements.class);
         intent.putExtra("position clicked", position);
         context.startActivity(intent);
+    }
+
+    public TextView getCategoryName() {
+        return categoryName;
+    }
+
+    public ImageView getCategoryPhoto() {
+        return categoryPhoto;
+    }
+
+    public void setCategoryName(String name) {
+        this.categoryName.setText(name);
+    }
+
+    public void setCategoryPhoto(int image) {
+        this.categoryPhoto.setImageResource(image);
     }
 }
 

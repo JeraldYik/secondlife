@@ -30,7 +30,7 @@ public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListV
     @Override
     public RecyclableListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_recyclable_list, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_card, null);
         RecyclableListViewHolder rcv = new RecyclableListViewHolder(layoutView);
         return rcv;
     }
@@ -41,8 +41,8 @@ public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListV
         Recyclable re = itemList.get((position));
         Log.d(TAG, re.getName());
 
-        holder.categoryName.setText(itemList.get(position).getName());
-        holder.categoryPhoto.setImageResource(itemList.get(position).getImageAssetSmall());
+        holder.setCategoryName(re.getName());
+        holder.setCategoryPhoto(re.getImageAssetSmall());
     }
 
     @Override
