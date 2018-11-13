@@ -250,7 +250,7 @@ public class Chat extends AppCompatActivity{
                 HashMap<String, String> hm = new HashMap<String, String>();
                 hm.put("listview_title", "Bot");
                 hm.put("listview_discription", text);
-                hm.put("listview_image", Integer.toString(R.drawable.sia_pc));
+                hm.put("listview_image", Integer.toString(R.drawable.chatbot));
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
@@ -272,7 +272,7 @@ public class Chat extends AppCompatActivity{
                 HashMap<String, String> hm = new HashMap<String, String>();
                 hm.put("listview_title", "You");
                 hm.put("listview_discription", mssg);
-                hm.put("listview_image", Integer.toString(R.drawable.sia_pc));
+                hm.put("listview_image", Integer.toString(R.drawable.profile_pc));
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
