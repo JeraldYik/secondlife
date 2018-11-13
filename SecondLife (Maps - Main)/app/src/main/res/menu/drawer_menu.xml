@@ -17,8 +17,8 @@
             android:icon="@drawable/ic_history_24dp"
             android:title="History"/>
         <item android:id="@+id/nav_chatbot"
-            android:icon="@drawable/ic_history_24dp"
-            android:title="Chatbot"/>
+            android:icon="@drawable/ic_live_help_white_24dp"
+            android:title="Help"/>
     </group>
 
 
