@@ -34,15 +34,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         private View.OnClickListener mOnClickListener;
         private static final String TAG = "RecycleAdapter";
 
-
-
-
         public MyViewHolder(View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cv);
             recyclableName = itemView.findViewById(R.id.recyclable_name);
             recyclableQty = itemView.findViewById(R.id.recyclable_details);
             recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
+            recyclableButton = itemView.findViewById(R.id.recycle_button);
             recyclableButton = itemView.findViewById(R.id.recycle_button);
 
             recyclableButton.setOnClickListener(new View.OnClickListener() {

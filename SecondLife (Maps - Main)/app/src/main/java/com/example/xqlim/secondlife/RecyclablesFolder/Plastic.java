@@ -4,8 +4,6 @@ import com.example.xqlim.secondlife.R;
 
 public class Plastic extends Recyclable {
 
-    public Plastic(){};
-
     public Plastic(double quantity, String unit) {
         super(quantity, unit);
         name = "Plastic";

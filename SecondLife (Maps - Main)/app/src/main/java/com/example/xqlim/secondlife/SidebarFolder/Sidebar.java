@@ -1,5 +1,6 @@
 package com.example.xqlim.secondlife.SidebarFolder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,10 +11,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.xqlim.secondlife.ChatbotFolder.Chat;
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
 import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecycleFolder.RecyclableList;
 import com.example.xqlim.secondlife.RecycleFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -71,6 +74,10 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HistoryFragment()).commit();
                 break;
+            case R.id.nav_chatbot:
+
+                Intent i = new Intent();
+                startActivity(new Intent(Sidebar.this, Chat.class));
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -92,6 +99,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         super.onSaveInstanceState(outState);
 
         //Save the fragment's instance
-        getSupportFragmentManager().putFragment(outState, "MapViewFragment", mContent);
+
+        //getSupportFragmentManager().putFragment(outState, "MapViewFragment", mContent);
     }
 }

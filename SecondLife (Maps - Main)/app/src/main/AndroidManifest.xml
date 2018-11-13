@@ -50,13 +50,31 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".RecycleFolder.RecyclableList"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ChatbotFolder.Chat"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+
         <!-- recyclables -->
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".RecyclablesFolder.RecyclableList"></activity>
     </application>
 
 </manifest>

@@ -48,30 +48,32 @@
                 android:id="@+id/recycle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:padding="12dp"
+                android:layout_alignParentEnd="true"
                 android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="12dp"
                 android:text="@string/recycle_button"
-                android:focusable="true" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/remove_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:clickable="true"
-                android:padding="12dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="96dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="12dp"
                 android:text="@string/remove"
                 android:textColor="@color/colorRemove"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:focusable="true" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
