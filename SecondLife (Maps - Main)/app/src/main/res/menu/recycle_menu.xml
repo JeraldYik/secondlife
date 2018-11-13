@@ -5,7 +5,7 @@
     <item
         android:id="@+id/add_recycle_item"
         android:title="Add Entry"
-        android:icon="@drawable/ic_library_add_white_24dp"
+        android:icon="@drawable/ic_add_black_24dp"
         app:showAsAction="always">
     </item>
 </menu>
