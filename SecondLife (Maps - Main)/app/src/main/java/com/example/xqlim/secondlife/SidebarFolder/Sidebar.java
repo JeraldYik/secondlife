@@ -76,8 +76,11 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_chatbot:
 
-                Intent i = new Intent();
-                startActivity(new Intent(Sidebar.this, Chat.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Chat()).commit();
+
+//                Intent i = new Intent();
+//                startActivity(new Intent(Sidebar.this, Chat.class));
         }
 
         drawer.closeDrawer(GravityCompat.START);

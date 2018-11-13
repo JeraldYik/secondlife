@@ -13,14 +13,17 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +33,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -77,7 +81,7 @@ import okhttp3.Response;
 //chatbot
 
 
-public class Chat extends AppCompatActivity{
+public class Chat extends Fragment{
 
     final String TAG = "Chatbot";
 
@@ -99,7 +103,7 @@ public class Chat extends AppCompatActivity{
 
 
     Context context = new Context();
-    android.content.Context mContext = this;
+    android.content.Context mContext = this.getContext();
 
     private Handler handler = new Handler();
     public ListView msgView;
@@ -121,23 +125,24 @@ public class Chat extends AppCompatActivity{
     // Access a Cloud Firestore instance from your Activity
 //    FirebaseFirestore db = FirebaseFirestore.getInstance();;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "initialising mapviewfrag");
+//        isResume = false;
 
-        setContentView(R.layout.activity_chatbot);
+        setHasOptionsMenu(true);
 
-        //initComponent();
-        initToolbar();
+        //initToolbar();
 
-        msgView = (ListView) findViewById(R.id.listview);
-        msgList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        View view = inflater.inflate(R.layout.activity_chatbot, container, false);
+
+        msgView = (ListView) view.findViewById(R.id.listview);
+        msgList = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1);
         msgView.setAdapter(msgList);
         aList = new ArrayList<HashMap<String, String>>();
         //final TextView conversation = (TextView)findViewById(R.id.conversation);
-        final EditText userInput = (EditText)findViewById(R.id.user_input);
-        conv = (Button)findViewById(R.id.button);
+        final EditText userInput = (EditText)view.findViewById(R.id.user_input);
+        conv = (Button)view.findViewById(R.id.button);
 
         //firestore
         //updateStaffChat();
@@ -168,17 +173,79 @@ public class Chat extends AppCompatActivity{
                 }
             }
         });
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Set title bar
+        ((Sidebar) getActivity())
+                .setActionBarTitle("Chatbot");
+
     }
 
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        actionBar = getSupportActionBar();
-        actionBar.setTitle("Chat");
-        actionBar.setDisplayHomeAsUpEnabled(false);
-//        Tools.setSystemBarColor(this, R.color.grey_20);
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        setContentView(R.layout.activity_chatbot);
+//
+//        //initComponent();
+//        initToolbar();
+//
+//        msgView = (ListView) findViewById(R.id.listview);
+//        msgList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+//        msgView.setAdapter(msgList);
+//        aList = new ArrayList<HashMap<String, String>>();
+//        //final TextView conversation = (TextView)findViewById(R.id.conversation);
+//        final EditText userInput = (EditText)findViewById(R.id.user_input);
+//        conv = (Button)findViewById(R.id.button);
+//
+//        //firestore
+//        //updateStaffChat();
+//
+////
+////        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+////                .setPersistenceEnabled(false)
+////                .build();
+//        //db.setFirestoreSettings(settings);
+//
+//        conversationAPI("", context, getString(R.string.workspace));
+//        //destroyChat("Bob Silvers");
+//        conv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MessageResponse response = null;
+//                final String currentinput = String.valueOf(userInput.getText());
+//                displayMsg(currentinput);
+//
+//                if (talkToStaff == true){
+//                    //firestore
+////                    sendStaffMessage();
+////                    updateStaffChat();
+//                }
+//                else{
+//                    conversationAPI(currentinput, context, getString(R.string.workspace));
+//                    userInput.setText("");
+//                }
+//            }
+//        });
+//    }
+
+
+//    private void initToolbar() {
+//        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        actionBar = getSupportActionBar();
+//        actionBar.setTitle("Chat");
+//        actionBar.setDisplayHomeAsUpEnabled(false);
+////        Tools.setSystemBarColor(this, R.color.grey_20);
+//    }
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.menu_logout, menu);
@@ -254,7 +321,7 @@ public class Chat extends AppCompatActivity{
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_activity, from, to);
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 msgList.add("Bot: " + text);
                 msgView.setAdapter(simpleAdapter);
                 msgView.setSelection(msgList.getCount()-1);
@@ -276,7 +343,7 @@ public class Chat extends AppCompatActivity{
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_activity, from, to);
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 msgList.add(mssg);
                 msgView.setAdapter(simpleAdapter);
                 msgView.setSelection(msgList.getCount()-1);
@@ -297,7 +364,7 @@ public class Chat extends AppCompatActivity{
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_activity, from, to);
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 msgList.add(mssg);
                 msgView.setAdapter(simpleAdapter);
                 msgView.setSelection(msgList.getCount()-1);
@@ -318,7 +385,7 @@ public class Chat extends AppCompatActivity{
                 aList.add(hm);
                 String[] from = {"listview_image", "listview_title", "listview_discription"};
                 int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_activity, from, to);
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 msgList.add(mssg);
                 msgView.setAdapter(simpleAdapter);
                 msgView.setSelection(msgList.getCount()-1);
