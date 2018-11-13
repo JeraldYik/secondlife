@@ -2,6 +2,7 @@ package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,18 @@ import java.util.List;
 
 public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListViewHolder> {
 
+    private static final String TAG = "RecyclableList";
+
     private List<Recyclable> itemList;
     private Context context;
 
     public RecyclableImageAdapter(Context context, List<Recyclable> itemList) {
         this.itemList = itemList;
         this.context = context;
+
+//        for (Recyclable re : itemList){
+//            Log.d(TAG, re.getName());
+//        }
     }
 
     @Override
@@ -30,6 +37,10 @@ public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListV
 
     @Override
     public void onBindViewHolder(RecyclableListViewHolder holder, int position) {
+        Log.d(TAG, Integer.toString(position));
+        Recyclable re = itemList.get((position));
+        Log.d(TAG, re.getName());
+
         holder.categoryName.setText(itemList.get(position).getName());
         holder.categoryPhoto.setImageResource(itemList.get(position).getImageAssetSmall());
     }

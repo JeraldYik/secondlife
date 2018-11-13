@@ -6,9 +6,21 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.GridView;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
+import com.example.xqlim.secondlife.RecyclablesFolder.ClothingAndBedsheet;
+import com.example.xqlim.secondlife.RecyclablesFolder.CorrugatedCardboard;
+import com.example.xqlim.secondlife.RecyclablesFolder.EWaste;
+import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
+import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
+import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecyclablesFolder.SecondHandItem;
+import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
+
 import java.util.ListIterator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,14 +35,19 @@ import java.util.List;
 
 public class RecyclableList extends AppCompatActivity{
 
+    private static final String TAG = "RecyclableList";
     private GridLayoutManager lLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "On create");
         setContentView(R.layout.activity_recyclable_list);
 
         List<Recyclable> rowListItem = getAllItemList();
+        Log.v("listadded","list has been added" );
+
         lLayout = new GridLayoutManager(RecyclableList.this, 2);
 
         RecyclerView rView = findViewById(R.id.recycler_view);
@@ -38,23 +55,28 @@ public class RecyclableList extends AppCompatActivity{
         rView.setLayoutManager(lLayout);
 
         RecyclableImageAdapter rcAdapter = new RecyclableImageAdapter(RecyclableList.this, rowListItem);
+
+//        for (Recyclable re : rowListItem){
+//            Log.d(TAG, re.getName());
+//        }
+
         rView.setAdapter(rcAdapter);
 
     }
 
     private List<Recyclable> getAllItemList(){
 
-        List<Recyclable> allItems = new ArrayList<Recyclable>();
-        allItems.add(new Recyclable("Plastics", R.drawable.small_plastic));
-        allItems.add(new Recyclable("Paper", R.drawable.small_paper));
-        allItems.add(new Recyclable("Metal Tins", R.drawable.small_metal_tin));
-        allItems.add(new Recyclable("Metal Cans", R.drawable.small_cans));
-        allItems.add(new Recyclable("Corrugated Cardboard", R.drawable.small_corrugated_cardboard));
-        allItems.add(new Recyclable("Clothes and Beddings", R.drawable.small_clothing));
-        allItems.add(new Recyclable("Glass", R.drawable.small_glass));
-        allItems.add(new Recyclable("E-Waste", R.drawable.small_ewaste));
-        allItems.add(new Recyclable("Second-Hand Items", R.drawable.small_second_hand));
-        allItems.add(new Recyclable("Small Electrical Appliances", R.drawable.small_appliance));
+        List<Recyclable> allItems = new ArrayList<>();
+        allItems.add(new Plastic(0, null));
+        allItems.add(new Paper(0, null));
+        allItems.add(new MetalTin(0, null));
+        allItems.add(new AluminiumDrinkCan(0, null));
+        allItems.add(new CorrugatedCardboard(0, null));
+        allItems.add(new Glass(0, null));
+        allItems.add(new EWaste(0, null));
+        allItems.add(new SecondHandItem(0, null));
+        allItems.add(new SmallElectricalAppliance(0, null));
+        allItems.add(new ClothingAndBedsheet(0, null));
 
         return allItems;
     }

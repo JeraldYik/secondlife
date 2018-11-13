@@ -12,10 +12,6 @@ public class Recyclable {
     protected int imageAssetLarge;
     protected int recyclableRequirements;
 
-    public Recyclable(){};
-
-    public Recyclable(String name, int image){};
-
     public Recyclable (double quantity, String unit) {
         this.quantity = quantity;
         this.unit = unit;

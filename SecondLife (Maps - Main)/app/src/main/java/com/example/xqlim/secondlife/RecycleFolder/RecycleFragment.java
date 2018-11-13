@@ -1,6 +1,7 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -120,6 +121,10 @@ public class RecycleFragment extends Fragment {
 
         if (id == R.id.add_recycle_item) {
             // do something here
+            Log.d(TAG, "clicked button");
+            Context context = getView().getContext();
+            Intent intent = new Intent(getActivity(), RecyclableList.class);
+            startActivity(intent);
 
             /** code to launch mapview
 //            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
