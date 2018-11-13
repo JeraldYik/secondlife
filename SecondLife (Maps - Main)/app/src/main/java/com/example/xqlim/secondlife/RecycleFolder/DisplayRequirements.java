@@ -47,7 +47,7 @@ public class DisplayRequirements extends AppCompatActivity {
 
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppbar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollasedAppbar);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
         getDetailFood(position);
 
