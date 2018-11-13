@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        app:layout_collapseMod="parallax"/>
+        app:layout_collapseMode="parallax"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@id/toolbar"
@@ -49,7 +49,7 @@
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
         app:useCompatPadding="true"
-        ></android.support.design.widget.FloatingActionButton>
+        />
     
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -111,9 +111,9 @@
                     android:layout_height="30dp"
                     android:id="@+id/number_button"
                     android:layout_marginTop="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginBottom="18dp"
-                    app:textSie="8sp"
+                    app:textSize="12sp"
                     app:initialNumber="1"
                     app:finalNumber="20"/>
 

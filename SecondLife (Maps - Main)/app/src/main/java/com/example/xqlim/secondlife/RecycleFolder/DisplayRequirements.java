@@ -57,7 +57,7 @@ public class DisplayRequirements extends AppCompatActivity {
         switch(pos){
 
             case 0:
-                Plastic plastic = new Plastic();
+                Plastic plastic = new Plastic(0, null);
                 ImageView p = findViewById(R.id.category_image);
                 p.setImageDrawable(getResources().getDrawable(R.drawable.large_plastic));
                 collapsingToolbarLayout.setTitle(plastic.getName());
