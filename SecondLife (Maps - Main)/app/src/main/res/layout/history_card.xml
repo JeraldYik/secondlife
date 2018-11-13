@@ -32,7 +32,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/recyclable_photo"
                 android:textColor="@color/colorPrimaryDark"
-
                 android:paddingHorizontal="16dp"
                 android:textSize="20sp"
                 />
