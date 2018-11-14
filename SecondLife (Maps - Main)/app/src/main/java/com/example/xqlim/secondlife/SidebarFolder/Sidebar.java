@@ -52,8 +52,6 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         if(newString==100) {
 
             goToFragment(R.id.nav_recycle);
