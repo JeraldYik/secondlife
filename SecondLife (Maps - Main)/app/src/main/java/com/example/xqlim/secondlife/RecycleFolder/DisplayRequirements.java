@@ -55,6 +55,7 @@ public class DisplayRequirements extends AppCompatActivity {
                  RecycleManager recycleManager = RecycleManager.getInstance();
                  Plastic plastic = new Plastic(Double.parseDouble(numberButton.getNumber()), null);
                  recycleManager.addToList(plastic);
+//                 Intent intent = new Intent(DisplayRequirements.this, )
              }
          });
 
