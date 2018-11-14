@@ -1,12 +1,9 @@
 package com.example.xqlim.secondlife.FavouritesFolder;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.example.xqlim.secondlife.MapsFolder.Location;
-import com.example.xqlim.secondlife.R;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class FavouritesManager {
@@ -33,7 +30,6 @@ public class FavouritesManager {
         }
         return false;
     }
-
     @Override
     public String toString() {
         String str = "";
@@ -48,4 +44,6 @@ public class FavouritesManager {
     public ArrayList<Location> getFavouriteList() {
         return favouriteList;
     }
+
+
 }

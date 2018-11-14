@@ -56,6 +56,7 @@ import com.ibm.watson.developer_cloud.conversation.v1.model.InputData;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageOptions;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.ibm.watson.developer_cloud.http.ServiceCallback;
+import com.example.xqlim.secondlife.R;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
 
 import org.json.JSONException;
