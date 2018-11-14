@@ -113,6 +113,7 @@ public class MapViewFragment extends Fragment
 
     private boolean isResume;
 
+
     //initialise fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -267,6 +268,8 @@ public class MapViewFragment extends Fragment
         getDeviceLocation();
     }
 
+
+
     @Override
     public void onInfoWindowClick(Marker marker) {
         com.example.xqlim.secondlife.MapsFolder.Location retrieved_location = (com.example.xqlim.secondlife.MapsFolder.Location) marker.getTag();
@@ -275,7 +278,7 @@ public class MapViewFragment extends Fragment
         retrieved_location.favourited();
 
         if(retrieved_location.isFavourite()) {
-            marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+            marker.setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.like));
             favouritesManager.addFavourite(retrieved_location);
         }
         else {
@@ -562,7 +565,7 @@ public class MapViewFragment extends Fragment
             for (LatLng key : markerManager.getMarkerList().keySet()){
                 com.example.xqlim.secondlife.MapsFolder.Location location =  (com.example.xqlim.secondlife.MapsFolder.Location) markerManager.getMarkerList().get(key).getTag();
                 if (location.isFavourite()){
-                    markerManager.getMarkerList().get(key).setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.orange_stars));
+                    markerManager.getMarkerList().get(key).setIcon(BitmapDescriptorFromVector(getContext(), R.drawable.like));
                 }
             }
         } catch (XmlPullParserException | IOException e) {

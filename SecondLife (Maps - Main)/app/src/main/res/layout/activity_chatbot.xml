@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/chatlayout"
     android:layout_height="match_parent"
-    tools:context=".ChatbotFolder.Chat">
+    tools:context=".ChatbotFolder.ChatManager">
 
     <include
         layout="@layout/content_main"
