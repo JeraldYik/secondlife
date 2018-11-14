@@ -68,6 +68,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".RecycleFolder.DisplayRequirements"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
 
         <!-- recyclables -->
 

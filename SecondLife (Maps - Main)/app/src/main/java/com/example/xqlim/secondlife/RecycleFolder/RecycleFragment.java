@@ -42,7 +42,7 @@ public class RecycleFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private static final String TAG = "Recycle";
+    private static final String TAG = "RecycleFragmentTAG";
 
     public RecycleFragment() {
         // Required empty public constructor
@@ -122,7 +122,6 @@ public class RecycleFragment extends Fragment {
         if (id == R.id.add_recycle_item) {
             // do something here
             Log.d(TAG, "clicked button");
-            Context context = getView().getContext();
             Intent intent = new Intent(getActivity(), RecyclableList.class);
             startActivity(intent);
 

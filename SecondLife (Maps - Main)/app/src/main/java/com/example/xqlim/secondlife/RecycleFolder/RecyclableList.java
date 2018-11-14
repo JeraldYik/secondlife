@@ -35,18 +35,19 @@ import java.util.List;
 
 public class RecyclableList extends AppCompatActivity{
 
-    private static final String TAG = "RecyclableList";
+    private static final String TAG = "RecyclableListTAG";
     private GridLayoutManager lLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "On create");
         setContentView(R.layout.activity_recyclable_list);
+        Log.d(TAG, "On create");
 
+        Log.d(TAG, String.valueOf(getAllItemList()==null));
         List<Recyclable> rowListItem = getAllItemList();
-        Log.v("listadded","list has been added" );
+        Log.v(TAG,"list has been added" );
 
         lLayout = new GridLayoutManager(RecyclableList.this, 2);
 
@@ -61,7 +62,6 @@ public class RecyclableList extends AppCompatActivity{
 //        }
 
         rView.setAdapter(rcAdapter);
-
     }
 
     private List<Recyclable> getAllItemList(){

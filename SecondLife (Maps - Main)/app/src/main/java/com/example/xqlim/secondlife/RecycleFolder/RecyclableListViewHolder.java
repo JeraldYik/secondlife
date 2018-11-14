@@ -3,6 +3,7 @@ package com.example.xqlim.secondlife.RecycleFolder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,15 +12,21 @@ import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
+import static android.content.ContentValues.TAG;
+
 public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView categoryName;
     private ImageView categoryPhoto;
+    private static final String TAG = "RecyclableListVHTAG";
 
     public RecyclableListViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
-        categoryName = itemView.findViewById(R.id.category_name);
+//        Log.i(TAG, String.valueOf(itemView));
+//        Log.i(TAG, String.valueOf(itemView.findViewById(R.id.category_name)));
+        categoryName = itemView.findViewById(R.id.category_image_name);
+//        Log.i(TAG, String.valueOf(itemView.findViewById(R.id.category_image)));
         categoryPhoto = itemView.findViewById(R.id.category_image);
     }
 

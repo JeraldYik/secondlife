@@ -6,6 +6,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
 
 public class DisplayRequirements extends AppCompatActivity {
 
+    private static final String TAG = "DisplayRequirementsTag";
     TextView category_name, category_price, category_description;
     ImageView category_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -58,10 +60,13 @@ public class DisplayRequirements extends AppCompatActivity {
 
             case 0:
                 Plastic plastic = new Plastic(0, null);
-                ImageView p = findViewById(R.id.category_image);
+                ImageView p = findViewById(R.id.layout_image);
                 p.setImageDrawable(getResources().getDrawable(R.drawable.large_plastic));
                 collapsingToolbarLayout.setTitle(plastic.getName());
-                category_price.setText(plastic.getPrice());
+
+                Log.d(TAG, String.valueOf(category_price));
+
+                category_price.setText(Integer.toString(plastic.getPrice()));
                 category_description.setText(plastic.getRecyclableRequirements());
                 break;
 
