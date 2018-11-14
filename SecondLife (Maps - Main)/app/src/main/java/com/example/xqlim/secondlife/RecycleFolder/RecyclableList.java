@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.GridView;
@@ -36,26 +37,30 @@ import java.util.List;
 public class RecyclableList extends AppCompatActivity{
 
     private static final String TAG = "RecyclableListTAG";
-    private GridLayoutManager lLayout;
+    private LinearLayoutManager lLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclable_list);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        setTitle("Choose category ");
         Log.d(TAG, "On create");
 
         Log.d(TAG, String.valueOf(getAllItemList()==null));
         List<Recyclable> rowListItem = getAllItemList();
         Log.v(TAG,"list has been added" );
 
-        lLayout = new GridLayoutManager(RecyclableList.this, 2);
+        lLayout = new LinearLayoutManager(RecyclableList.this);
 
         RecyclerView rView = findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
 
-        RecyclableImageAdapter rcAdapter = new RecyclableImageAdapter(RecyclableList.this, rowListItem);
+        RecyclableImageAdapter rcAdapter = new RecyclableImageAdapter(this, rowListItem);
 
 //        for (Recyclable re : rowListItem){
 //            Log.d(TAG, re.getName());
