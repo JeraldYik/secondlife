@@ -94,7 +94,6 @@ public class HistoryFragment extends Fragment {
 
         //can call in manager
         initializeData();
-        Log.i(TAG, historyManager.getRecycledItems().toString());
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 

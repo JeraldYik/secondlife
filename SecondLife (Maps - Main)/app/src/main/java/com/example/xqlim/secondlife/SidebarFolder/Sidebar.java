@@ -50,11 +50,13 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         if(newString==100) {
+
             goToFragment(R.id.nav_recycle);
+            navigationView.setCheckedItem(R.id.nav_history);
         } else {
-            NavigationView navigationView = findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MapViewFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mapview);
@@ -93,7 +95,6 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                         new HistoryFragment()).commit();
                 break;
             case R.id.nav_chatbot:
-
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Chat()).commit();
         }
