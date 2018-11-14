@@ -122,12 +122,13 @@
                 app:textSize="12sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-
-                android:text="bottles"
+                android:background="@drawable/textview_border"
+                android:text="kg"
                 android:padding="2dp"
                 android:textSize="20dp"
+                android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="25dp"
