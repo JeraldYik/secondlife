@@ -68,20 +68,6 @@ public class HistoryFragment extends Fragment {
 //        return fragment;
 //    }
 
-    //Able to throw this to manager
-    public void initializeData() {
-        this.recycledItems = new ArrayList<>();
-        recycledItems.add(new Plastic(4.9, "kg"));
-        recycledItems.add(new Paper(3.7, "kg"));
-        recycledItems.add(new Glass(2.4, "kg"));
-        recycledItems.add(new MetalTin(5, "tins"));
-        recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
-        recycledItems.add(new AluminiumDrinkCan(12, "cans"));
-        recycledItems.add(new MetalTin(2, "tins"));
-        recycledItems.add(new SmallElectricalAppliance(3.1, "kg"));
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +79,7 @@ public class HistoryFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
 
         //can call in manager
-        initializeData();
+        historyManager.initializeData();
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
@@ -102,7 +88,7 @@ public class HistoryFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(recycledItems);
+        mAdapter = new HistAdapter(historyManager.getRecycledItems());
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
@@ -117,6 +103,7 @@ public class HistoryFragment extends Fragment {
         // Set title bar
         ((Sidebar) getActivity())
                 .setActionBarTitle("History");
+
 
     }
 

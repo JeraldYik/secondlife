@@ -58,9 +58,9 @@ public class DisplayRequirements extends AppCompatActivity {
                  Log.i(TAG, "add button clicked");
                  RecycleManager recycleManager = RecycleManager.getInstance();
                  Plastic plastic = new Plastic(Double.parseDouble(numberButton.getNumber()), "kg");
-                 Log.i(TAG, recycleManager.getRecycledItems().toString());
+//                 Log.i(TAG, recycleManager.getRecycledItems().toString());
                  recycleManager.addToList(plastic);
-                 Log.i(TAG, recycleManager.getRecycledItems().toString());
+//                 Log.i(TAG, recycleManager.getRecycledItems().toString());
 
                  Intent intent = new Intent(DisplayRequirements.this, Sidebar.class);
                  String str = null;
