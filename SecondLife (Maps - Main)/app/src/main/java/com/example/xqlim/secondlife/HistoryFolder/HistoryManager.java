@@ -51,8 +51,6 @@ public class HistoryManager {
             else
                 recycledItems.add(r);
         }
-        mAdapter = new HistAdapter(recycledItems);
-
     }
 
     public ArrayList<Recyclable> getRecycledItems() {
