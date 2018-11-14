@@ -20,6 +20,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+
+
 public class LocationManager
 {
     private Context mContext;
@@ -27,9 +29,26 @@ public class LocationManager
     private HashMap <LatLng, Location> locationlist = new HashMap<>();
     private boolean skip = true;
 
-    public LocationManager(Context context) {
-        this.mContext = context;
+    private static LocationManager instance = new LocationManager();
+
+    private LocationManager(){}
+
+    public static LocationManager getInstance(){
+        return instance;
     }
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
+    }
+
+//
+//    public LocationManager(Context context) {
+//        this.mContext = context;
+//    }
 
     public void readFile(int resource, String category) throws XmlPullParserException, IOException {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
