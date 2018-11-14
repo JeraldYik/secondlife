@@ -1,5 +1,6 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.xqlim.secondlife.HistoryFolder.HistoryManager;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
@@ -32,11 +35,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         TextView recyclableQty;
         ImageView recyclablePhoto;
         ImageView recyclableButton;
-        ImageView removeButton;
+        private ImageView removeButton;
+        private HistoryManager historyManager;
         private View.OnClickListener mOnClickListener;
         private static final String TAG = "RecycleAdapter";
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cv);
             recyclableName = itemView.findViewById(R.id.recyclable_name);
@@ -44,6 +48,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
             recyclableButton = itemView.findViewById(R.id.recycle_button);
             removeButton = itemView.findViewById(R.id.remove_button);
+            historyManager = HistoryManager.getInstance();
 
             recyclableButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -52,6 +57,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     deleteItem(getAdapterPosition());
                     notifyDataSetChanged();
+
+                    Recyclable recycled = recyclables.get(getAdapterPosition());
+
+                    historyManager.addHist(recycled);
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
@@ -66,6 +75,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                     Log.d(TAG, "clicked remove button!!");
 
                     deleteItem(getAdapterPosition());
+                    Toast.makeText(itemView.getContext(),
+                            "Removed recyclables.", Toast.LENGTH_LONG).show();
                     notifyDataSetChanged();
                 }
             });

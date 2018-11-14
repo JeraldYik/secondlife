@@ -22,7 +22,16 @@ public class HistoryManager {
     }
 
     public void addHist(Recyclable recyclable) {
-        recycledItems.add(recyclable);
+        for (Recyclable r : recycledItems) {
+            if (r.getName() == recyclable.getName()) {
+
+                double qty = r.getQuantity() + recyclable.getQuantity();
+                recyclable.setQuantity(qty);
+
+            }
+            else
+                recycledItems.add(r);
+        }
     }
 
     public ArrayList<Recyclable> getRecycledItems() {
