@@ -38,14 +38,17 @@ public class RecycleFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private ArrayList<Recyclable> recycledItems;
-
     private OnFragmentInteractionListener mListener;
+
+    private RecycleManager recycleManager;
+
+    private ArrayList<Recyclable> recycledItems;
 
     private static final String TAG = "RecycleFragmentTAG";
 
     public RecycleFragment() {
-        // Required empty public constructor
+        this.recycledItems = new ArrayList<>();
+        recycleManager = RecycleManager.getInstance();
     }
 
     /**
@@ -66,17 +69,6 @@ public class RecycleFragment extends Fragment {
 //        return fragment;
 //    }
 
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
-    private void initializeData() {
-        recycledItems.add(new Paper(3.7, "kg"));
-        recycledItems.add(new Glass(2.4, "kg"));
-    }
-
-    public void addToList(Recyclable recyclable) {
-        recycledItems.add(recyclable);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +79,8 @@ public class RecycleFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View layout = inflater.inflate(R.layout.fragment_recycle, container, false);
-        Log.d(TAG,"test");
 
-        //init recycled list
-        recycledItems = new ArrayList<>();
-        initializeData();
+        recycleManager.initializeData();
 
         mRecyclerView = layout.findViewById(R.id.recyclable_recycler);
 
@@ -100,8 +89,9 @@ public class RecycleFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new RecycleAdapter(recycledItems);
+        mAdapter = new RecycleAdapter(recycleManager.getRecycledItems());
         mRecyclerView.setAdapter(mAdapter);
+
 
         return layout;
 

@@ -2,6 +2,7 @@ package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Intent;
 import android.media.Image;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.xqlim.secondlife.HistoryFolder.HistoryManager;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
+import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 public class DisplayRequirements extends AppCompatActivity {
 
@@ -25,22 +31,34 @@ public class DisplayRequirements extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
+    Button addButton;
 
-    private int position;
-
-    public void positionClicked() {
-        Intent in = getIntent();
-        Bundle b = in.getExtras();
-        position = b.getInt("position clicked");
-    }
+//    private int position;
+//
+//    public void positionClicked() {
+//        Intent in = getIntent();
+//        Bundle b = in.getExtras();
+//        position = b.getInt("position clicked");
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_requirements2);
 
+        numberButton = findViewById(R.id.number_button);
+        addButton = findViewById(R.id.add_btn);
 
-//        numberButton = findViewById(R.id.number_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 RecycleManager recycleManager = RecycleManager.getInstance();
+                 Plastic plastic = new Plastic(Double.parseDouble(numberButton.getNumber()), null);
+                 recycleManager.addToList(plastic);
+             }
+         });
+
+
 //        btnCart = findViewById(R.id.btnCart);
 //
 //        category_description = findViewById(R.id.category_description);

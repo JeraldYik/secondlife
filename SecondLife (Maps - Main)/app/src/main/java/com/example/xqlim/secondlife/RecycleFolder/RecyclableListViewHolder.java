@@ -29,7 +29,6 @@ public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "You chose to add: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
         Context context = view.getContext();
         int position = getAdapterPosition();
         Intent intent = new Intent(context, DisplayRequirements.class);

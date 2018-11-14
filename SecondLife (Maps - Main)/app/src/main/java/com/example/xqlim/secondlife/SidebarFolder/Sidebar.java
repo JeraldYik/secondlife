@@ -33,7 +33,6 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sidebar);
-
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
