@@ -7,5 +7,6 @@ public class MetalTin extends Recyclable {
         super(quantity, unit);
         name = "Metal Tins";
         imageAssetSmall = R.drawable.small_metal_tin;
+        /*imageAssetLarge = R.drawable.large_metal_tin;*/
     }
 }

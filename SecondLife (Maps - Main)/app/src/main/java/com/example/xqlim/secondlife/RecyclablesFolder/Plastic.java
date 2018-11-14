@@ -6,6 +6,7 @@ public class Plastic extends Recyclable {
 
     public Plastic(double quantity, String unit) {
         super(quantity, unit);
+        location = "Recycle At: Recycling Bins";
         name = "Plastic";
         price = 1;
         imageAssetSmall = R.drawable.small_plastic;

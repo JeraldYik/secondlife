@@ -58,10 +58,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     Recyclable recycled = recyclables.get(getAdapterPosition());
 
+                    historyManager.addHist(recycled);
+
                     deleteItem(getAdapterPosition());
                     notifyDataSetChanged();
-
-                    historyManager.addHist(recycled);
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -76,7 +76,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     deleteItem(getAdapterPosition());
                     Toast.makeText(itemView.getContext(),
-                            "Removed recyclables.", Toast.LENGTH_LONG).show();
+                            "Removed recyclables", Toast.LENGTH_LONG).show();
                     notifyDataSetChanged();
                 }
             });
