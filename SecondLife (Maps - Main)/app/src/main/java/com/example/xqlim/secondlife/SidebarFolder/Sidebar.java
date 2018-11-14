@@ -49,9 +49,9 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         if(newString==100) {
             goToFragment(R.id.nav_recycle);
             navigationView.setCheckedItem(R.id.nav_history);
