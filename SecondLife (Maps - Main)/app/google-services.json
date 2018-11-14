@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1088450370192",
+    "firebase_url": "https://secondlife-8a754.firebaseio.com",
+    "project_id": "secondlife-8a754",
+    "storage_bucket": "secondlife-8a754.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088450370192:android:d01ba6163fab4302",
+        "android_client_info": {
+          "package_name": "com.example.xqlim.secondlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088450370192-isi6k9ll867u91piv5fbph1775lajcmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkGmWARfjVO64niHXsLQQtnkpMdOtDVUs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

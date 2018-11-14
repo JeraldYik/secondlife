@@ -541,7 +541,9 @@ public class MapViewFragment extends Fragment
                 favouritesManager = new FavouritesManager();
                 markerManager = new MarkerManager();
 //                LocationManager locationManager = new LocationManager(getContext());
-                locationManager = new LocationManager((getContext()));
+                locationManager = LocationManager.getInstance();
+                locationManager.setmContext(getContext());
+                //locationManager = new LocationManager((getContext()));
                 locationManager.readFile(R.raw.cashfortrash_kml, "Cash For Trash");
                 locationManager.readFile(R.raw.ewaste_recycling_kml, "E-Waste");
             }
