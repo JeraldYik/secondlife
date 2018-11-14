@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.xqlim.secondlife.ChatbotFolder.Chat;
@@ -16,12 +17,14 @@ import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
 import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
+import com.example.xqlim.secondlife.RecycleFolder.DisplayRequirements;
 import com.example.xqlim.secondlife.RecycleFolder.RecyclableList;
 import com.example.xqlim.secondlife.RecycleFolder.RecycleFragment;
 
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     Fragment mContent;
+    private static final String TAG = "SidebarTAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +39,28 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        int newString = 0;
+        Bundle b = getIntent().getExtras();
+        if(b!=null) {
+            newString = (int) b.get(DisplayRequirements.INTENT_KEY);
+        }
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new MapViewFragment()).commit();
-        navigationView.setCheckedItem(R.id.nav_mapview);
+        if(newString==100) {
+            goToFragment(R.id.nav_recycle);
+        } else {
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MapViewFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_mapview);
+        }
     }
+
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
@@ -56,7 +68,14 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
-        switch (item.getItemId()){
+        goToFragment(item.getItemId());
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    private void goToFragment(int ID) {
+        switch (ID){
             case R.id.nav_mapview:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MapViewFragment()).commit();
@@ -77,14 +96,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Chat()).commit();
-
-//                Intent i = new Intent();
-//                startActivity(new Intent(Sidebar.this, Chat.class));
         }
-
-        drawer.closeDrawer(GravityCompat.START);
-
-        return true;
     }
 
     @Override
