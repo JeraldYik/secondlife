@@ -55,12 +55,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                 public void onClick(View view) {
                     Log.d(TAG, "clicked recycle button!!");
 
-                    deleteItem(getAdapterPosition());
-                    notifyDataSetChanged();
-
                     Recyclable recycled = recyclables.get(getAdapterPosition());
 
                     historyManager.addHist(recycled);
+
+                    deleteItem(getAdapterPosition());
+                    notifyDataSetChanged();
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
@@ -76,7 +76,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     deleteItem(getAdapterPosition());
                     Toast.makeText(itemView.getContext(),
-                            "Removed recyclables.", Toast.LENGTH_LONG).show();
+                            "Removed recyclables", Toast.LENGTH_LONG).show();
                     notifyDataSetChanged();
                 }
             });

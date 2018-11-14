@@ -6,8 +6,7 @@ public class Recyclable {
     protected double quantity;
     protected String unit;
     protected int price;
-    private int photo;
-
+    protected String location;
     protected int imageAssetSmall;
     protected int imageAssetLarge;
     protected int recyclableRequirements;
@@ -15,6 +14,14 @@ public class Recyclable {
     public Recyclable (double quantity, String unit) {
         this.quantity = quantity;
         this.unit = unit;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getName() {
