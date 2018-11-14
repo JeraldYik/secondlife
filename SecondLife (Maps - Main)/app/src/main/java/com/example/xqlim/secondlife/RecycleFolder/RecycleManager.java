@@ -16,7 +16,9 @@ public class RecycleManager {
 
     private static RecycleManager instance = new RecycleManager();
 
-    private RecycleManager(){}
+    private RecycleManager(){
+        this.recycledItems = new ArrayList<>();
+    }
 
     public static RecycleManager getInstance(){
         return instance;
@@ -25,7 +27,6 @@ public class RecycleManager {
 //     Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
     public void initializeData() {
-        this.recycledItems = new ArrayList<>();
         this.recycledItems.add(new Paper(3.7, "kg"));
         this.recycledItems.add(new Glass(2.4, "kg"));
     }

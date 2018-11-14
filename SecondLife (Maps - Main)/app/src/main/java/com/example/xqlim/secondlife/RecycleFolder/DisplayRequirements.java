@@ -32,6 +32,9 @@ public class DisplayRequirements extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
     Button addButton;
+    public static final String INTENT_KEY = "recycle_intent_key";
+    public static final int INTENT_VALUE = 100;
+
 
 //    private int position;
 //
@@ -52,10 +55,17 @@ public class DisplayRequirements extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                 Log.i(TAG, "add button clicked");
                  RecycleManager recycleManager = RecycleManager.getInstance();
-                 Plastic plastic = new Plastic(Double.parseDouble(numberButton.getNumber()), null);
+                 Plastic plastic = new Plastic(Double.parseDouble(numberButton.getNumber()), "kg");
+                 Log.i(TAG, recycleManager.getRecycledItems().toString());
                  recycleManager.addToList(plastic);
-//                 Intent intent = new Intent(DisplayRequirements.this, )
+                 Log.i(TAG, recycleManager.getRecycledItems().toString());
+
+                 Intent intent = new Intent(DisplayRequirements.this, Sidebar.class);
+                 String str = null;
+                 intent.putExtra(INTENT_KEY, INTENT_VALUE);
+                 startActivity(intent);
              }
          });
 

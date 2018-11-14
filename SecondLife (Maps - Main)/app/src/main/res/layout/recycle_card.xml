@@ -32,7 +32,7 @@
                 android:layout_toRightOf="@+id/recyclable_photo"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="16dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#212121"
                 android:textSize="20sp" />
 
             <TextView
@@ -42,8 +42,31 @@
                 android:layout_below="@+id/recyclable_name"
                 android:layout_toRightOf="@+id/recyclable_photo"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp" />
+                android:paddingVertical="8dp"
+                android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/remove_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+            <ImageView
+                android:id="@+id/recycle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/remove_button"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_cached_green_24dp" />
+            <!--
             <ImageView
                 android:id="@+id/recycle_button"
                 android:layout_width="wrap_content"
@@ -71,7 +94,7 @@
                 android:padding="12dp"
                 android:textColor="@color/colorRemove"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
         </RelativeLayout>
 

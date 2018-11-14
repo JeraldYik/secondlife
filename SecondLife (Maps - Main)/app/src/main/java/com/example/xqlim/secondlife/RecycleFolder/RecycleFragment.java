@@ -80,7 +80,10 @@ public class RecycleFragment extends Fragment {
         setHasOptionsMenu(true);
         View layout = inflater.inflate(R.layout.fragment_recycle, container, false);
 
-        recycleManager.initializeData();
+//        recycleManager.initializeData();
+        for(Recyclable r : recycleManager.getRecycledItems()) {
+            Log.i(TAG, r.getName() + " " + r.getQtyDisplay());
+        }
 
         mRecyclerView = layout.findViewById(R.id.recyclable_recycler);
 
