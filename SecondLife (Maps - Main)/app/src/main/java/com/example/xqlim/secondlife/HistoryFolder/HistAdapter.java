@@ -10,17 +10,19 @@ import android.widget.TextView;
 
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
+import com.example.xqlim.secondlife.RecycleFolder.RecycleManager;
 
 import java.util.List;
 
 public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> {
     private String[] mDataset;
     private List<Recyclable> recyclables;
+    private HistoryManager historyManager;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView cv;
         TextView recyclableName;
@@ -33,12 +35,14 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
             recyclableName = (TextView)itemView.findViewById(R.id.recyclable_name);
             recyclableQty = (TextView)itemView.findViewById(R.id.recyclable_details);
             recyclablePhoto = (ImageView)itemView.findViewById(R.id.recyclable_photo);
+
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public HistAdapter(List<Recyclable> recyclables) {
         this.recyclables = recyclables;
+        historyManager = HistoryManager.getInstance();
     }
 
     // Create new views (invoked by the layout manager)
@@ -79,4 +83,13 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
     public int getItemCount() {
         return recyclables.size();
     }
+
+
+
+//    public void update(Recyclable recyclable){
+//        historyManager.addHist(recyclable);
+//        notifyDataSetChanged();
+//    }
 }
+
+

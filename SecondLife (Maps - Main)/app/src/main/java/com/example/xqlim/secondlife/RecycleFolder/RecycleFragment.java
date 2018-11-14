@@ -95,7 +95,6 @@ public class RecycleFragment extends Fragment {
         mAdapter = new RecycleAdapter(recycleManager.getRecycledItems());
         mRecyclerView.setAdapter(mAdapter);
 
-
         return layout;
 
     }

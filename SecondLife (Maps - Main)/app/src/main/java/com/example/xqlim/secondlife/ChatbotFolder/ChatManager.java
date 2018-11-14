@@ -82,7 +82,7 @@ import okhttp3.Response;
 //chatbot
 
 
-public class Chat extends Fragment{
+public class ChatManager extends Fragment{
 
     final String TAG = "Chatbot";
 
@@ -243,7 +243,7 @@ public class Chat extends Fragment{
 //        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        actionBar = getSupportActionBar();
-//        actionBar.setTitle("Chat");
+//        actionBar.setTitle("ChatManager");
 //        actionBar.setDisplayHomeAsUpEnabled(false);
 ////        Tools.setSystemBarColor(this, R.color.grey_20);
 //    }
@@ -260,7 +260,7 @@ public class Chat extends Fragment{
 //            Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
 //            SharedPreferences sp = getSharedPreferences("login",MODE_PRIVATE);
 //            sp.edit().putBoolean("logged", false).apply();
-//            startActivity(new Intent(Chat.this, LoginCardLight.class));
+//            startActivity(new Intent(ChatManager.this, LoginCardLight.class));
 //            finish();
 //        }
 //        return super.onOptionsItemSelected(item);
@@ -741,11 +741,11 @@ public class Chat extends Fragment{
 //                    case R.id.navigation_chat:
 //                        return true;
 //                    case R.id.navigation_flight:
-//                        startActivity(new Intent(Chat.this, Flights.class));
+//                        startActivity(new Intent(ChatManager.this, Flights.class));
 //                        finish();
 //                        return true;
 //                    case R.id.navigation_travel:
-//                        startActivity(new Intent(Chat.this, Travel.class));
+//                        startActivity(new Intent(ChatManager.this, Travel.class));
 //                        finish();
 //                        return true;
 //                }
