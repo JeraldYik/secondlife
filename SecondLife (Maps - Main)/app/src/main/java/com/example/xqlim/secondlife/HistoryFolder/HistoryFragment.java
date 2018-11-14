@@ -36,15 +36,17 @@ public class HistoryFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private HistoryManager historyManager;
 
     private ArrayList<Recyclable> recycledItems;
 
     private OnFragmentInteractionListener mListener;
 
-    private static final String TAG = "History";
+    private static final String TAG = "HistoryTAG";
 
     public HistoryFragment() {
-        // Required empty public constructor
+        this.recycledItems = new ArrayList<>();
+        historyManager = HistoryManager.getInstance();
     }
 
     /**
@@ -65,9 +67,9 @@ public class HistoryFragment extends Fragment {
 //        return fragment;
 //    }
 
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
-    private void initializeData() {
+    //Able to throw this to manager
+    public void initializeData() {
+        this.recycledItems = new ArrayList<>();
         recycledItems.add(new Paper(3.7, "kg"));
         recycledItems.add(new Glass(2.4, "kg"));
         recycledItems.add(new MetalTin(5, "tins"));
@@ -75,12 +77,8 @@ public class HistoryFragment extends Fragment {
         recycledItems.add(new AluminiumDrinkCan(12, "cans"));
         recycledItems.add(new MetalTin(2, "tins"));
         recycledItems.add(new SmallElectricalAppliance(3.1, "kg"));
-
     }
 
-    public void addHist(Recyclable recyclable) {
-        recycledItems.add(recyclable);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,10 +89,10 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
-        Log.d(TAG,"test");
-        //init recycled list
-        recycledItems = new ArrayList<>();
+
+        //can call in manager
         initializeData();
+        Log.i(TAG, historyManager.getRecycledItems().toString());
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 

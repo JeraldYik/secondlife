@@ -3,6 +3,7 @@ package com.example.xqlim.secondlife.RecycleFolder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,26 +12,44 @@ import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
+import static android.content.ContentValues.TAG;
+
 public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView categoryName;
-    public ImageView categoryPhoto;
+    private TextView categoryName;
+    private ImageView categoryPhoto;
+    private static final String TAG = "RecyclableListVHTAG";
 
     public RecyclableListViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
-        categoryName = itemView.findViewById(R.id.category_name);
+        categoryName = itemView.findViewById(R.id.category_image_name);
         categoryPhoto = itemView.findViewById(R.id.category_image);
     }
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "You chose to add: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
         Context context = view.getContext();
         int position = getAdapterPosition();
         Intent intent = new Intent(context, DisplayRequirements.class);
         intent.putExtra("position clicked", position);
         context.startActivity(intent);
+    }
+
+    public TextView getCategoryName() {
+        return categoryName;
+    }
+
+    public ImageView getCategoryPhoto() {
+        return categoryPhoto;
+    }
+
+    public void setCategoryName(String name) {
+        this.categoryName.setText(name);
+    }
+
+    public void setCategoryPhoto(int image) {
+        this.categoryPhoto.setImageResource(image);
     }
 }
 

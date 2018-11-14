@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         TextView recyclableName;
         TextView recyclableQty;
         ImageView recyclablePhoto;
-        TextView recyclableButton;
+        ImageView recyclableButton;
+        ImageView removeButton;
         private View.OnClickListener mOnClickListener;
         private static final String TAG = "RecycleAdapter";
 
@@ -41,7 +43,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             recyclableQty = itemView.findViewById(R.id.recyclable_details);
             recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
             recyclableButton = itemView.findViewById(R.id.recycle_button);
-            recyclableButton = itemView.findViewById(R.id.recycle_button);
+            removeButton = itemView.findViewById(R.id.remove_button);
 
             recyclableButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -52,6 +54,18 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MapViewFragment()).commit();
+                }
+            });
+
+            removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "clicked remove button!!");
+
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new MapViewFragment()).commit();
                 }
             });
         }
