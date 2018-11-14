@@ -24,7 +24,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView cv;
         TextView recyclableName;
@@ -49,6 +49,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                 public void onClick(View view) {
                     Log.d(TAG, "clicked recycle button!!");
 
+                    deleteItem(getAdapterPosition());
+                    notifyDataSetChanged();
+
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -61,10 +64,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                 public void onClick(View view) {
                     Log.d(TAG, "clicked remove button!!");
 
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new MapViewFragment()).commit();
+                    deleteItem(getAdapterPosition());
+                    notifyDataSetChanged();
                 }
             });
         }
@@ -117,5 +118,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return recyclables.size();
+    }
+
+    void deleteItem(int index) {
+        recyclables.remove(index);
+        notifyItemRemoved(index);
     }
 }
