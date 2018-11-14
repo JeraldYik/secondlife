@@ -16,6 +16,7 @@ import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
 import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
 import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
 import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
@@ -67,19 +68,6 @@ public class HistoryFragment extends Fragment {
 //        return fragment;
 //    }
 
-    //Able to throw this to manager
-    public void initializeData() {
-        this.recycledItems = new ArrayList<>();
-        recycledItems.add(new Paper(3.7, "kg"));
-        recycledItems.add(new Glass(2.4, "kg"));
-        recycledItems.add(new MetalTin(5, "tins"));
-        recycledItems.add(new SmallElectricalAppliance(4.6, "kg"));
-        recycledItems.add(new AluminiumDrinkCan(12, "cans"));
-        recycledItems.add(new MetalTin(2, "tins"));
-        recycledItems.add(new SmallElectricalAppliance(3.1, "kg"));
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +79,7 @@ public class HistoryFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
 
         //can call in manager
-        initializeData();
+        historyManager.initializeData();
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
@@ -100,7 +88,7 @@ public class HistoryFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistAdapter(recycledItems);
+        mAdapter = new HistAdapter(historyManager.getRecycledItems());
         mRecyclerView.setAdapter(mAdapter);
 
         return layout;
@@ -115,6 +103,7 @@ public class HistoryFragment extends Fragment {
         // Set title bar
         ((Sidebar) getActivity())
                 .setActionBarTitle("History");
+
 
     }
 

@@ -1,5 +1,7 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
+import android.content.Context;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.xqlim.secondlife.HistoryFolder.HistoryManager;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
 import com.example.xqlim.secondlife.R;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
@@ -25,18 +29,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         CardView cv;
         TextView recyclableName;
         TextView recyclableQty;
         ImageView recyclablePhoto;
         ImageView recyclableButton;
-        ImageView removeButton;
+        private ImageView removeButton;
+        private HistoryManager historyManager;
         private View.OnClickListener mOnClickListener;
         private static final String TAG = "RecycleAdapter";
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cv);
             recyclableName = itemView.findViewById(R.id.recyclable_name);
@@ -44,14 +49,21 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             recyclablePhoto = itemView.findViewById(R.id.recyclable_photo);
             recyclableButton = itemView.findViewById(R.id.recycle_button);
             removeButton = itemView.findViewById(R.id.remove_button);
+            historyManager = HistoryManager.getInstance();
 
             recyclableButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d(TAG, "clicked recycle button!!");
 
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    Recyclable recycled = recyclables.get(getAdapterPosition());
 
+                    deleteItem(getAdapterPosition());
+                    notifyDataSetChanged();
+
+                    historyManager.addHist(recycled);
+
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MapViewFragment()).commit();
                 }
@@ -62,10 +74,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                 public void onClick(View view) {
                     Log.d(TAG, "clicked remove button!!");
 
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new MapViewFragment()).commit();
+                    deleteItem(getAdapterPosition());
+                    Toast.makeText(itemView.getContext(),
+                            "Removed recyclables.", Toast.LENGTH_LONG).show();
+                    notifyDataSetChanged();
                 }
             });
         }
@@ -118,5 +130,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return recyclables.size();
+    }
+
+    void deleteItem(int index) {
+        recyclables.remove(index);
+        notifyItemRemoved(index);
     }
 }

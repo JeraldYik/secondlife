@@ -26,6 +26,7 @@ public class RecycleManager {
 
 //     Checkout the project associated with this tutorial on Github if
 // you want to use the same images.
+    // NOT USED
     public void initializeData() {
         this.recycledItems.add(new Paper(3.7, "kg"));
         this.recycledItems.add(new Glass(2.4, "kg"));
