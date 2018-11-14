@@ -16,6 +16,7 @@ import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
 import com.example.xqlim.secondlife.RecyclablesFolder.Glass;
 import com.example.xqlim.secondlife.RecyclablesFolder.MetalTin;
 import com.example.xqlim.secondlife.RecyclablesFolder.Paper;
+import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
 import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
@@ -70,6 +71,7 @@ public class HistoryFragment extends Fragment {
     //Able to throw this to manager
     public void initializeData() {
         this.recycledItems = new ArrayList<>();
+        recycledItems.add(new Plastic(4.9, "kg"));
         recycledItems.add(new Paper(3.7, "kg"));
         recycledItems.add(new Glass(2.4, "kg"));
         recycledItems.add(new MetalTin(5, "tins"));
@@ -92,7 +94,6 @@ public class HistoryFragment extends Fragment {
 
         //can call in manager
         initializeData();
-        Log.i(TAG, historyManager.getRecycledItems().toString());
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
