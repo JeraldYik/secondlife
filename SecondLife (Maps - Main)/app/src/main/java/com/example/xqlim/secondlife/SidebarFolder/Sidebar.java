@@ -12,7 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.xqlim.secondlife.ChatbotFolder.Chat;
+import com.example.xqlim.secondlife.ChatbotFolder.ChatManager;
+import com.example.xqlim.secondlife.ChatbotFolder.ChatManager;
 import com.example.xqlim.secondlife.FavouritesFolder.FavouritesFragment;
 import com.example.xqlim.secondlife.HistoryFolder.HistoryFragment;
 import com.example.xqlim.secondlife.MapsFolder.MapViewFragment;
@@ -96,7 +97,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_chatbot:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Chat()).commit();
+                        new ChatManager()).commit();
         }
     }
 
