@@ -10,8 +10,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="recycle_button">RECYCLE</string>
-    <string name="plastics_requirements">![CDATA[<p><b>Recycling Requirements</b></p><p>Plastic bottles and containers are to be rinsed before recycling. Only plastic bottles with recycle codes <b>01</b> or <b>02</b> can be recycled.</p><p>Common 01 recyclable bottles include: Soft drink bottles, water bottles, peanut butter jars, salad dressing, cooking oil, many cleaning products. </p><p>Common 02 recyclable bottles include: Milk and juice jugs, bleach, laundry detergent, shampoo, motor oil, some retail bags and trash bags, some yogurt and butter tubs, cereal box liners.
-</p><p>\n<b>Recycling Locations</b></p><p>Plastic bottles can be recycled at all recycling bins found near common trash disposal areas.</p>]] </string>
+    <string name="plastics_requirements"><b>\nRecycling Requirements</b> \n\nPlastic bottles and containers are to be rinsed before recycling. Only plastic bottles with recycle codes <b>01</b> or <b>02</b> can be recycled.\n\n<b>Common 01 recyclable bottles include: </b>\n\nSoft drink bottles, water bottles, peanut butter jars, salad dressing, cooking oil, many cleaning products.\n\n<b>Common 02 recyclable bottles include: </b>\n\nMilk and juice jugs, bleach, laundry detergent, shampoo, motor oil, some retail bags and trash bags, some yogurt and butter tubs, cereal box liners.
+ <b>\n\nRecycling Locations</b> \n\nPlastic bottles can be recycled at all recycling bins found near common trash disposal areas. </string>
     <string name="remove">REMOVE</string>
     <string name="workspace">9542d46e-aab7-435b-b09b-cf0fae7a28cd</string>
     <string name="sign_in_to_skylight">Sign in to Second Life</string>
