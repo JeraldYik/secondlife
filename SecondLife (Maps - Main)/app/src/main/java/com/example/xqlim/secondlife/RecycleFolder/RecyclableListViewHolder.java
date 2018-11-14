@@ -23,10 +23,7 @@ public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements
     public RecyclableListViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
-//        Log.i(TAG, String.valueOf(itemView));
-//        Log.i(TAG, String.valueOf(itemView.findViewById(R.id.category_name)));
         categoryName = itemView.findViewById(R.id.category_image_name);
-//        Log.i(TAG, String.valueOf(itemView.findViewById(R.id.category_image)));
         categoryPhoto = itemView.findViewById(R.id.category_image);
     }
 
