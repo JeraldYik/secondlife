@@ -79,7 +79,7 @@ public class HistoryFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_hist, container, false);
 
         //can call in manager
-        historyManager.initializeData();
+        //historyManager.initializeData();
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.history_recycler);
 
