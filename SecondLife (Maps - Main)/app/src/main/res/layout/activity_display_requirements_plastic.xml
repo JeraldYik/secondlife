@@ -134,6 +134,7 @@
                 app:textSize="12sp" />
 
             <TextView
+                android:id="@+id/category_unit"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textview_border"

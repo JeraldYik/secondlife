@@ -42,7 +42,7 @@ public class DisplayRequirements extends AppCompatActivity {
         category_name = findViewById(R.id.category_name);
         category_location = findViewById(R.id.category_location);
         category_description = findViewById(R.id.category_description);
-//        category_unit = findViewById(R.id.category_unit);
+        category_unit = findViewById(R.id.category_unit);
         numberButton = findViewById(R.id.number_button);
         addButton = findViewById(R.id.add_btn);
 
@@ -66,7 +66,7 @@ public class DisplayRequirements extends AppCompatActivity {
 
                      case 3:
 
-                         AluminiumDrinkCan aluminium = new AluminiumDrinkCan(Double.parseDouble(numberButton.getNumber()), "Cans");
+                         AluminiumDrinkCan aluminium = new AluminiumDrinkCan(Double.parseDouble(numberButton.getNumber())*0.02, "kg");
                          recycleManager.addToList(aluminium);
 
                          break;
@@ -158,7 +158,7 @@ public class DisplayRequirements extends AppCompatActivity {
                 category_name.setText(plastic.getName());
                 category_location.setText(plastic.getLocation());
                 category_description.setText(plastic.getRecyclableRequirements());
-//                category_unit.setText(plastic.getUnit());
+                category_unit.setText(plastic.getUnit());
                 break;
 
             case 3:
@@ -168,7 +168,7 @@ public class DisplayRequirements extends AppCompatActivity {
                 category_name.setText(cans.getName());
                 category_location.setText(cans.getLocation());
                 category_description.setText(cans.getRecyclableRequirements());
-//                category_unit.setText(cans.getUnit());
+                category_unit.setText(cans.getUnit());
                 break;
 
 //            case 2:
