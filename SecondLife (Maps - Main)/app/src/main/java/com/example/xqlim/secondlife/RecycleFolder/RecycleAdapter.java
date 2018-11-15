@@ -61,10 +61,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     historyManager.addHist(recycled);
 
-
-                    deleteItem(getAdapterPosition());
-                    notifyDataSetChanged();
-
                     Bundle bundl = new Bundle();
                     bundl.putInt("recyclable", 1);
                     MapViewFragment frag = new MapViewFragment();
@@ -73,6 +69,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             frag).commit();
+
+                    deleteItem(getAdapterPosition());
+                    notifyDataSetChanged();
 
 
 //                    AppCompatActivity activity = (AppCompatActivity) view.getContext();

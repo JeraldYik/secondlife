@@ -19,5 +19,6 @@
     <string name="password_caps">PASSWORD</string>
     <string name="keep_me_signed_in">Keep me signed in</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="no_recyclable">Oh no, your cart is empty!\n\nPress the add button at the top right corner to start recycling!</string>
 
 </resources>

@@ -78,22 +78,29 @@ public class RecycleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        View layout = inflater.inflate(R.layout.fragment_recycle, container, false);
+        View layout;
+        Log.i(TAG, String.valueOf(recycleManager.getRecycledItems().size() == 0));
+        if(recycleManager.getRecycledItems().size() == 0) {
+            layout = inflater.inflate(R.layout.no_element_in_list, container, false);
+        } else {
+            layout = inflater.inflate(R.layout.fragment_recycle, container, false);
 
-//        recycleManager.initializeData();
-        for(Recyclable r : recycleManager.getRecycledItems()) {
-            Log.i(TAG, r.getName() + " " + r.getQtyDisplay());
+            //        recycleManager.initializeData();
+            for(Recyclable r : recycleManager.getRecycledItems()) {
+                Log.i(TAG, r.getName() + " " + r.getQtyDisplay());
+            }
+
+            mRecyclerView = layout.findViewById(R.id.recyclable_recycler);
+
+            // use a linear layout manager
+            mLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            // specify an adapter (see also next example)
+            mAdapter = new RecycleAdapter(recycleManager.getRecycledItems());
+            mRecyclerView.setAdapter(mAdapter);
         }
 
-        mRecyclerView = layout.findViewById(R.id.recyclable_recycler);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        mAdapter = new RecycleAdapter(recycleManager.getRecycledItems());
-        mRecyclerView.setAdapter(mAdapter);
 
         return layout;
 
