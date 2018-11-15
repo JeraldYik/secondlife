@@ -11,6 +11,7 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class HistoryManager {
 
@@ -42,14 +43,24 @@ public class HistoryManager {
     }
 
     public void addHist(Recyclable recyclable) {
-        for (Recyclable r : recycledItems) {
+//        for (Recyclable r : recycledItems) {
+//            if (r.getName() == recyclable.getName()) {
+//                double qty = r.getQuantity() + recyclable.getQuantity();
+//                r.setQuantity(qty);
+//                break;
+//            }
+//            else
+//                recycledItems.add(r);
+//        }
+
+        for (Iterator<Recyclable> iterator = recycledItems.iterator(); iterator.hasNext(); ) {
+            Recyclable r = iterator.next();
             if (r.getName() == recyclable.getName()) {
                 double qty = r.getQuantity() + recyclable.getQuantity();
                 r.setQuantity(qty);
-                break;
-            }
-            else
+            } else {
                 recycledItems.add(r);
+            }
         }
     }
 

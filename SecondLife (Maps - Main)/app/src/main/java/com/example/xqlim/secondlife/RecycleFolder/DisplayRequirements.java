@@ -162,7 +162,7 @@ public class DisplayRequirements extends AppCompatActivity {
                 break;
 
             case 3:
-                AluminiumDrinkCan cans = new AluminiumDrinkCan(0, "Cans");
+                AluminiumDrinkCan cans = new AluminiumDrinkCan(0, "cans");
                 ImageView a = findViewById(R.id.category_image);
                 a.setImageDrawable(getResources().getDrawable(R.drawable.large_cans));
                 category_name.setText(cans.getName());
