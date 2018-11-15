@@ -61,7 +61,7 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
 
         if(newString==100) {
             goToFragment(R.id.nav_recycle);
-            navigationView.setCheckedItem(R.id.nav_history);
+            navigationView.setCheckedItem(R.id.nav_mapview);
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new MapViewFragment()).commit();
