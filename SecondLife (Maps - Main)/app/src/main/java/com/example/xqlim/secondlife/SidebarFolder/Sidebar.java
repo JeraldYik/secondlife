@@ -43,7 +43,13 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         int newString = 0;
         Bundle b = getIntent().getExtras();
         if(b!=null) {
-            newString = (int) b.get(DisplayRequirements.INTENT_KEY);
+            try{
+                newString = (int) b.get(DisplayRequirements.INTENT_KEY);
+            }catch(NullPointerException e){
+                newString = 1;
+                e.printStackTrace();
+            }
+
         }
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
