@@ -27,7 +27,7 @@ public class MarkerManager {
 
     }
 
-    public void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category, GoogleMap mMap){
+    public void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category, GoogleMap mMap, int value){
         KmlContainer container = kmlLayer.getContainers().iterator().next();
         container = container.getContainers().iterator().next();
 
@@ -39,7 +39,14 @@ public class MarkerManager {
                 addMarkers(locationManager.getLocationlist().get(latLng), category, mMap);
             }
         }
-        toggleMarkers(filter);
+
+        if (value == 1){
+            toggleMarkers("Cash For Trash");
+        }
+        else{
+            toggleMarkers(filter);
+        }
+
 
     }
 

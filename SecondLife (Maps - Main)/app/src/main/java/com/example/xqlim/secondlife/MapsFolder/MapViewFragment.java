@@ -62,6 +62,7 @@ import com.google.maps.android.kml.KmlLayer;
 import com.google.maps.android.kml.KmlPlacemark;
 import com.google.maps.android.kml.KmlPoint;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
@@ -111,6 +112,8 @@ public class MapViewFragment extends Fragment
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
 
+    int value = 0;
+
     private boolean isResume;
 
 
@@ -119,6 +122,14 @@ public class MapViewFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "initialising mapviewfrag");
         isResume = false;
+
+        try {
+            Bundle bundle = getArguments();
+            this.value = bundle.getInt("recyclable");
+            Log.d(TAG, "value: " + Integer.toString(value));
+        }catch(NullPointerException e){
+            Log.d(TAG, e.getMessage());
+        }
 
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_map_view, container, false);
@@ -559,8 +570,9 @@ public class MapViewFragment extends Fragment
 
             Log.d(TAG, Integer.toString(locationManager.getLocationlist().size()));
 
-            markerManager.setupMarker(c4tLayer, locationManager, "Cash For Trash", mMap);
-            markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap);
+
+            markerManager.setupMarker(c4tLayer, locationManager, "Cash For Trash", mMap, value);
+            markerManager.setupMarker(eWasteLayer, locationManager, "E-Waste", mMap, value);
 
             for (LatLng key : markerManager.getMarkerList().keySet()){
                 com.example.xqlim.secondlife.MapsFolder.Location location =  (com.example.xqlim.secondlife.MapsFolder.Location) markerManager.getMarkerList().get(key).getTag();

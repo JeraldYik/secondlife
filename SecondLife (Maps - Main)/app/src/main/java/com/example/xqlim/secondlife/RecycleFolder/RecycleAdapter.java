@@ -1,6 +1,7 @@
 package com.example.xqlim.secondlife.RecycleFolder;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -60,12 +61,23 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
                     historyManager.addHist(recycled);
 
+
                     deleteItem(getAdapterPosition());
                     notifyDataSetChanged();
 
+                    Bundle bundl = new Bundle();
+                    bundl.putInt("recyclable", 1);
+                    MapViewFragment frag = new MapViewFragment();
+                    frag.setArguments(bundl);
+
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new MapViewFragment()).commit();
+                            frag).commit();
+
+
+//                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+//                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                    new MapViewFragment()).commit();
                 }
             });
 
