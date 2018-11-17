@@ -24,12 +24,7 @@ import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 import java.util.ArrayList;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RecycleFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RecycleFragment# newInstance} factory method to
- * create an instance of this fragment.
+ * Boundary Class for Recyclables that display possible recyclables in a ListView
  */
 public class RecycleFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -52,28 +47,22 @@ public class RecycleFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
+     * Creates the Fragment based on the savedInstanceState
+     * @param savedInstanceState Saved state of the fragment
      */
-    // TODO: Rename and change types and number of parameters
-//    public static HistoryFragment newInstance(String param1, String param2) {
-//        HistoryFragment fragment = new HistoryFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Creates the View to be displayed
+     * @param inflater Layout inflater that inflates the layout
+     * @param container The parent view that the fragment's UI should be attached to
+     * @param savedInstanceState Saved state of the fragment
+     * @return View to be created
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,6 +95,12 @@ public class RecycleFragment extends Fragment {
 
     }
 
+    /**
+     * Creates the option menu to allow for adding of recyclables
+     * @param menu Menu to be inflated
+     * @param inflater Inflater to be used
+     */
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
@@ -113,6 +108,12 @@ public class RecycleFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
     }
+
+    /**
+     * Implements functionality when options item is selected
+     * @param item item that is selected
+     * @return Boolean that indicates if the item has been selected
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -124,13 +125,13 @@ public class RecycleFragment extends Fragment {
             Intent intent = new Intent(getActivity(), RecyclableList.class);
             startActivity(intent);
 
-            /** code to launch mapview
-//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                    new MapViewFragment()).commit();
-             */
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Resumes fragment activity.
+     */
 
     @Override
     public void onResume() {
@@ -142,17 +143,30 @@ public class RecycleFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Listener for on when back button is pressed
+     * @param uri Resource Identifier
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    /**
+     * Sets functionality when fragment is attached
+     * @param context Context of the fragment
+     */
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
+
+
+    /**
+     * Sets functionality when fragment is detached
+     */
 
     @Override
     public void onDetach() {

@@ -14,6 +14,10 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * RecyclableList View Holder that implements List View for recycleList
+ */
+
 public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView categoryName;
@@ -27,6 +31,10 @@ public class RecyclableListViewHolder extends RecyclerView.ViewHolder implements
         categoryPhoto = itemView.findViewById(R.id.category_image);
     }
 
+    /**
+     * Sets functionality when item on the list is selected
+     * @param view current View
+     */
     @Override
     public void onClick(View view) {
         Context context = view.getContext();

@@ -23,6 +23,9 @@ import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.List;
 
+/**
+ * Recycle Adapter for Recycle Fragment
+ */
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHolder> {
     private String[] mDataset;
     private List<Recyclable> recyclables;

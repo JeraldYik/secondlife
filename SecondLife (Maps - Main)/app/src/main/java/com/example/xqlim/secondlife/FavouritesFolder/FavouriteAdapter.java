@@ -17,36 +17,80 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Adapter for the ListView in FavouritesFragment
+ */
+
+
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyViewHolder> {
+    /**
+     * Tag for Logging purposes
+     */
     private static final String TAG = "FavouriteAdapterTAG";
-    private String[] mDataset;
+
+    /**
+     * List of favourites
+     */
     private List<Location> Favourites;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     *Class to provide a reference to the views for each data item
+     *Complex data items may need more than one view per item, and
+     *you provide access to all the views for a data item in a view holder
+     */
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
+        /**
+         * CardView to display each favourite
+         */
         CardView cv;
+
+        /**
+         * Name of each favourite
+         */
         TextView favouriteName;
-        TextView favouriteQty;
+
+        /**
+         * Quantity of each favourite
+         */
+        TextView favouriteDetails;
+
+        /**
+         * Photo to display for each favourite
+         */
         ImageView favouritePhoto;
 
+        /**
+         * Constructor for the ViewHolder
+         * @param itemView View of each item to display
+         */
         public MyViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.cv_favourite);
             favouriteName = (TextView) itemView.findViewById(R.id.favourites_name);
-            favouriteQty = (TextView) itemView.findViewById(R.id.favourites_details);
+            favouriteDetails = (TextView) itemView.findViewById(R.id.favourites_details);
             favouritePhoto = (ImageView) itemView.findViewById(R.id.favourites_photo);
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Constructor for the Adapter
+     * @param favourites Arraylist of the Locations that are favourited
+     */
+
     public FavouriteAdapter(ArrayList<Location> favourites) {
         this.Favourites = favourites;
     }
 
-    // Create new views (invoked by the layout manager)
+    /**
+     * Creates new view for each favourite (invoked by the layout manager)
+     * @param parent View to display the created views in
+     * @param viewType Type of view to create
+     * @return Viewholder to be created
+     */
+
     @Override
     public FavouriteAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
@@ -58,7 +102,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     * @param holder ViewHolder to bind the view to
+     * @param i Index of each element in the ArrayList of favourites
+     */
+
     @Override
     public void onBindViewHolder(FavouriteAdapter.MyViewHolder holder, int i) {
         // - get element from your dataset at this position
@@ -69,7 +118,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
         String favouriteText = (favouritedLocation.getAddressBuildingName()==null) ?
                 (favouritedLocation.getAddressBlockNumber() + " " + favouritedLocation.getAddressStreetName()) :
                 favouritedLocation.getAddressBuildingName();
-        holder.favouriteQty.setText(favouriteText);
+        holder.favouriteDetails.setText(favouriteText);
         switch(favouritedLocation.getName()){
             case "Cash For Trash":
                 holder.favouritePhoto.setImageResource(R.drawable.cash_for_trash);
@@ -79,23 +128,26 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
                 break;
         }
 
-        /*
-        holder.mView.setText(mDataset[position]);
-        */
-
     }
+
+    /**
+     * Attaches the Adapter to the RecyclerView
+     * @param recyclerView RecyclerView to attach the adapter to
+     */
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     * @return size of favourites ArrayList
+     */
+
     @Override
     public int getItemCount() {
         return Favourites.size();
     }
 
-    {
-    }
+
 }

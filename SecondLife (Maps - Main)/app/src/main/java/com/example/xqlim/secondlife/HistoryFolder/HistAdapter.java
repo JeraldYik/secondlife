@@ -14,21 +14,54 @@ import com.example.xqlim.secondlife.RecycleFolder.RecycleManager;
 
 import java.util.List;
 
+
+/**
+ * Adapter for the ListView in FavouritesFragment
+ */
+
 public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> {
-    private String[] mDataset;
+
+    /**
+     * List of history items
+     */
     private List<Recyclable> recyclables;
+
+    /**
+     * HistoryManager to manage history items
+     */
     private HistoryManager historyManager;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     *Class to provide a reference to the views for each data item
+     *Complex data items may need more than one view per item, and
+     *you provide access to all the views for a data item in a view holder
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+        /**
+         * CardView to display each favourite
+         */
         CardView cv;
+
+        /**
+         * Name of each History Item
+         */
         TextView recyclableName;
+
+        /**
+         * Quantity of each History Item
+         */
         TextView recyclableQty;
+
+        /**
+         * Photo to display for each History Item
+         */
         ImageView recyclablePhoto;
 
+
+        /**
+         * Constructor for the ViewHolder
+         * @param itemView View of each item to display
+         */
         public MyViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
@@ -39,13 +72,22 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Constructor for the Adapter
+     * @param recyclables Arraylist of the History Items
+     */
+
     public HistAdapter(List<Recyclable> recyclables) {
         this.recyclables = recyclables;
         historyManager = HistoryManager.getInstance();
     }
 
-    // Create new views (invoked by the layout manager)
+    /**
+     * Creates new view for each favourite (invoked by the layout manager)
+     * @param parent View to display the created views in
+     * @param viewType Type of view to create
+     * @return ViewHolder to be created
+     */
     @Override
     public HistAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                        int viewType) {
@@ -57,7 +99,11 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     * @param holder ViewHolder to bind the view to
+     * @param i Index of each element in the ArrayList of favourites
+     */
     @Override
     public void onBindViewHolder(MyViewHolder holder, int i) {
         // - get element from your dataset at this position
@@ -73,23 +119,25 @@ public class HistAdapter extends RecyclerView.Adapter<HistAdapter.MyViewHolder> 
 
     }
 
+    /**
+     * Attaches the Adapter to the RecyclerView
+     * @param recyclerView RecyclerView to attach the adapter to
+     */
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     * @return size of recyclables List
+     */
     @Override
     public int getItemCount() {
         return recyclables.size();
     }
 
 
-
-//    public void update(Recyclable recyclable){
-//        historyManager.addHist(recyclable);
-//        notifyDataSetChanged();
-//    }
 }
 
 

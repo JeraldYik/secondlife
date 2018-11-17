@@ -17,6 +17,10 @@ import com.example.xqlim.secondlife.RecyclablesFolder.AluminiumDrinkCan;
 import com.example.xqlim.secondlife.RecyclablesFolder.Plastic;
 import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
+/**
+ * Class that shows requirements of recyclable to be recycled and allows user to input quantity
+ */
+
 public class DisplayRequirements extends AppCompatActivity {
 
     private static final String TAG = "DisplayRequirementsTag";
@@ -28,6 +32,10 @@ public class DisplayRequirements extends AppCompatActivity {
     public static final int INTENT_VALUE = 100;
     private int position;
 
+    /**
+     * Sets functionality when activity is created
+     * @param savedInstanceState State of activity when it was paused or destroyed
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +155,11 @@ public class DisplayRequirements extends AppCompatActivity {
              }
          });
         }
+
+    /**
+     * Sets the Details of each recyclable
+     * @param pos position of recyclable in the List
+     */
 
     private void getRecyclingDetails(int pos) {
         switch(pos){

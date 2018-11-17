@@ -33,7 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * Class to manage all available types of recyclables
+ */
 public class RecyclableList extends AppCompatActivity{
 
     private static final String TAG = "RecyclableListTAG";

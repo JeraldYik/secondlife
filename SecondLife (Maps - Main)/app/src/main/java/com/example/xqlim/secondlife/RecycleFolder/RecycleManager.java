@@ -8,6 +8,10 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 import java.util.ArrayList;
 
+/**
+ * Control class that manages Recyclables
+ */
+
 public class RecycleManager {
 
     private static final String TAG = "RecycleManagerTAG";
@@ -32,6 +36,10 @@ public class RecycleManager {
         this.recycledItems.add(new Glass(2.4, "kg"));
     }
 
+    /**
+     * Adds recyclable to list
+     * @param recyclable
+     */
     public void addToList(Recyclable recyclable) {
         Log.i(TAG, this.recycledItems.toString());
         this.recycledItems.add(recyclable);

@@ -11,6 +11,10 @@ import com.example.xqlim.secondlife.RecyclablesFolder.Recyclable;
 
 import java.util.List;
 
+/**
+ * ImageAdapter for the ListView in FavouritesFragment
+ */
+
 public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListViewHolder> {
 
     private static final String TAG = "RecyclableList";
@@ -26,6 +30,7 @@ public class RecyclableImageAdapter extends RecyclerView.Adapter<RecyclableListV
 //            Log.d(TAG, re.getName());
 //        }
     }
+
 
     @Override
     public RecyclableListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

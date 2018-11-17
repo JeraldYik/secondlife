@@ -20,17 +20,22 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-
+/**
+ * Control class to manage locations
+ */
 
 public class LocationManager
 {
     private Context mContext;
     private static final String TAG = "LocationCreator";
     private HashMap <LatLng, Location> locationlist = new HashMap<>();
-    private boolean skip = true;
+
 
     private static LocationManager instance = new LocationManager();
 
+    /**
+     * Private Constructor for Singleton design principle
+     */
     private LocationManager(){}
 
     public static LocationManager getInstance(){
@@ -50,6 +55,13 @@ public class LocationManager
 //        this.mContext = context;
 //    }
 
+    /**
+     * Parses KMLLayer to extract Location details
+     * @param resource File to be parsed
+     * @param category Category of Location
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     public void readFile(int resource, String category) throws XmlPullParserException, IOException {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
@@ -95,6 +107,11 @@ public class LocationManager
         }
     }
 
+    /**
+     * Creates a new location object
+     * @param info Location information
+     * @param category Category of Location
+     */
 
     private void createLocation(ArrayList<String> info, String category){
 
@@ -174,17 +191,7 @@ public class LocationManager
         locationlist.put(location.getLatLng(), location);
     }
 
-    //dont use unless NULL is addressed
-//    public void printLoc(Location location){
-//        Log.d(TAG, location.getName());
-//        Log.d(TAG, location.getDescription());
-//        Log.d(TAG, location.getAddressUnitNumber());
-//        Log.d(TAG, location.getAddressStreetName());
-//        Log.d(TAG, location.getAddressPostalCode());
-//        Log.d(TAG, location.getAddressBuildingName());
-//        Log.d(TAG, location.getAddressBlockNumber());
-//        Log.d(TAG, location.getLatLng().toString());
-//    }
+
 
     public HashMap<LatLng, Location> getLocationlist() {
         return locationlist;
@@ -194,6 +201,11 @@ public class LocationManager
         this.locationlist = locationlist;
     }
 
+    /**
+     * Creates LatLng object from String Resource
+     * @param rawLatLng String to be processed
+     * @return LatLng
+     */
     private LatLng makeLatLng(String rawLatLng) {
         String[] strLatLngArr = rawLatLng.split(",");
         LatLng latLng = new LatLng(Double.parseDouble(strLatLngArr[1]), Double.parseDouble(strLatLngArr[0]));

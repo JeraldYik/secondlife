@@ -13,21 +13,44 @@ import com.example.xqlim.secondlife.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
-/** Demonstrates customizing the info window and/or its contents. */
+
+
+/**
+ * Demonstrates customizing the info window and/or its contents
+ * Info window is displayed when user selects a marker on the map
+ */
 public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
 
     // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
     // "title" and "snippet".
+    /**
+     * Window to be displayed
+     */
     private final View mWindow;
+    /**
+     * Content to be displayed
+     */
     private final View mContents;
+    /**
+     * TAG for logging purposes
+     */
     private static final String TAG = "InfoWindowAdapterLog";
 
+    /**
+     * Constructor for the Info Window Adapter
+     * @param context Context of the activity
+     */
     public CustomInfoWindowAdapter(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         mWindow = inflater.inflate(R.layout.custom_info_window, null);
         mContents = inflater.inflate(R.layout.custom_info_contents, null);
     }
 
+    /**
+     * Getter for the infoWindow
+     * @param marker Marker to display the infowindow at
+     * @return InfoWindow to be displayed
+     */
     @Override
     public View getInfoWindow(Marker marker) {
             /*
@@ -40,6 +63,11 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
         return mWindow;
     }
 
+    /**
+     * Getter for infoContents
+     * @param marker Marker to display the infoContents at
+     * @return infoContents to be displayed
+     */
     @Override
     public View getInfoContents(Marker marker) {
             /*
@@ -51,6 +79,11 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
         return mContents;
     }
 
+    /**
+     * Renders the infoWindow
+     * @param marker marker to render the infoWindow at
+     * @param view infoWindow to be rendered
+     */
     private void render(final Marker marker, View view) {
 
         String title = marker.getTitle();

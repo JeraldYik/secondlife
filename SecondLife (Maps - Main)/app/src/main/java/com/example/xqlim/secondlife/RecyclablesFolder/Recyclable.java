@@ -1,5 +1,10 @@
 package com.example.xqlim.secondlife.RecyclablesFolder;
 
+
+/**
+ * Entity Class that stores information of recyclable items
+ * Parent class of all other classes in RecyclablesFolder
+ */
 public class Recyclable {
 
     protected String name;
@@ -9,6 +14,10 @@ public class Recyclable {
     protected String location;
     protected int imageAssetSmall;
     protected int imageAssetLarge;
+
+    /**
+     * Requirements to be met before item can be recycled
+     */
     protected int recyclableRequirements;
 
     public Recyclable (double quantity, String unit) {
@@ -60,6 +69,10 @@ public class Recyclable {
         return recyclableRequirements;
     }
 
+    /**
+     * Converts quantity to weight
+     * @return weight as a string
+     */
     public String getQtyDisplay() {
         String qtyDisp;
         if (unit != "kg") {

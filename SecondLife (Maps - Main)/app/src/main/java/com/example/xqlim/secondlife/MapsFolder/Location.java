@@ -4,29 +4,43 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+/**
+ * Entity class for Location
+ */
+
 public class Location {
+
     private static final String TAG = "LocationCreator";
+
     private String Name;
+
     private LatLng latLng;
 
-
-    private int openingTime;
-    private int closingTime;
     private boolean isFavourite;
 
-
     private String Description;
+
     private String AddressUnitNumber;
+
+
     private String AddressStreetName;
+
     private String AddressPostalCode;
+
     private String AddressBuildingName;
+
+
     private String AddressBlockNumber;
+
+
     private String SnippetText;
+
 
 
     public Location() {
         this.isFavourite = false;
     }
+
 
     public LatLng getLatLng() {
         return latLng;
@@ -36,9 +50,11 @@ public class Location {
         this.latLng = latLng;
     }
 
+
     public String getName() {
         return Name;
     }
+
 
     public String getDescription() {
         return Description;
@@ -68,6 +84,10 @@ public class Location {
         Name = name;
     }
 
+    /**
+     * Sets Description of Location
+     * @param description
+     */
     public void setDescription(String description) {
 
         String[] split = description.split("\\s+");

@@ -19,55 +19,73 @@ import com.example.xqlim.secondlife.SidebarFolder.Sidebar;
 
 import java.util.ArrayList;
 
+/**
+ * Boundary Class for Favourites that display Favourites in a ListView
+ */
+
 public class FavouritesFragment extends Fragment {
 
+    /**
+     * RecyclerView container for the ListView
+     */
     private RecyclerView mRecyclerView;
+    /**
+     * Adapter for the RecyclerView
+     */
     private RecyclerView.Adapter mAdapter;
+    /**
+     * Layout Manager for the RecyclerView
+     */
     private RecyclerView.LayoutManager mLayoutManager;
 
+    /**
+     * ArrayList of Favourite Locations
+     */
     private ArrayList<Location> Favourites;
 
-    private String filename = "hist_list.ser";
+    /**
+     * Listener for any interactions with the Fragment
+     */
+    private FavouritesFragment.OnFragmentInteractionListener mListener;
 
-    private HistoryFragment.OnFragmentInteractionListener mListener;
+    /**
+     * TAG for logging purposes
+     */
 
     private static final String TAG = "Favourite";
+
+    /**
+     * Constructor for the fragment
+     */
 
     public FavouritesFragment() {
         // Required empty public constructor
     }
 
-    /*
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
+    /**
+     * gets list of Favourites from Favourite Manager
      */
-    // TODO: Rename and change types and number of parameters
-//    public static HistoryFragment newInstance(String param1, String param2) {
-//        HistoryFragment fragment = new HistoryFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
 
     private void initializeData() {
         Favourites = MapViewFragment.getFavouritesManager().getFavouriteList();
     }
 
-
+    /**
+     * Creates the Fragment based on the savedInstanceState
+     * @param savedInstanceState Saved state of the fragment
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Creates the View to be displayed
+     * @param inflater Layout inflater that inflates the layout
+     * @param container The parent view that the fragment's UI should be attached to
+     * @param savedInstanceState Saved state of the fragment
+     * @return View to be created
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,7 +109,9 @@ public class FavouritesFragment extends Fragment {
 
     }
 
-
+    /**
+     * Resumes fragment activity.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -102,17 +122,28 @@ public class FavouritesFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Listener for on when back button is pressed
+     * @param uri Resource Identifier
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    /**
+     * Sets functionality when fragment is attached
+     * @param context Context of the fragment
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
+
+    /**
+     * Sets functionality when fragment is detached
+     */
 
     @Override
     public void onDetach() {

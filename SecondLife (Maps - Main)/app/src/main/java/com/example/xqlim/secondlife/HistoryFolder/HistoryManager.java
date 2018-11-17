@@ -13,25 +13,57 @@ import com.example.xqlim.secondlife.RecyclablesFolder.SmallElectricalAppliance;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Control class to manage History items
+ * History items are Recyclable Objects that have been recycled
+ */
+
 public class HistoryManager {
+
+    /**
+     * TAG for logging purposes
+     */
 
     private static final String TAG = "HistoryManagerTAG";
 
+    /**
+     * ArrayList of History Items
+     */
+
     private ArrayList<Recyclable> recycledItems;
+
+    /**
+     * private method to instantiate HistoryManager
+     */
 
     private static HistoryManager instance = new HistoryManager();
 
+    /**
+     * History Adapter
+     */
+
     private HistAdapter mAdapter;
 
+    /**
+     * Private constructor for History Manager for Singleton Design Pattern
+     */
     private HistoryManager(){
         this.recycledItems = new ArrayList<>();
         initializeData();
     }
 
+    /**
+     * public method to instantiate HistoryManager
+     * @return returns the History Manager
+     */
+
     public static HistoryManager getInstance(){
         return instance;
     }
 
+    /**
+     * Initialises the History Items for the page
+     */
     public void initializeData() {
         recycledItems.add(new Plastic(4.9, "kg"));
         recycledItems.add(new Paper(3.7, "kg"));
@@ -41,6 +73,10 @@ public class HistoryManager {
         recycledItems.add(new AluminiumDrinkCan(12, "kg"));
     }
 
+    /**
+     * Add History Item
+     * @param recyclable History item to be added
+     */
     public void addHist(Recyclable recyclable) {
 
         Boolean match = false;
@@ -67,37 +103,11 @@ public class HistoryManager {
             index = recycledItems.size();
             recycledItems.add(index, recyclable);
         }
-
-
-
-
-//        Iterator<Recyclable> iter = recycledItems.iterator();
-//
-//        while (iter.hasNext()) {
-//            Recyclable re = iter.next();
-//            String name = re.getName();
-//
-//            if (name == recyclable.getName()){
-//                re.setQuantity(re.getQuantity()+recyclable.getQuantity());
-//            }
-//            else{
-//
-//            }
-//            recycledItems.add(re);
-//        }
-
-//
-//
-//        for (Recyclable r : recycledItems) {
-//            if (r.getName() == recyclable.getName()) {
-//                double qty = r.getQuantity() + recyclable.getQuantity();
-//                r.setQuantity(qty);
-//                break;
-//            }
-//            else
-//                recycledItems.add(r);
-//        }
     }
+
+    /**
+     * @return ArrayList of History items
+     */
 
     public ArrayList<Recyclable> getRecycledItems() {
         return recycledItems;

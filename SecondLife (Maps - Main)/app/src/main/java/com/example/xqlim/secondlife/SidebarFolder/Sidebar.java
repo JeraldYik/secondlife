@@ -22,10 +22,19 @@ import com.example.xqlim.secondlife.RecycleFolder.DisplayRequirements;
 import com.example.xqlim.secondlife.RecycleFolder.RecyclableList;
 import com.example.xqlim.secondlife.RecycleFolder.RecycleFragment;
 
+/**
+ * Main activity of the app that allows users to select which fragment they want to open
+ */
+
 public class Sidebar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     Fragment mContent;
     private static final String TAG = "SidebarTAG";
+
+    /**
+     * Sets functionality of sidebar when app starts
+     * @param savedInstanceState previous state of sidebar
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +79,16 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
     }
 
 
+
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
+    /**
+     * Sets functionality of when an item on the sidebar is selected
+     * @param item
+     * @return true if item is selected successfully
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         goToFragment(item.getItemId());
@@ -82,6 +97,10 @@ public class Sidebar extends AppCompatActivity implements NavigationView.OnNavig
         return true;
     }
 
+    /**
+     * Goes to the fragment selected
+     * @param ID ID of fragment to open
+     */
     private void goToFragment(int ID) {
         switch (ID){
             case R.id.nav_mapview:

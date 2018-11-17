@@ -2,6 +2,10 @@ package com.example.xqlim.secondlife.RecyclablesFolder;
 
 import com.example.xqlim.secondlife.R;
 
+/**
+ * Entity class that extends Recyclable that represents Plastic
+ */
+
 public class Plastic extends Recyclable {
 
     public Plastic(double quantity, String unit) {

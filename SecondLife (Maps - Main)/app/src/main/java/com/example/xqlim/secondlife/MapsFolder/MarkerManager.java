@@ -14,18 +14,46 @@ import com.google.maps.android.kml.KmlPoint;
 
 import java.util.HashMap;
 
+/**
+ * Control Class to manage markers
+ */
+
 public class MarkerManager {
 
+    /**
+     * TAG for logging purposes
+     */
     private static final String TAG = "MarkerManagerTAG";
-    //key is latlng, value is marker
+
+    /**
+     * Hashmap of markers
+     * Key is LatLng of location, value is marker to be displayed
+     */
     private HashMap<LatLng, Marker> markerList;
+
+    /**
+     * filter that determines which markers are shown
+     */
     private String filter;
 
+    /**
+     * Constructor for markerManager
+     * Instantiates markerList
+     * Sets filter to nothing
+     */
     public MarkerManager() {
         this.markerList = new HashMap<>();
         filter = "nothing";
-
     }
+
+    /**
+     * Retrieves list of all coordinates from KMLLayer
+     * @param kmlLayer KMLLayer to extract coordinates from
+     * @param locationManager locationManager to retrieve list of locations from
+     * @param category determines which category of location the marker is representing
+     * @param mMap Map to display markers on
+     * @param value Sets default filter for map
+     */
 
     public void setupMarker (KmlLayer kmlLayer, LocationManager locationManager, String category, GoogleMap mMap, int value){
         KmlContainer container = kmlLayer.getContainers().iterator().next();
@@ -47,8 +75,14 @@ public class MarkerManager {
             toggleMarkers(filter);
         }
 
-
     }
+
+    /**
+     * Creates markers and adds them to map
+     * @param location Location whose info should be displayed
+     * @param category Category of marker
+     * @param mMap Map to add markers to
+     */
 
     private void addMarkers(com.example.xqlim.secondlife.MapsFolder.Location location, String category, GoogleMap mMap){
         Marker marker = null;
@@ -74,9 +108,8 @@ public class MarkerManager {
 
                 marker.setTag(location);
 
-//                markerList.put(location.getLatLng(), marker);
                 break;
-        //& toner a bit of issue
+
             case "E-Waste":
                 snippetText = location.getDescription();
                 if(location.getAddressBlockNumber()!=null && location.getAddressStreetName()!=null) {
@@ -103,12 +136,13 @@ public class MarkerManager {
         markerList.put(location.getLatLng(), marker);
         location.setSnippetText(snippetText);
 
-
-
-
     }
 
-    //Filter which markers to show
+    /**
+     * Filters which markers to show
+     * @param filter filter to be applied
+     */
+
     public void toggleMarkers(String filter){
         Log.d(TAG, Integer.toString(markerList.size()));
 
@@ -153,6 +187,10 @@ public class MarkerManager {
         this.filter = filter;
     }
 
+    /**
+     * Getter for MarkerList
+     * @return MarkerList
+     */
     public HashMap<LatLng, Marker> getMarkerList() {
         return markerList;
     }
